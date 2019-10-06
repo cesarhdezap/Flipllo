@@ -22,7 +22,7 @@ namespace LogicaDeNegocios
 
         private void IniciarHost()
         {
-            using (ServiceHost host = new ServiceHost(typeof(ServiciosDeUsuario)))
+            using (ServiceHost host = new ServiceHost(typeof(ServiciosDeComunicacion.ServiciosDeComunicacion)))
             {
                 host.Open();
                 ServidorActivo = true;

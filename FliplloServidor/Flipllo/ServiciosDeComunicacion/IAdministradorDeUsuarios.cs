@@ -8,7 +8,7 @@ using System.Text;
 namespace ServiciosDeComunicacion
 {
     [ServiceContract]
-    public interface IServiciosDeUsuario
+    public interface IAdministradorDeUsuarios
     {
         [OperationContract]
         bool ValidarCuenta(Usuario usuario);
@@ -24,7 +24,7 @@ namespace ServiciosDeComunicacion
         private string nombreDeUsuario;
         private string contraseña;
         private string correoElectronico;
-        
+
         [DataMember]
         public int ID { get { return id; } set { id = value; } }
         [DataMember]

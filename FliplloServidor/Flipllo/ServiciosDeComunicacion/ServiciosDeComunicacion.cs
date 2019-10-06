@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ServiciosDeComunicacion
 {
-    public class ServiciosDeUsuario : IServiciosDeUsuario
+    public class ServiciosDeComunicacion : IAdministradorDeUsuarios
     {
         public bool RegistrarCuenta(Usuario usuario)
         {
