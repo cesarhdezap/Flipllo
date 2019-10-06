@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Flipllo
+/FliplloCliente/InterfazGrafica
+/FliplloCliente/LogicaDeNegocios
+/FliplloCliente/Recursos_en-US
+/FliplloCliente/Recursos_es-MX
