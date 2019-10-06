@@ -1,0 +1,27 @@
+﻿<Window x:Class="InterfazGrafica.RegistrarCuenta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfazGrafica"
+        mc:Ignorable="d"
+        Title="RegistrarCuenta" Height="599" Width="303">
+	<Grid>
+		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="34,29,42,0" VerticalAlignment="Top" FontSize="36" Width="219" HorizontalContentAlignment="Center"/>
+		<Label x:Name="LabelCrearCuenta" Content="{DynamicResource ResourceKey=crearCuenta}" HorizontalAlignment="Center" Margin="34,110,152,0" VerticalAlignment="Top" FontSize="14" Width="109"/>
+		<TextBox x:Name="TextBoxNombreDeUsuario" HorizontalAlignment="Left" Height="23" Margin="34,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="14" TextChanged="TextBoxNombreDeUsuario_TextChanged"/>
+		<TextBox x:Name="TextBoxCorreoElectronico" HorizontalAlignment="Left" Height="23" Margin="34,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="14" TextChanged="TextBoxCorreoElectronico_TextChanged"/>
+		<TextBox x:Name="TextBoxConfirmarCorreoElectronico" HorizontalAlignment="Left" Height="24" Margin="34,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="14" TextChanged="TextBoxConfirmarCorreoElectronico_TextChanged"/>
+		<TextBox x:Name="TextBoxContraseña" HorizontalAlignment="Left" Height="22" Margin="34,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="14" TextChanged="TextBoxContraseña_TextChanged"/>
+		<TextBox x:Name="TextBoxConfirmarContraseña" HorizontalAlignment="Left" Height="24" Margin="34,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219" FontSize="14" TextChanged="TextBoxConfirmarContraseña_TextChanged"/>
+		<Label x:Name="LabelNombreDeUsuario" Content="{DynamicResource ResourceKey=nombreDeUsuario}" HorizontalAlignment="Left" Margin="34,140,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
+		<Label x:Name="LabelCorreoElectronico" Content="{DynamicResource ResourceKey=correoElectronico}" HorizontalAlignment="Left" Margin="34,188,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
+		<Label x:Name="LabelConfirmarCorreoElectronico" Content="{DynamicResource ResourceKey=confirmarCorreoElectronico}" HorizontalAlignment="Left" Margin="34,234,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
+		<Label x:Name="LabelContraseña" Content="{DynamicResource ResourceKey=contraseña}" HorizontalAlignment="Left" Margin="34,282,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
+		<Label x:Name="LabelConfirmarContraseña" Content="{DynamicResource ResourceKey=confirmarContraseña}" HorizontalAlignment="Left" Margin="34,328,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
+		<Button x:Name="LabelTerminosDeUso" Content="{DynamicResource ResourceKey=terminosDeUso}" HorizontalAlignment="Left" Margin="139,381,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF1088FF" Background="{x:Null}" BorderBrush="{x:Null}"/>
+		<CheckBox x:Name="CheckBoxAcepto" Content="{DynamicResource ResourceKey=acepto}" HorizontalAlignment="Left" Margin="42,384,0,0" VerticalAlignment="Top" FontSize="14"/>
+		<Button x:Name="ButtonCrearCuenta" Content="{DynamicResource ResourceKey=crearCuenta}" HorizontalAlignment="Center" Margin="60,457,70,0" VerticalAlignment="Top" Width="165" FontSize="14" Click="ButtonCrearCuenta_Click"/>
+
+	</Grid>
+</Window>

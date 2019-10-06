@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Recursos_es_MX"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+	<system:String x:Key="nombreDelJuego">Girallo</system:String>
+	<system:String x:Key="idioma">Idioma</system:String>
+	<system:String x:Key="iniciarSesion">Iniciar sesión</system:String>
+	<system:String x:Key="nombreDeUsuario">Nombre de usuario</system:String>
+	<system:String x:Key="chat">Chat</system:String>
+	<system:String x:Key="enviarMensaje">Enviar</system:String>
+	<system:String x:Key="mensaje">Mensaje</system:String>
+	<system:String x:Key="contraseña">Constraseña</system:String>
+	<system:String x:Key="correoElectronico">Correo Electronico</system:String>
+	<system:String x:Key="confirmarCorreoElectronico">Confirmar Correo Electronico</system:String>
+	<system:String x:Key="confirmarContraseña">Confirmar Constraseña</system:String>
+	<system:String x:Key="crearCuenta">Crear cuenta</system:String>
+	<system:String x:Key="terminosDeUso">Terminos de uso</system:String>
+	<system:String x:Key="acepto">Acepto los</system:String>
+	<system:String x:Key="noCuenta">¿No tienes cuenta?</system:String>
+	<system:String x:Key="crearUnaCuenta">¡Registrate!</system:String>
+</ResourceDictionary>

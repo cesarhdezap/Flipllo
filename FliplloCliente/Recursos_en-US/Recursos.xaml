@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Recursos_en_US"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+	<system:String x:Key="nombreDelJuego">Flipllo</system:String>
+	<system:String x:Key="idioma">Language</system:String>
+	<system:String x:Key="iniciarSesion">Log in</system:String>
+	<system:String x:Key="nombreDeUsuario">Username</system:String>
+	<system:String x:Key="chat">Chat</system:String>
+	<system:String x:Key="enviarMensaje">Send</system:String>
+	<system:String x:Key="mensaje">Message</system:String>
+	<system:String x:Key="contraseña">Password</system:String>
+	<system:String x:Key="correoElectronico">Email</system:String>
+	<system:String x:Key="confirmarCorreoElectronico">Confirm Email</system:String>
+	<system:String x:Key="confirmarContraseña">Confirm Password</system:String>
+	<system:String x:Key="crearCuenta">Create account</system:String>
+	<system:String x:Key="terminosDeUso">Terms of Service</system:String>
+	<system:String x:Key="acepto">I accept the</system:String>
+	<system:String x:Key="noCuenta">Don't have an account?</system:String>
+	<system:String x:Key="crearUnaCuenta">Sign in!</system:String>
+	<system:String x:Key="contraseñaInvalida">Invalid password. Must be between 6 and 255 characters.</system:String>
+	<system:String x:Key="correoElectronicoInvalido">Invalid email.</system:String>
+	<system:String x:Key="confirmacionInvalida">Values do not match.</system:String>
+	<system:String x:Key="nombreDeUsuarioInvalido">Invalid Username. Must be between 6 and 20 characters, cannot have special characters.</system:String>
+
+</ResourceDictionary>

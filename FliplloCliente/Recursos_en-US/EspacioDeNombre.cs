@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicaDeNegocios
+namespace Recursos_en_US
 {
-    public class Class1
-    {
-    }
+	class EspacioDeNombre
+	{
+	}
 }
