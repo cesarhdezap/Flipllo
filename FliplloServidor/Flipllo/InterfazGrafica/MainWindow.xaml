@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="434" Closed="Window_Closed">
     <Grid>
-        
+        <Button x:Name="ButtonIniciarServidor" Content="Iniciar Servidor" HorizontalAlignment="Left" Margin="97,355,0,0" VerticalAlignment="Top" Width="89" Click="ButtonIniciarServidor_Click"/>
+        <Label x:Name="LabelEstadoDeServidor" Content="Default&#xA;" HorizontalAlignment="Left" Margin="190,46,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelEstadoConexion" Content="Label" HorizontalAlignment="Left" Margin="81,217,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonPausarServidor" Content="Pausar Servidor" HorizontalAlignment="Left" Margin="278,355,0,0" VerticalAlignment="Top" Width="91" Click="ButtonPausarServidor_Click"/>
+
     </Grid>
 </Window>

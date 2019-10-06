@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazGrafica", "InterfazGrafica\InterfazGrafica.csproj", "{6FFCFB20-18EB-4713-90FF-9C7242464BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaDeNegocios", "LogicaDeNegocios\LogicaDeNegocios.csproj", "{806EFA9C-DE9C-4D24-A836-24DF4EF2B111}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaDeNegocios", "LogicaDeNegocios\LogicaDeNegocios.csproj", "{806EFA9C-DE9C-4D24-A836-24DF4EF2B111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosDeComunicacion", "ServiciosDeComunicacion\ServiciosDeComunicacion.csproj", "{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{806EFA9C-DE9C-4D24-A836-24DF4EF2B111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{806EFA9C-DE9C-4D24-A836-24DF4EF2B111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{806EFA9C-DE9C-4D24-A836-24DF4EF2B111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
