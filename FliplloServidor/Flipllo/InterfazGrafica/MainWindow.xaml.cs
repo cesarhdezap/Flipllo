@@ -27,7 +27,6 @@ namespace InterfazGrafica
         public MainWindow()
         {
             InitializeComponent();
-            
         }
         
         private void ButtonIniciarServidor_Click(object sender, RoutedEventArgs e)

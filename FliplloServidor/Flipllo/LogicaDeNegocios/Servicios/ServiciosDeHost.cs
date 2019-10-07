@@ -17,6 +17,7 @@ namespace LogicaDeNegocios
         public void IniciarServidor()
         {
             HiloDeEscucha = new Thread(IniciarHost);
+            HiloDeEscucha.Name = DateTime.Now.ToString();
             HiloDeEscucha.Start();
         }
 

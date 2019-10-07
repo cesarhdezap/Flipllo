@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicaDeNegocios", "LogicaD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosDeComunicacion", "ServiciosDeComunicacion\ServiciosDeComunicacion.csproj", "{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas", "Pruebas\Pruebas.csproj", "{ECB0C13D-BC05-4097-B3F8-A8D4CC35A646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoABaseDeDatos", "AccesoABaseDeDatos\AccesoABaseDeDatos.csproj", "{D6B54A19-DCFB-4883-8335-F65D1D8B5C4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDCE0DAF-5A25-48FF-AD2D-0D6FED2F3098}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB0C13D-BC05-4097-B3F8-A8D4CC35A646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB0C13D-BC05-4097-B3F8-A8D4CC35A646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB0C13D-BC05-4097-B3F8-A8D4CC35A646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB0C13D-BC05-4097-B3F8-A8D4CC35A646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6B54A19-DCFB-4883-8335-F65D1D8B5C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6B54A19-DCFB-4883-8335-F65D1D8B5C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6B54A19-DCFB-4883-8335-F65D1D8B5C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6B54A19-DCFB-4883-8335-F65D1D8B5C4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
