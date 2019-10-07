@@ -80,7 +80,8 @@ namespace InterfazGrafica
 
 		private void ButtonIniciarSesion_Click(object sender, RoutedEventArgs e)
 		{
-			//TODO
+            GUIChat chat = new GUIChat();
+            chat.Show();
 		}
 
 		private void LabelCrearUnaCuenta_Click(object sender, RoutedEventArgs e)

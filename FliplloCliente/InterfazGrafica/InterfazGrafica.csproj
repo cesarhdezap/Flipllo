@@ -60,7 +60,7 @@
       <DependentUpon>RegistrarCuenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilierias\UtilieriasDeElementosGraficos.cs" />
-    <Page Include="Chat.xaml">
+    <Page Include="GUIChat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,8 +72,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chat.xaml.cs">
-      <DependentUpon>Chat.xaml</DependentUpon>
+    <Compile Include="GUIChat.xaml.cs">
+      <DependentUpon>GUIChat.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

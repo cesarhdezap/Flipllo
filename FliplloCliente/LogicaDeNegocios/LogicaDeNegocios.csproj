@@ -44,7 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClasesDeDominio\Usuario.cs" />
+    <Compile Include="ClasesDeDominio\Chat.cs" />
+    <Compile Include="Connected Services\ServiciosDeChat\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ServiciosDeComunicacion\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,15 +57,30 @@
     </Compile>
     <Compile Include="Excepciones\RecursoNoEncontradoException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\ChatDelServidorProxy.cs" />
     <Compile Include="ServiciosDeRecursosDeIdioma.cs" />
+    <Compile Include="Servicios\ServiciosDeChatCallBack.cs" />
     <Compile Include="Servicios\ServiciosDeValidacion.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiciosDeChat\" />
+    <WCFMetadataStorage Include="Connected Services\ServiciosDeComunicacion\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Connected Services\ServiciosDeChat\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeChat\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeChat\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeChat\ServiciosDeChat.wsdl" />
     <None Include="Connected Services\ServiciosDeComunicacion\item.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -73,9 +93,6 @@
     <None Include="Connected Services\ServiciosDeComunicacion\ServiciosDeComunicacion.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiciosDeComunicacion\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\ServiciosDeComunicacion\item.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +103,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiciosDeComunicacion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeChat\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeChat\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeChat\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeChat\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
