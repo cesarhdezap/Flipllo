@@ -56,5 +56,13 @@ namespace InterfazGrafica
             
             Servidor.PararHost();
         }
-    }
+
+		private void ButtonIniciarServicioDeChat_Click(object sender, RoutedEventArgs e)
+		{
+			Chat chat = new Chat();
+			this.Hide();
+			chat.ShowDialog();
+			
+		}
+	}
 }
