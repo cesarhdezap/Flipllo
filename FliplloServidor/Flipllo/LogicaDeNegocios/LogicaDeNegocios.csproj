@@ -11,11 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Clases\" />
+    <ProjectReference Include="..\ServiciosDeComunicacion\ServiciosDeComunicacion.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServiciosDeComunicacion\ServiciosDeComunicacion.csproj" />
+    <Folder Include="Clases\" />
   </ItemGroup>
 
 </Project>
