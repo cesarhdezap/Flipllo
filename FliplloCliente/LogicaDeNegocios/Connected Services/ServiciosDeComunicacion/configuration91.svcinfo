@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="aEPldkv5F/jtanEDzu7ta/WscuU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="gjfMomSCv8HagNcBcANzm4XAk/8=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IAdministradorDeUsuarios1">
+    <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IAdministradorDeUsuarios">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NetTcpBinding_IAdministradorDeUsuarios1</serializedValue>
+          <serializedValue>NetTcpBinding_IAdministradorDeUsuarios</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -121,10 +121,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IAdministradorDeUsuarios1" contract="ServiciosDeComunicacion.IAdministradorDeUsuarios" bindingType="netTcpBinding" address="net.tcp://192.168.50.214:8091/ServiciosDeComunicacion" bindingConfiguration="NetTcpBinding_IAdministradorDeUsuarios1">
+    <endpoint name="NetTcpBinding_IAdministradorDeUsuarios" contract="ServiciosDeComunicacion.IAdministradorDeUsuarios" bindingType="netTcpBinding" address="net.tcp://192.168.43.53:8091/ServiciosDeComunicacion" bindingConfiguration="NetTcpBinding_IAdministradorDeUsuarios">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.50.214:8091/ServiciosDeComunicacion</serializedValue>
+          <serializedValue>net.tcp://192.168.43.53:8091/ServiciosDeComunicacion</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -133,7 +133,7 @@
           <serializedValue>netTcpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NetTcpBinding_IAdministradorDeUsuarios1</serializedValue>
+          <serializedValue>NetTcpBinding_IAdministradorDeUsuarios</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>ServiciosDeComunicacion.IAdministradorDeUsuarios</serializedValue>
@@ -196,7 +196,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>NetTcpBinding_IAdministradorDeUsuarios1</serializedValue>
+          <serializedValue>NetTcpBinding_IAdministradorDeUsuarios</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

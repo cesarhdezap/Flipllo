@@ -29,6 +29,7 @@ namespace InterfazGrafica
         public IServiciosDeChat CanalDelServidor;
         public Chat Chat;
         public Usuario UsuarioLocal;
+        public ServiciosDeChatCallBack CanalDeCallbackLocal;
 
         public GUIChat()
 		{
@@ -40,6 +41,7 @@ namespace InterfazGrafica
                 NombreDeUsuario = "Pipo",
                 Contraseña = "pipopass",
                 CorreoElectronico = "pipo@correo.com",
+                Sesion = new Sesion()
             };
 
 			
@@ -51,7 +53,10 @@ namespace InterfazGrafica
 
             ProxyDelChatDelServidor = new ChatDelServidorProxy(servicioDeChatDeCliente);
             CanalDelServidor = ProxyDelChatDelServidor.ChannelFactory.CreateChannel();
-
+            
+            
+            
+            
             CanalDelServidor.Conectar(UsuarioLocal);
 
             if (UsuarioLocal.ID > 0)
@@ -64,8 +69,8 @@ namespace InterfazGrafica
 
         private void ActualizarListaDeClientesConectados(List<Usuario> clientesConectados)
         {
-            DataGridUsuariosConectados.DataContext = clientesConectados;
-            MessageBox.Show("Hola soy yo jsjs");
+
+            DataGridUsuariosConectados.ItemsSource = clientesConectados;
         }
 
         private void MostrarNuevoMensaje(Mensaje mensaje)
@@ -76,18 +81,19 @@ namespace InterfazGrafica
 
         private void ActualizarIDDeUsuario(int id)
         {
-            UsuarioLocal.ID = id;
+            UsuarioLocal.Sesion.ID = id;
         }
 
         private void ButtonSendMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TextBoxMessageBox.Text) && UsuarioLocal.ID > 0)
+            if (!string.IsNullOrEmpty(TextBoxMessageBox.Text) && UsuarioLocal.Sesion.ID > 0)
             {
                 Mensaje mensaje = new Mensaje();
-                mensaje.IDDeUsuario = UsuarioLocal.ID;
+                mensaje.IDDeUsuario = UsuarioLocal.Sesion.ID;
                 mensaje.Fecha = DateTime.Now;
                 mensaje.CuerpoDeMensaje = TextBoxMessageBox.Text;
                 CanalDelServidor.EnviarMensaje(mensaje);
+                TextBoxMessageBox.Text = string.Empty;
             }
         }
     }

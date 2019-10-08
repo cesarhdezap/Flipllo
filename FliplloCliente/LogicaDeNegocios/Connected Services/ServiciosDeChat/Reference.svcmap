@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dcb47005-6f75-4812-9180-0de65d5f53ef" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="91924325-7e6f-4435-a069-93fff320f198" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://192.168.50.214:9081" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3ee5e913-7803-41e3-b3c0-862395ed6fa8" SourceId="1" SourceUrl="http://192.168.50.214:9081/?xsd=xsd1" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="3f1763c1-68ef-4f12-8871-1c9dd252c2fe" SourceId="1" SourceUrl="http://192.168.50.214:9081/?disco" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="518153fc-492a-4bb3-9e8c-80314bf8bec4" SourceId="1" SourceUrl="http://192.168.50.214:9081/?xsd=xsd2" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="3e9be46a-0780-4873-836b-c0ee28e95a2a" SourceId="1" SourceUrl="http://192.168.50.214:9081/?xsd=xsd0" />
-    <MetadataFile FileName="ServiciosDeChat.wsdl" MetadataType="Wsdl" ID="7f422885-2db8-4a4d-89e6-e97aad0f3368" SourceId="1" SourceUrl="http://192.168.50.214:9081/?wsdl" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="26490451-1417-4d17-a774-a713ff68ebe0" SourceId="1" SourceUrl="http://192.168.50.214:9081/?xsd=xsd1" />
+    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="99f67cef-fe39-40a9-8812-9d1ec0aba9e4" SourceId="1" SourceUrl="http://192.168.50.214:9081/?disco" />
+    <MetadataFile FileName="item31.xsd" MetadataType="Schema" ID="499ba9c1-e9ea-46a1-9188-f18748d3fd11" SourceId="1" SourceUrl="http://192.168.50.214:9081/?xsd=xsd2" />
+    <MetadataFile FileName="item32.xsd" MetadataType="Schema" ID="0cfcfe5a-65d9-4c52-abe2-2ad117c8bf9d" SourceId="1" SourceUrl="http://192.168.50.214:9081/?xsd=xsd0" />
+    <MetadataFile FileName="ServiciosDeChat1.wsdl" MetadataType="Wsdl" ID="6cf67605-fc77-4d8b-8443-808a0218da5d" SourceId="1" SourceUrl="http://192.168.50.214:9081/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

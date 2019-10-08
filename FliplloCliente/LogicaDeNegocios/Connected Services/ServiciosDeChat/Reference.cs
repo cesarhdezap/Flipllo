@@ -34,6 +34,9 @@ namespace LogicaDeNegocios.ServiciosDeChat {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreDeUsuarioField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicaDeNegocios.ServiciosDeChat.Sesion SesionField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -92,6 +95,64 @@ namespace LogicaDeNegocios.ServiciosDeChat {
                 if ((object.ReferenceEquals(this.NombreDeUsuarioField, value) != true)) {
                     this.NombreDeUsuarioField = value;
                     this.RaisePropertyChanged("NombreDeUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicaDeNegocios.ServiciosDeChat.Sesion Sesion {
+            get {
+                return this.SesionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SesionField, value) != true)) {
+                    this.SesionField = value;
+                    this.RaisePropertyChanged("Sesion");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sesion", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion")]
+    [System.SerializableAttribute()]
+    public partial class Sesion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
@@ -187,22 +248,22 @@ namespace LogicaDeNegocios.ServiciosDeChat {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiciosDeChat.IServiciosDeChat", CallbackContract=typeof(LogicaDeNegocios.ServiciosDeChat.IServiciosDeChatCallback))]
     public interface IServiciosDeChat {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeChat/Conectar", ReplyAction="http://tempuri.org/IServiciosDeChat/ConectarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeChat/Conectar")]
         void Conectar(LogicaDeNegocios.ServiciosDeChat.Usuario usuario);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeChat/Conectar", ReplyAction="http://tempuri.org/IServiciosDeChat/ConectarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeChat/Conectar")]
         System.Threading.Tasks.Task ConectarAsync(LogicaDeNegocios.ServiciosDeChat.Usuario usuario);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeChat/Desconectar", ReplyAction="http://tempuri.org/IServiciosDeChat/DesconectarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeChat/Desconectar")]
         void Desconectar(int IDDeUsuario);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeChat/Desconectar", ReplyAction="http://tempuri.org/IServiciosDeChat/DesconectarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeChat/Desconectar")]
         System.Threading.Tasks.Task DesconectarAsync(int IDDeUsuario);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeChat/EnviarMensaje", ReplyAction="http://tempuri.org/IServiciosDeChat/EnviarMensajeResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeChat/EnviarMensaje")]
         void EnviarMensaje(LogicaDeNegocios.ServiciosDeChat.Mensaje mensaje);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeChat/EnviarMensaje", ReplyAction="http://tempuri.org/IServiciosDeChat/EnviarMensajeResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeChat/EnviarMensaje")]
         System.Threading.Tasks.Task EnviarMensajeAsync(LogicaDeNegocios.ServiciosDeChat.Mensaje mensaje);
     }
     

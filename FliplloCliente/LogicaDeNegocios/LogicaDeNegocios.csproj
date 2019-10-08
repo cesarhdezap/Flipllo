@@ -71,29 +71,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Connected Services\ServiciosDeChat\item.xsd">
+    <None Include="Connected Services\ServiciosDeChat\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeChat\item1.xsd">
+    <None Include="Connected Services\ServiciosDeChat\item31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeChat\item2.xsd">
+    <None Include="Connected Services\ServiciosDeChat\item32.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeChat\ServiciosDeChat.wsdl" />
-    <None Include="Connected Services\ServiciosDeComunicacion\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiciosDeComunicacion\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiciosDeComunicacion\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiciosDeComunicacion\ServiciosDeComunicacion.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiciosDeComunicacion\item.disco" />
+    <None Include="Connected Services\ServiciosDeChat\ServiciosDeChat1.wsdl" />
+    <None Include="Connected Services\ServiciosDeComunicacion\ServiciosDeComunicacion1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiciosDeComunicacion\configuration91.svcinfo" />
@@ -102,13 +90,19 @@
     <None Include="Connected Services\ServiciosDeComunicacion\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ServiciosDeComunicacion\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeComunicacion\item31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeComunicacion\item32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiciosDeComunicacion\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiciosDeChat\item.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiciosDeChat\configuration91.svcinfo" />
@@ -121,6 +115,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeComunicacion\item1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeChat\item1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

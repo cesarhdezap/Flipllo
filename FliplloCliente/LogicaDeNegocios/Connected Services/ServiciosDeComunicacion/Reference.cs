@@ -34,6 +34,9 @@ namespace LogicaDeNegocios.ServiciosDeComunicacion {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreDeUsuarioField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicaDeNegocios.ServiciosDeComunicacion.Sesion SesionField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -92,6 +95,64 @@ namespace LogicaDeNegocios.ServiciosDeComunicacion {
                 if ((object.ReferenceEquals(this.NombreDeUsuarioField, value) != true)) {
                     this.NombreDeUsuarioField = value;
                     this.RaisePropertyChanged("NombreDeUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicaDeNegocios.ServiciosDeComunicacion.Sesion Sesion {
+            get {
+                return this.SesionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SesionField, value) != true)) {
+                    this.SesionField = value;
+                    this.RaisePropertyChanged("Sesion");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sesion", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion")]
+    [System.SerializableAttribute()]
+    public partial class Sesion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
                 }
             }
         }
