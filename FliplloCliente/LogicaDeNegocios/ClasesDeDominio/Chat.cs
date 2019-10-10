@@ -12,13 +12,21 @@ namespace LogicaDeNegocios.ClasesDeDominio
         public List<Usuario> UsuariosConectados { get; set; } = new List<Usuario>();
         public List<Mensaje> MensajesRecibidos { get; set; } = new List<Mensaje>();
 
+        public string MensajeToString(Mensaje mensaje)
+        {
+            string resultado = string.Empty;
+            string nombreDeUsuario = UsuariosConectados.First(usuario => usuario.Sesion.ID == mensaje.IDDeUsuario).NombreDeUsuario;
+            resultado = resultado + "[" + mensaje.Fecha.ToString() + "] " + nombreDeUsuario + ": " + mensaje.CuerpoDeMensaje;
+            return resultado;
+        }
+
         public string MensajesToString()
         {
             string cadenaDeMensajes = string.Empty;
 
             foreach (Mensaje mensaje in MensajesRecibidos)
             {
-                cadenaDeMensajes = cadenaDeMensajes + System.Environment.NewLine + mensaje.ToString();
+                cadenaDeMensajes = cadenaDeMensajes + System.Environment.NewLine + MensajeToString(mensaje);
             }
 
             return cadenaDeMensajes;

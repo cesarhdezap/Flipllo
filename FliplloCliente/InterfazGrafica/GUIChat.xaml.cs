@@ -69,8 +69,8 @@ namespace InterfazGrafica
 
         private void ActualizarListaDeClientesConectados(List<Usuario> clientesConectados)
         {
-
-            DataGridUsuariosConectados.ItemsSource = clientesConectados;
+            Chat.UsuariosConectados = clientesConectados;
+            DataGridUsuariosConectados.ItemsSource = Chat.UsuariosConectados;
         }
 
         private void MostrarNuevoMensaje(Mensaje mensaje)

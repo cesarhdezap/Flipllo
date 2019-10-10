@@ -8,7 +8,7 @@
         Title="{DynamicResource ResourceKey=chat}" Height="450" Width="800">
     <Grid>
         <TextBlock x:Name="TextBlockChatBox" HorizontalAlignment="Left" Height="373" Margin="181,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="601"/>
-        <TextBox x:Name="TextBoxMessageBox" HorizontalAlignment="Left" Height="23" Margin="10,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="683">
+        <TextBox x:Name="TextBoxMessageBox" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="23" Margin="10,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="683">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
@@ -33,6 +33,11 @@
             </TextBox.Style>
         </TextBox>
         <Button x:Name="ButtonSendMessage" Content="{DynamicResource ResourceKey=enviarMensaje}" HorizontalAlignment="Left" Margin="698,388,0,0" VerticalAlignment="Top" Width="84" Height="24" Click="ButtonSendMessage_Click"/>
-        <DataGrid x:Name="DataGridUsuariosConectados" HorizontalAlignment="Left" Height="373" Margin="10,10,0,0" VerticalAlignment="Top" Width="166"/>
+        <DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="373" Margin="10,10,0,0" VerticalAlignment="Top" Width="166">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID en Chat" IsReadOnly="True" Binding="{Binding Sesion.ID}"/>
+                <DataGridTextColumn Header="Usuario" IsReadOnly="True" Binding="{Binding NombreDeUsuario}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
