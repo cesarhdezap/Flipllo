@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogicaDeNegocios.ServiciosDeChat;
-using LogicaDeNegocios.ServiciosDeComunicacion;
+using LogicaDeNegocios.ServiciosDeFlipllo;
 
-namespace LogicaDeNegocios.Servicios
+namespace ServiciosDeComunicacion
 {
-    public class ServiciosDeChatCallBack : IServiciosDeChatCallback
+    public class ServiciosDeCallBack : IServiciosDeFliplloCallback
     {
         public delegate void NuevoMensajeRecibidoDelegate(Mensaje mensaje);
         public event NuevoMensajeRecibidoDelegate NuevoMensajeRecibidoEvent;
 
-        public delegate void ActualizacionDeListaDeClientesConectadosDelegate(List<ServiciosDeChat.Usuario> clientesConectados);
+        public delegate void ActualizacionDeListaDeClientesConectadosDelegate(List<Sesion> clientesConectados);
         public event ActualizacionDeListaDeClientesConectadosDelegate ListaDeClientesConectadosEvent;
 
         public delegate void ActualizacionDeIDDeUsuarioDelegate(int id);
         public event ActualizacionDeIDDeUsuarioDelegate ActualizarIDDeUsuarioEvent;
+
+		public delegate void RecibirSesionDelegate(Sesion sesion);
+		public event RecibirSesionDelegate RecibirSesionEvent;
 
         public void RecibirMensaje(Mensaje mensaje)
         {
             NuevoMensajeRecibidoEvent(mensaje);
         }
 
-        public void ActualizarListaDeUsuario(ServiciosDeChat.Usuario[] usuariosConectados)
+        public void ActualizarListaDeUsuarios(Sesion[] usuariosConectados)
         {
             ListaDeClientesConectadosEvent(usuariosConectados.ToList());
         }
@@ -33,5 +35,15 @@ namespace LogicaDeNegocios.Servicios
         {
             ActualizarIDDeUsuarioEvent(id);
         }
-    }
+
+		public void RecibirSesion(Sesion sesion)
+		{
+			RecibirSesionEvent(sesion);
+		}
+
+		public void PedirActualizarSesion()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

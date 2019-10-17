@@ -16,11 +16,37 @@
 	<system:String x:Key="crearCuenta">Create account</system:String>
 	<system:String x:Key="terminosDeUso">Terms of Service</system:String>
 	<system:String x:Key="acepto">I accept the</system:String>
-	<system:String x:Key="noCuenta">Don't have an account?</system:String>
+	<system:String x:Key="noCuenta">Don't have an account?</system:String> 
 	<system:String x:Key="crearUnaCuenta">Sign in!</system:String>
 	<system:String x:Key="contraseñaInvalida">Invalid password. Must be between 6 and 255 characters.</system:String>
 	<system:String x:Key="correoElectronicoInvalido">Invalid email.</system:String>
 	<system:String x:Key="confirmacionInvalida">Values do not match.</system:String>
-	<system:String x:Key="nombreDeUsuarioInvalido"> Invalid Username. Must be between 6 and 20 characters, cannot have special characters.</system:String>
+	<system:String x:Key="nombreDeUsuarioInvalido">Invalid Username. Must be between 6 and 20 characters, cannot have special characters.</system:String>
+	<system:String x:Key="botin">Loot</system:String>
+	<system:String x:Key="jugar">Play</system:String>
+	<system:String x:Key="tablaDePuntuaciones">Scoreboard</system:String>
+	<system:String x:Key="salir">Exit</system:String>
+	<system:String x:Key="configuracion">Settings</system:String>
+	<system:String x:Key="contactanos">Contact us!</system:String>
+	<system:String x:Key="somosAbiertos">We're open source!</system:String>
+	<system:String x:Key="ultimaJugada">Last move: </system:String>
+	<system:String x:Key="puntuacion">Score: </system:String>
+	<system:String x:Key="tiempoTotal">Total timer: </system:String>
+	<system:String x:Key="tiempoDelTurno">Turn timer: </system:String>
+	<system:String x:Key="deshacerJugada">Undo last move</system:String>
+	<system:String x:Key="tu">You</system:String>
+	<system:String x:Key="gracias">Thank you for using Flipllo</system:String>
+	<system:String x:Key="casiAcabamos">We're almost done</system:String>
+	<system:String x:Key="teEnviamosCorreo">We've sent you an Email with a code to verify your identity to the following address: </system:String>
+	<system:String x:Key="escribeTuCodigoAqui">Type your code here</system:String>
+	<system:String x:Key="continuar">Continue</system:String>
+	<system:String x:Key="exito">Success!</system:String>
+	<system:String x:Key="redirigidoParaIniciarSesion">You will be redirected to log in</system:String>
+	<system:String x:Key="algoAndaMal">Something's wrong...</system:String>
+	<system:String x:Key="tiempoAgotado">The server took too long to respond. Please verify your connection and try again.</system:String>
+	<system:String x:Key="errorDeConexion">The server is not responding. Please verify your connection and try again later.</system:String>
+	<system:String x:Key="credencialesInvalidas">Invalid credentials</system:String>
+	<system:String x:Key="credencialesInvalidasTitulo">Please verify your username and password</system:String>
+
 
 </ResourceDictionary>

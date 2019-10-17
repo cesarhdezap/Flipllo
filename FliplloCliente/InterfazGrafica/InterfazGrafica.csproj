@@ -56,11 +56,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GUICodigoDeConfirmacion.xaml.cs">
+      <DependentUpon>GUICodigoDeConfirmacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIJuego.xaml.cs">
+      <DependentUpon>GUIJuego.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarCuenta.xaml.cs">
       <DependentUpon>RegistrarCuenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilierias\UtilieriasDeElementosGraficos.cs" />
     <Page Include="GUIChat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUICodigoDeConfirmacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIJuego.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +141,34 @@
       <Project>{16173244-c134-461e-931a-b0e33ee4a160}</Project>
       <Name>Recursos_es-MX</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiciosDeComunicacion\ServiciosDeComunicacion.csproj">
+      <Project>{2dcf5e4f-245c-40ca-8039-cc3763bb42f2}</Project>
+      <Name>ServiciosDeComunicacion</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\telegram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\trophy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\treasure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

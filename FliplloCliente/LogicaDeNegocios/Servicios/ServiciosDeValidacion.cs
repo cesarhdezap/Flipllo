@@ -22,7 +22,11 @@ namespace LogicaDeNegocios.Servicios
 		/// Expresión regular que valida que el nombre de usuario solo tenga letras, numeros y guiones bajos, que no empieze ni termine con guin bajo, que no haya mas de un guin bajo consecutivo y que tenga entre 6 y 20 caracters de longitud.
 		/// </summary>
 		private static readonly Regex ExpresionRegularNombreDeUsuario = new Regex(@"^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$");
+
+		private static readonly Regex ExpresionRegularCodigoDeVerificacion = new Regex(@"^([\S]{5})$");
+
 		public const int TAMAÑO_MAXIMO_VARCHAR = 255;
+		
 
 		/// <summary>
 		/// Valida la estructura de la cadena del correo del usuario.
@@ -66,6 +70,18 @@ namespace LogicaDeNegocios.Servicios
 			bool resultadoDeValidacion = false;
 
 			if (ExpresionRegularNombreDeUsuario.IsMatch(nombreDeUsuario))
+			{
+				resultadoDeValidacion = true;
+			}
+
+			return resultadoDeValidacion;
+		}
+
+		public static bool ValidarCodigoDeVerificacion(string codigoDeVerificacion)
+		{
+			bool resultadoDeValidacion = false;
+
+			if (ExpresionRegularCodigoDeVerificacion.IsMatch(codigoDeVerificacion))
 			{
 				resultadoDeValidacion = true;
 			}

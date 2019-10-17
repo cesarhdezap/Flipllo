@@ -12,17 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Globalization;
-using LogicaDeNegocios.ServiciosDeComunicacion;
+using LogicaDeNegocios.ServiciosDeFlipllo;
+using ServiciosDeComunicacion.Proxy;
+using ServiciosDeComunicacion;
+using LogicaDeNegocios.Servicios;
 using static InterfazGrafica.Utilierias.UtilieriasDeElementosGraficos;
+using System.ServiceModel;
 
 namespace InterfazGrafica
 {
 	/// <summary>
 	/// Interaction logic for RegistrarCuenta.xaml
 	/// </summary>
-	public partial class RegistrarCuenta : Window
+	public partial class GUIRegistrarCuenta : Window
+
 	{
-		public RegistrarCuenta()
+		public Servidor Servidor;
+		public GUIRegistrarCuenta()
 		{
 			InitializeComponent();	
 		}
@@ -58,17 +64,32 @@ namespace InterfazGrafica
 
 		private void ButtonCrearCuenta_Click(object sender, RoutedEventArgs e)
 		{
-			AdministradorDeUsuariosClient servicios = new AdministradorDeUsuariosClient();
-
 			Usuario usuario = new Usuario()
 			{
 				CorreoElectronico = TextBoxCorreoElectronico.Text,
 				NombreDeUsuario = TextBoxNombreDeUsuario.Text,
-				Contraseña = TextBoxContraseña.Text,
-				ID = 0
+				Contraseña = TextBoxContraseña.Text
 			};
-
-			//TODO
+			Servidor = new Servidor(new ServiciosDeCallBack());
+			Servidor.CrearCanal();
+			try
+			{
+				if (Servidor.CanalDelServidor.RegistrarUsuario(usuario))
+				{
+					GUICodigoDeConfirmacion codigoDeConfirmacion = new GUICodigoDeConfirmacion(usuario, Servidor);
+					Hide();
+					codigoDeConfirmacion.ShowDialog();
+					Close();
+				}
+			}
+			catch (TimeoutException)
+			{
+				MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+			}
+			catch (CommunicationException)
+			{
+				MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+			}
 		}
 	}
 }

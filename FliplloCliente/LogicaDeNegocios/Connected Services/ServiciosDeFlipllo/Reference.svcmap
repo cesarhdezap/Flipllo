@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d71f1382-f13a-4624-94d7-4bea91d6605f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.50.96:8081" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="4b500459-9672-4530-b352-e3fdd889f57d" SourceId="1" SourceUrl="http://192.168.50.96:8081/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="19b9e0e1-ff68-4f97-9be1-c6ebbc56c3d0" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd0" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="dea92ca9-13c4-4cc2-9df4-246f4424f583" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd3" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="b04e0bcc-8173-4722-8f56-e76ef76ba405" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd1" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="0a828bf5-cd95-4e76-a492-acab702a5ef3" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd2" />
+    <MetadataFile FileName="ServiciosDeFlipllo.wsdl" MetadataType="Wsdl" ID="9d4194c6-6d6e-49ef-8528-aacc8a167e13" SourceId="1" SourceUrl="http://192.168.50.96:8081/?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

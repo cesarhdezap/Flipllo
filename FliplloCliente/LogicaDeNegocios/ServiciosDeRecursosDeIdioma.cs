@@ -28,7 +28,7 @@ namespace LogicaDeNegocios
 			{
 				Application.Current.Resources.MergedDictionaries.Remove(recursoActual);
 			}
-
+			
 			Application.Current.Resources.MergedDictionaries.Add(diccionarioDeRecursos);
 		}
 	}

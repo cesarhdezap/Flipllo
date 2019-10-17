@@ -12,9 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using LogicaDeNegocios.Proxy;
+using ServiciosDeComunicacion;
+using ServiciosDeComunicacion.Proxy;
 using LogicaDeNegocios.Servicios;
-using LogicaDeNegocios.ServiciosDeChat;
+using LogicaDeNegocios.ServiciosDeFlipllo;
 using LogicaDeNegocios.ClasesDeDominio;
 using System.Threading;
 
@@ -23,51 +24,36 @@ namespace InterfazGrafica
 	/// <summary>
 	/// Interaction logic for Chat.xaml
 	/// </summary>
-	public partial class GUIChat : Window
+	public partial class GUIMenuPrincipal : Window
 	{
-        public ChatDelServidorProxy ProxyDelChatDelServidor;
-        public IServiciosDeChat CanalDelServidor;
+        public Servidor Servidor;
         public Chat Chat;
-        public Usuario UsuarioLocal;
-        public ServiciosDeChatCallBack CanalDeCallbackLocal;
+		public Sesion SesionLocal;
+        
 
-        public GUIChat()
+        public GUIMenuPrincipal(Sesion Sesion)
 		{
             InitializeComponent();
             Chat = new Chat();
-
-            UsuarioLocal = new Usuario()
-            {
-                NombreDeUsuario = "Pipo",
-                Contraseña = "pipopass",
-                CorreoElectronico = "pipo@correo.com",
-                Sesion = new Sesion()
-            };
-
+			SesionLocal = Sesion;
+		
+            ServiciosDeCallBack servicioDeCliente = new ServiciosDeCallBack();
+            servicioDeCliente.ListaDeClientesConectadosEvent += ActualizarListaDeClientesConectados;
+            servicioDeCliente.NuevoMensajeRecibidoEvent += MostrarNuevoMensaje;
+            servicioDeCliente.ActualizarIDDeUsuarioEvent += ActualizarIDDeUsuario;
 			
-            var servicioDeChatDeCliente = new ServiciosDeChatCallBack();
-            servicioDeChatDeCliente.ListaDeClientesConectadosEvent += ActualizarListaDeClientesConectados;
-            servicioDeChatDeCliente.NuevoMensajeRecibidoEvent += MostrarNuevoMensaje;
-            servicioDeChatDeCliente.ActualizarIDDeUsuarioEvent += ActualizarIDDeUsuario;
+            Servidor = new Servidor(servicioDeCliente);
+			Servidor.CrearCanal();
+			Servidor.CanalDelServidor.ConectarDelChat(SesionLocal);
 
-
-            ProxyDelChatDelServidor = new ChatDelServidorProxy(servicioDeChatDeCliente);
-            CanalDelServidor = ProxyDelChatDelServidor.ChannelFactory.CreateChannel();
-            
-            
-            
-            
-            CanalDelServidor.Conectar(UsuarioLocal);
-
-            if (UsuarioLocal.ID > 0)
+            if (SesionLocal.ID > 0)
             {
                 MessageBox.Show("Usuario ya conectado");
             }
-            
-
+           
         }
 
-        private void ActualizarListaDeClientesConectados(List<Usuario> clientesConectados)
+        private void ActualizarListaDeClientesConectados(List<Sesion> clientesConectados)
         {
             Chat.UsuariosConectados = clientesConectados;
             DataGridUsuariosConectados.ItemsSource = Chat.UsuariosConectados;
@@ -81,18 +67,20 @@ namespace InterfazGrafica
 
         private void ActualizarIDDeUsuario(int id)
         {
-            UsuarioLocal.Sesion.ID = id;
+            SesionLocal.ID = id;
         }
 
         private void ButtonSendMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TextBoxMessageBox.Text) && UsuarioLocal.Sesion.ID > 0)
+            if (!string.IsNullOrEmpty(TextBoxMessageBox.Text) && SesionLocal.ID > 0)
             {
-                Mensaje mensaje = new Mensaje();
-                mensaje.IDDeUsuario = UsuarioLocal.Sesion.ID;
-                mensaje.Fecha = DateTime.Now;
-                mensaje.CuerpoDeMensaje = TextBoxMessageBox.Text;
-                CanalDelServidor.EnviarMensaje(mensaje);
+				Mensaje mensaje = new Mensaje
+				{
+					IDDeUsuario = SesionLocal.ID,
+					Fecha = DateTime.Now,
+					CuerpoDeMensaje = TextBoxMessageBox.Text
+				};
+				Servidor.CanalDelServidor.EnviarMensaje(mensaje);
                 TextBoxMessageBox.Text = string.Empty;
             }
         }

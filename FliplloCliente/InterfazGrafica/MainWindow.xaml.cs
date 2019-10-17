@@ -1,22 +1,14 @@
-﻿using System;
+﻿using LogicaDeNegocios.Excepciones;
+using LogicaDeNegocios.ServiciosDeFlipllo;
+using ServiciosDeComunicacion;
+using ServiciosDeComunicacion.Proxy;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Globalization;
-using LogicaDeNegocios.ServiciosDeComunicacion;
 using static LogicaDeNegocios.ServiciosDeRecursosDeIdioma;
-using LogicaDeNegocios.Excepciones;
-using LogicaDeNegocios;
 
 namespace InterfazGrafica
 {
@@ -26,11 +18,12 @@ namespace InterfazGrafica
 	public partial class MainWindow : Window
 	{
 		private const int PRIMER_INDICE_DE_COMBOBOX = 0;
-
+		private Sesion SesionActual;
+		private Servidor Servidor;
 		public MainWindow()
 		{
 			InitializeComponent();
-			
+
 			string culturaPorDefecto = CultureInfo.CurrentCulture.Name;
 
 			List<string> listaDeIdiomas = new List<string>
@@ -38,7 +31,7 @@ namespace InterfazGrafica
 				"en-US",
 				"es-MX"
 			};
-			
+
 			bool huboExcepcion = false;
 			CargarRecursos(culturaPorDefecto);
 			ComboBoxCambiarIdioma.ItemsSource = listaDeIdiomas;
@@ -67,7 +60,7 @@ namespace InterfazGrafica
 			{
 				CambiarRecursos(locale);
 			}
-			catch (RecursoNoEncontradoException e)
+			catch (RecursoNoEncontradoException)
 			{
 				MessageBox.Show("The resource " + locale + " wasn't found. Using english as default.");
 			}
@@ -80,17 +73,73 @@ namespace InterfazGrafica
 
 		private void ButtonIniciarSesion_Click(object sender, RoutedEventArgs e)
 		{
-            GUIChat chat = new GUIChat();
-            chat.Show();
+
+			SesionActual = new Sesion()
+			{
+				Usuario = new Usuario
+				{
+					CorreoElectronico = TextBoxNombreDeUsuario.Text,
+					Contraseña = PasswordBoxContraseña.Password
+				}
+			};
+
+			ServiciosDeCallBack serviciosDeCallBack = new ServiciosDeCallBack();
+			serviciosDeCallBack.RecibirSesionEvent += RecibirSesion;
+			Servidor = new Servidor(serviciosDeCallBack);
+			try
+			{
+				Servidor.CrearCanal();
+				Servidor.CanalDelServidor.AutenticarUsuario(SesionActual.Usuario);
+			}
+			catch (TimeoutException)
+			{
+				MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+			}
+			catch (CommunicationException)
+			{
+				MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+			}
 		}
 
 		private void LabelCrearUnaCuenta_Click(object sender, RoutedEventArgs e)
 		{
-			RegistrarCuenta registrarCuenta = new RegistrarCuenta();
+			GUIRegistrarCuenta registrarCuenta = new GUIRegistrarCuenta();
 			Hide();
 			registrarCuenta.ShowDialog();
+			Show();
 			TextBoxNombreDeUsuario.Clear();
 			PasswordBoxContraseña.Clear();
+		}
+
+
+		private void RecibirSesion(Sesion sesion)
+		{
+			SesionActual = sesion;
+			if (SesionActual.ID == 0)
+			{
+				MessageBox.Show(Application.Current.Resources["credencialesInvalidas"].ToString(), Application.Current.Resources["credencialesInvalidasTitulo"].ToString());
+			}
+			else
+			{
+				if (SesionActual.Usuario.Estado == EstadoUsuario.NoValidado)
+				{
+					GUICodigoDeConfirmacion codigoDeConfirmacion = new GUICodigoDeConfirmacion(SesionActual.Usuario, Servidor);
+					Hide();
+					codigoDeConfirmacion.ShowDialog();
+					Show();
+					TextBoxNombreDeUsuario.Clear();
+					PasswordBoxContraseña.Clear();
+				}
+				else if (SesionActual.Usuario.Estado == EstadoUsuario.Registrado)
+				{
+					GUIMenuPrincipal chat = new GUIMenuPrincipal(SesionActual);
+					Hide();
+					chat.ShowDialog();
+					Show();
+					TextBoxNombreDeUsuario.Clear();
+					PasswordBoxContraseña.Clear();
+				}
+			}
 		}
 	}
 }

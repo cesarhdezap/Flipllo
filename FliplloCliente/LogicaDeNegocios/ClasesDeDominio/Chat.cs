@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LogicaDeNegocios.ServiciosDeChat;
+using LogicaDeNegocios.ServiciosDeFlipllo;
 
 namespace LogicaDeNegocios.ClasesDeDominio
 {
     public class Chat
     {
-        public List<Usuario> UsuariosConectados { get; set; } = new List<Usuario>();
+        public List<Sesion> UsuariosConectados { get; set; } = new List<Sesion>();
         public List<Mensaje> MensajesRecibidos { get; set; } = new List<Mensaje>();
 
         public string MensajeToString(Mensaje mensaje)
         {
-            string resultado = string.Empty;
-            string nombreDeUsuario = UsuariosConectados.First(usuario => usuario.Sesion.ID == mensaje.IDDeUsuario).NombreDeUsuario;
+            string resultado = string.Empty;	
+            string nombreDeUsuario = UsuariosConectados.First(usuario => usuario.ID == mensaje.IDDeUsuario).Usuario.NombreDeUsuario;
             resultado = resultado + "[" + mensaje.Fecha.ToString() + "] " + nombreDeUsuario + ": " + mensaje.CuerpoDeMensaje;
             return resultado;
         }

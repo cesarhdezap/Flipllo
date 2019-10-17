@@ -1,0 +1,10 @@
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\bin\Debug\ServiciosDeComunicacion.dll
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\bin\Debug\ServiciosDeComunicacion.pdb
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\bin\Debug\LogicaDeNegocios.dll
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\bin\Debug\LogicaDeNegocios.pdb
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\bin\Debug\LogicaDeNegocios.dll.config
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\obj\Debug\ServiciosDeComunicacion.csprojAssemblyReference.cache
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\obj\Debug\ServiciosDeComunicacion.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\obj\Debug\ServiciosDeComunicacion.csproj.CopyComplete
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\obj\Debug\ServiciosDeComunicacion.dll
+C:\Users\Alex\Source\Repos\Flipllo\FliplloCliente\ServiciosDeComunicacion\obj\Debug\ServiciosDeComunicacion.pdb
