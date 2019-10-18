@@ -7,10 +7,34 @@
     <Schema Namespace="ModelFlipllo.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="ModelFliplloStoreContainer">
     <EntitySet Name="UsuarioSet" EntityType="ModelFlipllo.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="PuntuacionSet" EntityType="ModelFlipllo.Store.PuntuacionSet" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="UsuarioPuntuacion" Association="ModelFlipllo.Store.UsuarioPuntuacion">
+    <EntitySet Name="ObjetoSet" EntityType="ModelFlipllo.Store.ObjetoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ObjetoEnInventarioSet" EntityType="ModelFlipllo.Store.ObjetoEnInventarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ObjetoEnCofreSet" EntityType="ModelFlipllo.Store.ObjetoEnCofreSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CofreSet" EntityType="ModelFlipllo.Store.CofreSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CofreUsuario" EntityType="ModelFlipllo.Store.CofreUsuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UsuarioObjetoEnInventario" Association="ModelFlipllo.Store.UsuarioObjetoEnInventario">
       <End Role="Usuario" EntitySet="UsuarioSet" />
-      <End Role="Puntuacion" EntitySet="PuntuacionSet" />
+      <End Role="ObjetoEnInventario" EntitySet="ObjetoEnInventarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="ObjetoEnCofreObjeto" Association="ModelFlipllo.Store.ObjetoEnCofreObjeto">
+      <End Role="ObjetoEnCofre" EntitySet="ObjetoEnCofreSet" />
+      <End Role="Objeto" EntitySet="ObjetoSet" />
+    </AssociationSet>
+    <AssociationSet Name="ObjetoEnInventarioObjeto" Association="ModelFlipllo.Store.ObjetoEnInventarioObjeto">
+      <End Role="ObjetoEnInventario" EntitySet="ObjetoEnInventarioSet" />
+      <End Role="Objeto" EntitySet="ObjetoSet" />
+    </AssociationSet>
+    <AssociationSet Name="CofreObjetoEnCofre" Association="ModelFlipllo.Store.CofreObjetoEnCofre">
+      <End Role="Cofre" EntitySet="CofreSet" />
+      <End Role="ObjetoEnCofre" EntitySet="ObjetoEnCofreSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CofreUsuario_Cofre" Association="ModelFlipllo.Store.FK_CofreUsuario_Cofre">
+      <End Role="Cofre" EntitySet="CofreSet" />
+      <End Role="CofreUsuario" EntitySet="CofreUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CofreUsuario_Usuario" Association="ModelFlipllo.Store.FK_CofreUsuario_Usuario">
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+      <End Role="CofreUsuario" EntitySet="CofreUsuario" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="UsuarioSet">
@@ -21,27 +45,126 @@
     <Property Name="NombreDeUsuario" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Contraseña" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CorreoElectronico" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Estado" Type="int" Nullable="false" />
-    <Property Name="Puntuacion_Id" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="PartidasJugadas" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="ExperienciaTotal" Type="float" Nullable="false" DefaultValue="0" />
+    <Property Name="CodigoDeVerificacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Victorias" Type="smallint" Nullable="false" />
   </EntityType>
-  <EntityType Name="PuntuacionSet">
+  <EntityType Name="ObjetoSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PartidasJugadas" Type="int" Nullable="false" />
-    <Property Name="Victorias" Type="int" Nullable="false" />
-    <Property Name="ExperienciaTotal" Type="bigint" Nullable="false" />
+    <Property Name="Tipo" Type="smallint" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Imagen" Type="tinyint" Nullable="false" />
   </EntityType>
-  <Association Name="UsuarioPuntuacion">
-    <End Role="Usuario" Type="ModelFlipllo.Store.UsuarioSet" Multiplicity="*" />
-    <End Role="Puntuacion" Type="ModelFlipllo.Store.PuntuacionSet" Multiplicity="1" />
+  <EntityType Name="ObjetoEnInventarioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaDeObtencion" Type="datetime" Nullable="false" />
+    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+    <Property Name="Objeto_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ObjetoEnCofreSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProbabilidadDeObtener" Type="decimal" Nullable="false" />
+    <Property Name="Objeto_Id" Type="int" Nullable="false" />
+    <Property Name="Cofre_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CofreSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Imagen" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CofreUsuario">
+    <Key>
+      <PropertyRef Name="Cofre_Id" />
+      <PropertyRef Name="Usuario_Id" />
+    </Key>
+    <Property Name="Cofre_Id" Type="int" Nullable="false" />
+    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UsuarioObjetoEnInventario">
+    <End Role="Usuario" Type="ModelFlipllo.Store.UsuarioSet" Multiplicity="1" />
+    <End Role="ObjetoEnInventario" Type="ModelFlipllo.Store.ObjetoEnInventarioSet" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Puntuacion">
+      <Principal Role="Usuario">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="Puntuacion_Id" />
+      <Dependent Role="ObjetoEnInventario">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ObjetoEnCofreObjeto">
+    <End Role="ObjetoEnCofre" Type="ModelFlipllo.Store.ObjetoEnCofreSet" Multiplicity="*" />
+    <End Role="Objeto" Type="ModelFlipllo.Store.ObjetoSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Objeto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ObjetoEnCofre">
+        <PropertyRef Name="Objeto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ObjetoEnInventarioObjeto">
+    <End Role="ObjetoEnInventario" Type="ModelFlipllo.Store.ObjetoEnInventarioSet" Multiplicity="*" />
+    <End Role="Objeto" Type="ModelFlipllo.Store.ObjetoSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Objeto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ObjetoEnInventario">
+        <PropertyRef Name="Objeto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CofreObjetoEnCofre">
+    <End Role="Cofre" Type="ModelFlipllo.Store.CofreSet" Multiplicity="1" />
+    <End Role="ObjetoEnCofre" Type="ModelFlipllo.Store.ObjetoEnCofreSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cofre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ObjetoEnCofre">
+        <PropertyRef Name="Cofre_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CofreUsuario_Cofre">
+    <End Role="Cofre" Type="ModelFlipllo.Store.CofreSet" Multiplicity="1" />
+    <End Role="CofreUsuario" Type="ModelFlipllo.Store.CofreUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cofre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CofreUsuario">
+        <PropertyRef Name="Cofre_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CofreUsuario_Usuario">
+    <End Role="CofreUsuario" Type="ModelFlipllo.Store.CofreUsuario" Multiplicity="*" />
+    <End Role="Usuario" Type="ModelFlipllo.Store.UsuarioSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CofreUsuario">
+        <PropertyRef Name="Usuario_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -51,10 +174,29 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelFlipllo" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ModelFliplloContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UsuarioSet" EntityType="ModelFlipllo.Usuario" />
-          <EntitySet Name="PuntuacionSet" EntityType="ModelFlipllo.Puntuacion" />
-          <AssociationSet Name="UsuarioPuntuacion" Association="ModelFlipllo.UsuarioPuntuacion">
+          <EntitySet Name="ObjetoSet" EntityType="ModelFlipllo.Objeto" />
+          <EntitySet Name="ObjetoEnInventarioSet" EntityType="ModelFlipllo.ObjetoEnInventario" />
+          <EntitySet Name="ObjetoEnCofreSet" EntityType="ModelFlipllo.ObjetoEnCofre" />
+          <AssociationSet Name="UsuarioObjetoEnInventario" Association="ModelFlipllo.UsuarioObjetoEnInventario">
             <End Role="Usuario" EntitySet="UsuarioSet" />
-            <End Role="Puntuacion" EntitySet="PuntuacionSet" />
+            <End Role="ObjetoEnInventario" EntitySet="ObjetoEnInventarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="ObjetoEnCofreObjeto" Association="ModelFlipllo.ObjetoEnCofreObjeto">
+            <End Role="ObjetoEnCofre" EntitySet="ObjetoEnCofreSet" />
+            <End Role="Objeto" EntitySet="ObjetoSet" />
+          </AssociationSet>
+          <AssociationSet Name="ObjetoEnInventarioObjeto" Association="ModelFlipllo.ObjetoEnInventarioObjeto">
+            <End Role="ObjetoEnInventario" EntitySet="ObjetoEnInventarioSet" />
+            <End Role="Objeto" EntitySet="ObjetoSet" />
+          </AssociationSet>
+          <EntitySet Name="CofreSet" EntityType="ModelFlipllo.Cofre" />
+          <AssociationSet Name="CofreObjetoEnCofre" Association="ModelFlipllo.CofreObjetoEnCofre">
+            <End Role="Cofre" EntitySet="CofreSet" />
+            <End Role="ObjetoEnCofre" EntitySet="ObjetoEnCofreSet" />
+          </AssociationSet>
+          <AssociationSet Name="CofreUsuario" Association="ModelFlipllo.CofreUsuario">
+            <End Role="Cofre" EntitySet="CofreSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Usuario">
@@ -65,22 +207,74 @@
           <Property Name="NombreDeUsuario" Type="String" Nullable="false" />
           <Property Name="Contraseña" Type="String" Nullable="false" />
           <Property Name="CorreoElectronico" Type="String" Nullable="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Puntuacion" Relationship="ModelFlipllo.UsuarioPuntuacion" FromRole="Usuario" ToRole="Puntuacion" />
+          <Property Name="Estado" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="PartidasJugadas" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="ExperienciaTotal" Type="Double" Nullable="false" DefaultValue="0" />
+          <Property Name="CodigoDeVerificacion" Type="String" Nullable="false" />
+          <NavigationProperty Name="ObjetoEnInventario" Relationship="ModelFlipllo.UsuarioObjetoEnInventario" FromRole="Usuario" ToRole="ObjetoEnInventario" />
+          <NavigationProperty Name="Cofre" Relationship="ModelFlipllo.CofreUsuario" FromRole="Usuario" ToRole="Cofre" />
+          <Property Name="Victorias" Type="Int16" Nullable="false" />
         </EntityType>
-        <EntityType Name="Puntuacion">
+        <EntityType Name="Objeto">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PartidasJugadas" Type="Int32" Nullable="false" />
-          <Property Name="Victorias" Type="Int32" Nullable="false" />
-          <Property Name="ExperienciaTotal" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="ModelFlipllo.UsuarioPuntuacion" FromRole="Puntuacion" ToRole="Usuario" />
+          <Property Name="Tipo" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="Imagen" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="ObjetoEnCofre" Relationship="ModelFlipllo.ObjetoEnCofreObjeto" FromRole="Objeto" ToRole="ObjetoEnCofre" />
+          <NavigationProperty Name="ObjetoEnInventario" Relationship="ModelFlipllo.ObjetoEnInventarioObjeto" FromRole="Objeto" ToRole="ObjetoEnInventario" />
         </EntityType>
-        <Association Name="UsuarioPuntuacion">
+        <EntityType Name="ObjetoEnInventario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaDeObtencion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="ModelFlipllo.UsuarioObjetoEnInventario" FromRole="ObjetoEnInventario" ToRole="Usuario" />
+          <NavigationProperty Name="Objeto" Relationship="ModelFlipllo.ObjetoEnInventarioObjeto" FromRole="ObjetoEnInventario" ToRole="Objeto" />
+        </EntityType>
+        <EntityType Name="ObjetoEnCofre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProbabilidadDeObtener" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="Objeto" Relationship="ModelFlipllo.ObjetoEnCofreObjeto" FromRole="ObjetoEnCofre" ToRole="Objeto" />
+          <NavigationProperty Name="Cofre" Relationship="ModelFlipllo.CofreObjetoEnCofre" FromRole="ObjetoEnCofre" ToRole="Cofre" />
+          </EntityType>
+        <Association Name="UsuarioObjetoEnInventario">
           <End Type="ModelFlipllo.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="ModelFlipllo.Puntuacion" Role="Puntuacion" Multiplicity="1" />
+          <End Type="ModelFlipllo.ObjetoEnInventario" Role="ObjetoEnInventario" Multiplicity="*" />
+        </Association>
+        <Association Name="ObjetoEnCofreObjeto">
+          <End Type="ModelFlipllo.ObjetoEnCofre" Role="ObjetoEnCofre" Multiplicity="*" />
+          <End Type="ModelFlipllo.Objeto" Role="Objeto" Multiplicity="1" />
+        </Association>
+        <Association Name="ObjetoEnInventarioObjeto">
+          <End Type="ModelFlipllo.ObjetoEnInventario" Role="ObjetoEnInventario" Multiplicity="*" />
+          <End Type="ModelFlipllo.Objeto" Role="Objeto" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Cofre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="Imagen" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="ObjetoEnCofre" Relationship="ModelFlipllo.CofreObjetoEnCofre" FromRole="Cofre" ToRole="ObjetoEnCofre" />
+          <NavigationProperty Name="Usuario" Relationship="ModelFlipllo.CofreUsuario" FromRole="Cofre" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="CofreObjetoEnCofre">
+          <End Type="ModelFlipllo.Cofre" Role="Cofre" Multiplicity="1" />
+          <End Type="ModelFlipllo.ObjetoEnCofre" Role="ObjetoEnCofre" Multiplicity="*" />
+        </Association>
+        <Association Name="CofreUsuario">
+          <End Type="ModelFlipllo.Cofre" Role="Cofre" Multiplicity="*" />
+          <End Type="ModelFlipllo.Usuario" Role="Usuario" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -96,25 +290,88 @@
           <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
           <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PuntuacionSet">
-      <EntityTypeMapping TypeName="IsTypeOf(ModelFlipllo.Puntuacion)">
-        <MappingFragment StoreEntitySet="PuntuacionSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PartidasJugadas" ColumnName="PartidasJugadas" />
-          <ScalarProperty Name="Victorias" ColumnName="Victorias" />
           <ScalarProperty Name="ExperienciaTotal" ColumnName="ExperienciaTotal" />
+          <ScalarProperty Name="CodigoDeVerificacion" ColumnName="CodigoDeVerificacion" />
+          <ScalarProperty Name="Victorias" ColumnName="Victorias" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="UsuarioPuntuacion" TypeName="ModelFlipllo.UsuarioPuntuacion" StoreEntitySet="UsuarioSet">
-      <EndProperty Name="Puntuacion">
-        <ScalarProperty Name="Id" ColumnName="Puntuacion_Id" />
+    <EntitySetMapping Name="ObjetoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFlipllo.Objeto)">
+        <MappingFragment StoreEntitySet="ObjetoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ObjetoEnInventarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFlipllo.ObjetoEnInventario)">
+        <MappingFragment StoreEntitySet="ObjetoEnInventarioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FechaDeObtencion" ColumnName="FechaDeObtencion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ObjetoEnCofreSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFlipllo.ObjetoEnCofre)">
+        <MappingFragment StoreEntitySet="ObjetoEnCofreSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProbabilidadDeObtener" ColumnName="ProbabilidadDeObtener" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CofreSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelFlipllo.Cofre)">
+        <MappingFragment StoreEntitySet="CofreSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UsuarioObjetoEnInventario" TypeName="ModelFlipllo.UsuarioObjetoEnInventario" StoreEntitySet="ObjetoEnInventarioSet">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+      </EndProperty>
+      <EndProperty Name="ObjetoEnInventario">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ObjetoEnCofreObjeto" TypeName="ModelFlipllo.ObjetoEnCofreObjeto" StoreEntitySet="ObjetoEnCofreSet">
+      <EndProperty Name="Objeto">
+        <ScalarProperty Name="Id" ColumnName="Objeto_Id" />
+      </EndProperty>
+      <EndProperty Name="ObjetoEnCofre">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ObjetoEnInventarioObjeto" TypeName="ModelFlipllo.ObjetoEnInventarioObjeto" StoreEntitySet="ObjetoEnInventarioSet">
+      <EndProperty Name="Objeto">
+        <ScalarProperty Name="Id" ColumnName="Objeto_Id" />
+      </EndProperty>
+      <EndProperty Name="ObjetoEnInventario">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CofreObjetoEnCofre" TypeName="ModelFlipllo.CofreObjetoEnCofre" StoreEntitySet="ObjetoEnCofreSet">
+      <EndProperty Name="Cofre">
+        <ScalarProperty Name="Id" ColumnName="Cofre_Id" />
+      </EndProperty>
+      <EndProperty Name="ObjetoEnCofre">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CofreUsuario" TypeName="ModelFlipllo.CofreUsuario" StoreEntitySet="CofreUsuario">
+      <EndProperty Name="Cofre">
+        <ScalarProperty Name="Id" ColumnName="Cofre_Id" />
       </EndProperty>
       <EndProperty Name="Usuario">
-        <ScalarProperty Name="Id" ColumnName="Id" />
+        <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

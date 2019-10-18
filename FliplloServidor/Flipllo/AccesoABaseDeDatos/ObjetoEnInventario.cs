@@ -12,18 +12,12 @@ namespace AccesoABaseDeDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Puntuacion
+    public partial class ObjetoEnInventario
     {
         public int Id { get; set; }
-        public int PartidasJugadas { get; set; }
-        public int Victorias { get; set; }
-        public long ExperienciaTotal { get; set; }
+        public System.DateTime FechaDeObtencion { get; set; }
     
         public virtual Usuario Usuario { get; set; }
-
-        public static implicit operator Puntuacion(int v)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual Objeto Objeto { get; set; }
     }
 }

@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="434" Closed="Window_Closed">
-	<Grid>
-		<Button x:Name="ButtonIniciarServidor" Content="Iniciar Servidor" HorizontalAlignment="Left" Margin="97,355,0,0" VerticalAlignment="Top" Width="89" Click="ButtonIniciarServidor_Click"/>
-		<Label x:Name="LabelEstadoDeServidor" Content="Default&#xA;" HorizontalAlignment="Left" Margin="190,46,0,0" VerticalAlignment="Top"/>
-		<Label x:Name="LabelEstadoConexion" Content="Label" HorizontalAlignment="Left" Margin="81,217,0,0" VerticalAlignment="Top"/>
-		<Button x:Name="ButtonPausarServidor" Content="Pausar Servidor" HorizontalAlignment="Left" Margin="278,355,0,0" VerticalAlignment="Top" Width="91" Click="ButtonPausarServidor_Click"/>
-		<Button x:Name="ButtonIniciarServicioDeChat" Content="Iniciar servicio de chat" HorizontalAlignment="Left" Margin="159,310,0,0" VerticalAlignment="Top" Width="149" Click="ButtonIniciarServicioDeChat_Click"/>
+        Title="Servidor de Flipllo" Height="450" Width="684.515" Closed="Window_Closed" ResizeMode="NoResize">
+    <Grid>
+        <Button x:Name="ButtonIniciarServidor" Content="Iniciar Servidor" HorizontalAlignment="Left" Margin="97,355,0,0" VerticalAlignment="Top" Width="89" Click="ButtonIniciarServidor_Click"/>
+        <Label x:Name="LabelEstadoDeServidor" Content="" HorizontalAlignment="Left" Margin="190,46,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonPausarServidor" Content="Pausar Servidor" HorizontalAlignment="Left" Margin="278,355,0,0" VerticalAlignment="Top" Width="91" Click="ButtonPausarServidor_Click"/>
+        <DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="256" Margin="447,46,0,0" VerticalAlignment="Top" Width="220">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Sesion" IsReadOnly="True" Binding="{Binding Sesion.ID}"/>
+                <DataGridTextColumn Header="Nombre de usuario" IsReadOnly="True" Binding="{Binding Sesion.Usuario.NombreDeUsuario}"/>
+            </DataGrid.Columns>
 
-	</Grid>
+        </DataGrid>
+        <Label x:Name="LabelUsuariosConectados" Content="Usuarios Conectados" HorizontalAlignment="Left" Margin="507,20,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
 </Window>

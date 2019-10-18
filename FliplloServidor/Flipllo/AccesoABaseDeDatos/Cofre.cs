@@ -12,31 +12,23 @@ namespace AccesoABaseDeDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Cofre
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public Cofre()
         {
-            this.Estado = 0;
-            this.PartidasJugadas = 0;
-            this.ExperienciaTotal = 0D;
-            this.ObjetoEnInventario = new HashSet<ObjetoEnInventario>();
-            this.Cofre = new HashSet<Cofre>();
+            this.ObjetoEnCofre = new HashSet<ObjetoEnCofre>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int Id { get; set; }
-        public string NombreDeUsuario { get; set; }
-        public string Contraseña { get; set; }
-        public string CorreoElectronico { get; set; }
-        public short Estado { get; set; }
-        public short PartidasJugadas { get; set; }
-        public double ExperienciaTotal { get; set; }
-        public string CodigoDeVerificacion { get; set; }
-        public short Victorias { get; set; }
+        public string Descripcion { get; set; }
+        public string Imagen { get; set; }
+        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ObjetoEnInventario> ObjetoEnInventario { get; set; }
+        public virtual ICollection<ObjetoEnCofre> ObjetoEnCofre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cofre> Cofre { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

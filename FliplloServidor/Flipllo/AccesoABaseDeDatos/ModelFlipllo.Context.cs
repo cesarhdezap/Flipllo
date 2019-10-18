@@ -26,6 +26,9 @@ namespace AccesoABaseDeDatos
         }
     
         public virtual DbSet<Usuario> UsuarioSet { get; set; }
-        public virtual DbSet<Puntuacion> PuntuacionSet { get; set; }
+        public virtual DbSet<Objeto> ObjetoSet { get; set; }
+        public virtual DbSet<ObjetoEnInventario> ObjetoEnInventarioSet { get; set; }
+        public virtual DbSet<ObjetoEnCofre> ObjetoEnCofreSet { get; set; }
+        public virtual DbSet<Cofre> CofreSet { get; set; }
     }
 }

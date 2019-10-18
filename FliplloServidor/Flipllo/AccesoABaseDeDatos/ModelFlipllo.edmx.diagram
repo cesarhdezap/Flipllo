@@ -4,10 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="92a0875e328945f1997450d5b75de7f4" Name="Diagram1" >
+      <Diagram DiagramId="92a0875e328945f1997450d5b75de7f4" Name="Diagram1" ZoomLevel="83" >
         <EntityTypeShape EntityType="ModelFlipllo.Usuario" Width="1.5" PointX="3.75" PointY="1.875" />
-        <EntityTypeShape EntityType="ModelFlipllo.Puntuacion" Width="1.5" PointX="6.375" PointY="1.875" />
-        <AssociationConnector Association="ModelFlipllo.UsuarioPuntuacion" />
+        <EntityTypeShape EntityType="ModelFlipllo.Objeto" Width="1.5" PointX="7.5" PointY="5.25" />
+        <EntityTypeShape EntityType="ModelFlipllo.ObjetoEnInventario" Width="1.5" PointX="7.375" PointY="2.75" />
+        <EntityTypeShape EntityType="ModelFlipllo.ObjetoEnCofre" Width="1.5" PointX="4.125" PointY="5.75" />
+        <AssociationConnector Association="ModelFlipllo.UsuarioObjetoEnInventario" />
+        <AssociationConnector Association="ModelFlipllo.ObjetoEnCofreObjeto" />
+        <AssociationConnector Association="ModelFlipllo.ObjetoEnInventarioObjeto" />
+        <EntityTypeShape EntityType="ModelFlipllo.Cofre" Width="1.5" PointX="1.75" PointY="5.5" />
+        <AssociationConnector Association="ModelFlipllo.CofreObjetoEnCofre" />
+        <AssociationConnector Association="ModelFlipllo.CofreUsuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

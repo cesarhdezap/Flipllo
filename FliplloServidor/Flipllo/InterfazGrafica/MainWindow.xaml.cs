@@ -1,67 +1,69 @@
-﻿using LogicaDeNegocios;
+﻿using ServiciosDeComunicacion.InterfacesDeServicios;
+using ServiciosDeComunicacion.ServiciosDeFlipllo;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
+using System.Collections.Specialized;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace InterfazGrafica
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IControladorDeServiciosDeHost, IControladorDeServiciosDeFlipllo
     {
-        ServiciosDeHost Servidor;
+        private ServiciosDeHost Servidor;
+
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
-        
+
         private void ButtonIniciarServidor_Click(object sender, RoutedEventArgs e)
         {
-            Servidor = new ServiciosDeHost();
+            Servidor = new ServiciosDeHost(this,this);
             Servidor.IniciarServidor();
-            Thread.Sleep(1000);
-            if (Servidor.ServidorActivo)
-            {
-                LabelEstadoDeServidor.Content = "Servidor corriendo";
-            }
-            else
-            {
-                LabelEstadoDeServidor.Content = "Error";
-            }
         }
 
         private void ButtonPausarServidor_Click(object sender, RoutedEventArgs e)
         {
-            Servidor.PararHost();
-            LabelEstadoDeServidor.Content = "Servidor abortado";
+            Servidor.PararServidor();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            
-            Servidor.PararHost();
+            Servidor.PararServidor();
         }
 
-		private void ButtonIniciarServicioDeChat_Click(object sender, RoutedEventArgs e)
-		{
-			Chat chat = new Chat();
-			this.Hide();
-			chat.ShowDialog();
-			
-		}
-	}
+        public void EstadoDelServidorActualizado(EstadoDelServidor estadoDelServidor)
+        {
+            if (estadoDelServidor == EstadoDelServidor.Activo)
+            {
+                LabelEstadoDeServidor.Content = "Servidor corriendo";
+            }
+            else if (estadoDelServidor == EstadoDelServidor.Inactivo)
+            {
+                LabelEstadoDeServidor.Content = "Error al iniciar el host";
+            }
+            else if (estadoDelServidor == EstadoDelServidor.Detenido)
+            {
+                LabelEstadoDeServidor.Content = "Servidor abortado";
+            }
+            else
+            {
+                LabelEstadoDeServidor.Content = "Error en la configuración de la dirección del servidor.";
+                Servidor.PararServidor();
+            }
+        }
+
+        public void ListaDeSesionesActualizado(List<Sesion> sesiones)
+        {
+            Dispatcher.BeginInvoke(new ThreadStart(
+                () => DataGridUsuariosConectados.ItemsSource = sesiones
+                )
+            );
+        }
+    }
 }
