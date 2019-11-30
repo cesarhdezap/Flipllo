@@ -1,6 +1,7 @@
 ﻿using LogicaDeNegocios.Servicios;
 using LogicaDeNegocios.ServiciosDeFlipllo;
 using System.ServiceModel;
+using System.Windows;
 
 namespace ServiciosDeComunicacion.Proxy
 {
@@ -12,6 +13,11 @@ namespace ServiciosDeComunicacion.Proxy
         {
         }
 		public void CrearCanal()
+		{
+			CanalDelServidor = ChannelFactory.CreateChannel();
+		}
+
+		public void RestaurarCanal()
 		{
 			CanalDelServidor = ChannelFactory.CreateChannel();
 		}

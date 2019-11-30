@@ -3,6 +3,7 @@ using LogicaDeNegocios.ServiciosDeFlipllo;
 using ServiciosDeComunicacion.Proxy;
 using System;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static InterfazGrafica.Utilierias.UtilieriasDeElementosGraficos;
@@ -29,22 +30,35 @@ namespace InterfazGrafica
 			if (ServiciosDeValidacion.ValidarCodigoDeVerificacion(TextBoxCodigoDeVerificacion.Text))
 			{
 				Usuario.CodigoDeVerificacion = TextBoxCodigoDeVerificacion.Text;
-				try
-				{
-					if (Servidor.CanalDelServidor.ValidarCodigoDeUsuario(Usuario))
-					{
-						MessageBox.Show(Application.Current.Resources["redirigidoParaIniciarSesion"].ToString(), Application.Current.Resources["exito"].ToString());
-						Close();
-					}
-				}
-				catch (TimeoutException)
-				{
-					MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
-				}
-				catch (CommunicationException)
-				{
-					MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
-				}
+				ValidarCodigoDeUsuario(Usuario);
+			}
+		}
+
+		private async void ValidarCodigoDeUsuario(Usuario usuario)
+		{
+			int timeout = 100000;
+			bool codigoValidacion = false;
+			try
+			{
+				codigoValidacion = await Task.WhenAny(Task.Run<bool>(() => Servidor.CanalDelServidor.ValidarCodigoDeUsuario(usuario)),Task.Delay(timeout)) == Task.Run<bool>(() => Servidor.CanalDelServidor.ValidarCodigoDeUsuario(usuario));
+			}
+			catch (TimeoutException)
+			{
+				MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+			}
+			catch (CommunicationException)
+			{
+				MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+			}
+
+			if (codigoValidacion)
+			{
+				MessageBox.Show(Application.Current.Resources["redirigidoParaIniciarSesion"].ToString(), Application.Current.Resources["exito"].ToString());
+				Close();
+			}
+			else
+			{
+				MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndaMal"].ToString());
 			}
 		}
 	}

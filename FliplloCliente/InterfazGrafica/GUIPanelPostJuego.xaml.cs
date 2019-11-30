@@ -10,18 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InterfazGrafica
 {
 	/// <summary>
-	/// Interaction logic for GUIJuego.xaml
+	/// Interaction logic for GUIPanelPostJuego.xaml
 	/// </summary>
-	public partial class GUIJuego : Window
+	public partial class GUIPanelPostJuego : UserControl
 	{
-		public GUIJuego()
+		public GUIPanelPostJuego()
 		{
 			InitializeComponent();
+		}
+
+		private void ButtonGG_Click(object sender, RoutedEventArgs e)
+		{
+			Window ventanaDeJuego = Parent as Window;
+			ventanaDeJuego.Close();
 		}
 	}
 }

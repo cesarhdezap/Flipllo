@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="597" Width="303">
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="597" Width="303" Background="White" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="34,29,42,0" VerticalAlignment="Top" FontSize="36" Width="219" HorizontalContentAlignment="Center"/>
 		<Label Content="{DynamicResource ResourceKey=gracias}" HorizontalAlignment="Left" Margin="69,107,0,0" VerticalAlignment="Top"/>
-		<Label Content="{DynamicResource ResourceKey=casiAcabamos}" HorizontalAlignment="Left" Margin="22,138,0,0" VerticalAlignment="Top"/>
+		<Label Content="{DynamicResource ResourceKey=casiAcabamos}" HorizontalAlignment="Left" Margin="16,138,0,0" VerticalAlignment="Top" Width="118"/>
 		<TextBlock HorizontalAlignment="Left" Margin="22,169,0,0" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=teEnviamosCorreo}" VerticalAlignment="Top" Width="233" Height="89"/>
 		<Label x:Name="LabelEmail" Content="Email@Email.com
 " HorizontalAlignment="Left" Margin="87,232,0,0" VerticalAlignment="Top"/>

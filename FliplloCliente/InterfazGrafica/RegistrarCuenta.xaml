@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="RegistrarCuenta" Height="599" Width="303">
+        Title="{DynamicResource ResourceKey=crearCuenta}" Height="599" Width="303" Icon="RecursosGráficos/Icon.ico" BorderBrush="#FF666666" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="34,29,42,0" VerticalAlignment="Top" FontSize="36" Width="219" HorizontalContentAlignment="Center"/>
 		<Label x:Name="LabelCrearCuenta" Content="{DynamicResource ResourceKey=crearCuenta}" HorizontalAlignment="Center" Margin="34,110,152,0" VerticalAlignment="Top" FontSize="14" Width="109"/>
@@ -19,7 +19,7 @@
 		<Label x:Name="LabelConfirmarCorreoElectronico" Content="{DynamicResource ResourceKey=confirmarCorreoElectronico}" HorizontalAlignment="Left" Margin="34,234,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
 		<Label x:Name="LabelContraseña" Content="{DynamicResource ResourceKey=contraseña}" HorizontalAlignment="Left" Margin="34,282,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
 		<Label x:Name="LabelConfirmarContraseña" Content="{DynamicResource ResourceKey=confirmarContraseña}" HorizontalAlignment="Left" Margin="34,328,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="201"/>
-		<Button x:Name="LabelTerminosDeUso" Content="{DynamicResource ResourceKey=terminosDeUso}" HorizontalAlignment="Left" Margin="139,381,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF1088FF" Background="{x:Null}" BorderBrush="{x:Null}"/>
+		<Button x:Name="LabelTerminosDeUso" Content="{DynamicResource ResourceKey=terminosDeUso}" HorizontalAlignment="Left" Margin="139,381,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF1088FF" Background="{x:Null}" BorderBrush="{x:Null}" Click="LabelTerminosDeUso_Click"/>
 		<CheckBox x:Name="CheckBoxAcepto" Content="{DynamicResource ResourceKey=acepto}" HorizontalAlignment="Left" Margin="42,384,0,0" VerticalAlignment="Top" FontSize="14"/>
 		<Button x:Name="ButtonCrearCuenta" Content="{DynamicResource ResourceKey=crearCuenta}" HorizontalAlignment="Center" Margin="60,457,70,0" VerticalAlignment="Top" Width="165" FontSize="14" Click="ButtonCrearCuenta_Click"/>
 

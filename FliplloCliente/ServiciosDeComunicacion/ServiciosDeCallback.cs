@@ -7,6 +7,7 @@ using LogicaDeNegocios.ServiciosDeFlipllo;
 
 namespace ServiciosDeComunicacion
 {
+	
     public class ServiciosDeCallBack : IServiciosDeFliplloCallback
     {
         public delegate void NuevoMensajeRecibidoDelegate(Mensaje mensaje);
@@ -20,11 +21,6 @@ namespace ServiciosDeComunicacion
 
 		public delegate void RecibirSesionDelegate(Sesion sesion);
 		public event RecibirSesionDelegate RecibirSesionEvent;
-
-        public void RecibirMensaje(Mensaje mensaje)
-        {
-            NuevoMensajeRecibidoEvent(mensaje);
-        }
 
         public void ActualizarListaDeUsuarios(Sesion[] usuariosConectados)
         {
@@ -44,6 +40,21 @@ namespace ServiciosDeComunicacion
 		public void PedirActualizarSesion()
 		{
 			throw new NotImplementedException();
+		}
+
+		public void RecibirSala(Sala sala)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ActualizarListaDeSesionesDeChat(Sesion[] usuariosConectados)
+		{
+
+		}
+
+		public void RecibirMensajeGlobal(Mensaje mensaje)
+		{
+			NuevoMensajeRecibidoEvent(mensaje);
 		}
 	}
 }

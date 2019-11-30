@@ -1,0 +1,33 @@
+﻿<Window x:Class="InterfazGrafica.GUIBuscadorDeLobby"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfazGrafica"
+        mc:Ignorable="d"
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="800" ResizeMode="NoResize" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen">
+	<Window.Background>
+		<ImageBrush ImageSource="RecursosGráficos/background.jpg"/>
+	</Window.Background>
+	<Grid>
+		<Label Content="{DynamicResource ResourceKey= encontrarPartida}" HorizontalAlignment="Left" Margin="27,35,0,0" VerticalAlignment="Top" FontSize="24"/>
+		<Button x:Name="ButtonRegresar" Content="d-*" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="23" FontSize="14" Click="ButtonRegresar_Click"/>
+		<Button x:Name="ButtonActualizarListaDeLobbies" Content="Update*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="400,49,0,0" FontSize="14" Click="ButtonActualizarListaDeLobbies_Click"/>
+		<TextBox x:Name="TextBoxBusqueda" HorizontalAlignment="Left" Height="23" Margin="481,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" FontSize="14"/>
+		<Label x:Name="LabelBusqueda" Content="{DynamicResource ResourceKey=buscar}" HorizontalAlignment="Left" Margin="481,46,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="101"/>
+		<Button x:Name="ButtonCrearLobby" Content="{DynamicResource ResourceKey=crearLobby}" HorizontalAlignment="Left" Margin="671,49,0,0" VerticalAlignment="Top" Width="89" FontSize="14"/>
+		<DataGrid x:Name="DataGridLobbies" HorizontalAlignment="Left" Height="282" Margin="27,82,0,0" VerticalAlignment="Top" Width="733" AutoGenerateColumns="False" BorderBrush="{x:Null}" FontSize="14" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False">
+			<DataGrid.Background>
+				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>
+			</DataGrid.Background>
+			<DataGrid.Columns>
+				<DataGridTextColumn Width="250" Header="{DynamicResource ResourceKey=nombre}" IsReadOnly="True" Binding="{Binding Nombre}"/>
+				<DataGridTextColumn Width="50" Header="{DynamicResource ResourceKey=porcentajeDeVictorias}" IsReadOnly="True" Binding="{Binding Usuario.Puntuacion.PorcentajeDeVictorias}"/>
+				<DataGridTextColumn Width="200" Header="{DynamicResource ResourceKey=creador}" IsReadOnly="True" Binding="{Binding Usuario.NombreDeUsuario}"/>
+				<DataGridTextColumn Width="120" Header="{DynamicResource ResourceKey=jugadores}" IsReadOnly="True" Binding="{Binding NumeroDeJugadores}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Button x:Name="ButtonUnirse" Content="{DynamicResource ResourceKey=unirse}" HorizontalAlignment="Left" Margin="354,380,0,0" VerticalAlignment="Top" Width="75" FontSize="14" Click="ButtonUnirse_Click"/>
+		<Label Content="Filters for tjhings&#xD;&#xA;" HorizontalAlignment="Left" Margin="226,46,0,0" VerticalAlignment="Top"/>
+	</Grid>
+</Window>

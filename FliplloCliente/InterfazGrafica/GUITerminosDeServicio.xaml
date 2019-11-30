@@ -1,0 +1,16 @@
+﻿<Window x:Class="InterfazGrafica.GUITerminosDeServicio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfazGrafica"
+        mc:Ignorable="d"
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="599" Width="303" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="34,29,42,0" VerticalAlignment="Top" FontSize="36" Width="219" HorizontalContentAlignment="Center"/>
+		
+		<TextBlock HorizontalAlignment="Left" Margin="34,146,0,0" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=cuerpoDeTerminosDeUso}" VerticalAlignment="Top"/>
+		<Label Content="{DynamicResource ResourceKey=terminosDeUso}" HorizontalAlignment="Left" Margin="34,115,0,0" VerticalAlignment="Top"/>
+
+	</Grid>
+</Window>

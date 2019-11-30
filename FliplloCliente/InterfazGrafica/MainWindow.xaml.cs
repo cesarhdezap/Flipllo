@@ -8,7 +8,11 @@ using System.Globalization;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
-using static LogicaDeNegocios.ServiciosDeRecursosDeIdioma;
+using static LogicaDeNegocios.ServiciosDeRecursos;
+using static InterfazGrafica.Utilierias.UtilieriasDeElementosGraficos;
+using static LogicaDeNegocios.Servicios.ServiciosDeEncriptacion;
+using LogicaDeNegocios.ClasesDeDominio;
+using System.Windows.Threading;
 
 namespace InterfazGrafica
 {
@@ -19,13 +23,19 @@ namespace InterfazGrafica
 	{
 		private const int PRIMER_INDICE_DE_COMBOBOX = 0;
 		private Sesion SesionActual;
-		private Servidor Servidor;
+		private Servidor Servidor; 
+		private ServiciosDeCallBack CanalDeCallback = new ServiciosDeCallBack();
+		DispatcherTimer Timer = new DispatcherTimer()
+		{
+			Interval = TimeSpan.FromSeconds(10)
+		};
 		public MainWindow()
 		{
 			InitializeComponent();
-
 			string culturaPorDefecto = CultureInfo.CurrentCulture.Name;
-
+			CanalDeCallback.RecibirSesionEvent += RecibirSesion;
+			Servidor = new Servidor(CanalDeCallback);
+			CargarRecursosGraficosPorDefecto();
 			List<string> listaDeIdiomas = new List<string>
 			{
 				"en-US",
@@ -46,8 +56,6 @@ namespace InterfazGrafica
 			}
 
 			ComboBoxCambiarIdioma.SelectedIndex = PRIMER_INDICE_DE_COMBOBOX;
-
-
 		}
 
 		/// <summary>
@@ -58,7 +66,7 @@ namespace InterfazGrafica
 		{
 			try
 			{
-				CambiarRecursos(locale);
+				CambiarRecursoDeIdioma(locale);
 			}
 			catch (RecursoNoEncontradoException)
 			{
@@ -79,28 +87,32 @@ namespace InterfazGrafica
 				Usuario = new Usuario
 				{
 					CorreoElectronico = TextBoxNombreDeUsuario.Text,
-					Contraseña = PasswordBoxContraseña.Password
+					Contraseña = EncriptarCadena(PasswordBoxContraseña.Password)
 				}
 			};
-
-			ServiciosDeCallBack serviciosDeCallBack = new ServiciosDeCallBack();
-			serviciosDeCallBack.RecibirSesionEvent += RecibirSesion;
-			Servidor = new Servidor(serviciosDeCallBack);
 			try
 			{
+				Timer.Tick += new EventHandler(RestaurarCanal);
+
 				Servidor.CrearCanal();
+				Timer.Start();
 				Servidor.CanalDelServidor.AutenticarUsuario(SesionActual.Usuario);
 			}
 			catch (TimeoutException)
 			{
 				MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
 			}
-			catch (CommunicationException)
+			catch (CommunicationException ex)
 			{
-				MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
+				MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndaMal"].ToString());
+				MessageBox.Show(ex.ToString());
 			}
 		}
 
+		private void RestaurarCanal(object sender, EventArgs e)
+		{
+			Servidor.RestaurarCanal();	
+		}
 		private void LabelCrearUnaCuenta_Click(object sender, RoutedEventArgs e)
 		{
 			GUIRegistrarCuenta registrarCuenta = new GUIRegistrarCuenta();
@@ -114,14 +126,16 @@ namespace InterfazGrafica
 
 		private void RecibirSesion(Sesion sesion)
 		{
-			SesionActual = sesion;
-			if (SesionActual.ID == 0)
+				SesionActual = sesion;
+			sesion.Usuario.Contraseña = PasswordBoxContraseña.Password;
+			sesion.Usuario.CorreoElectronico = TextBoxNombreDeUsuario.Text;
+			if (SesionActual.Usuario.Estado == EstadoUsuario.Inexistente)
 			{
 				MessageBox.Show(Application.Current.Resources["credencialesInvalidas"].ToString(), Application.Current.Resources["credencialesInvalidasTitulo"].ToString());
 			}
 			else
 			{
-				if (SesionActual.Usuario.Estado == EstadoUsuario.NoValidado)
+				if (SesionActual.Usuario.Estado == EstadoUsuario.CodigoDeValidacionNovalido)
 				{
 					GUICodigoDeConfirmacion codigoDeConfirmacion = new GUICodigoDeConfirmacion(SesionActual.Usuario, Servidor);
 					Hide();
@@ -132,14 +146,47 @@ namespace InterfazGrafica
 				}
 				else if (SesionActual.Usuario.Estado == EstadoUsuario.Registrado)
 				{
-					GUIMenuPrincipal chat = new GUIMenuPrincipal(SesionActual);
+					GUIMenuPrincipal menuPrincipal = new GUIMenuPrincipal(SesionActual, Servidor, CanalDeCallback);
+						menuPrincipal.Padre= this;
 					Hide();
-					chat.ShowDialog();
-					Show();
+					menuPrincipal.Show();
 					TextBoxNombreDeUsuario.Clear();
 					PasswordBoxContraseña.Clear();
 				}
 			}
 		}
+
+		private void TextBoxNombreDeUsuario_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			OcultarPista(TextBoxNombreDeUsuario, LabelNombreDeUsuario);
+			ContadorDeNivel.SumarExperiencia(5000);
+		}
+
+		private void PasswordBoxContraseña_PasswordChanged(object sender, RoutedEventArgs e)
+		{
+			OcultarPista(PasswordBoxContraseña, LabelContraseña);
+		}
+
+		private void LabelJuegoLocalIA_Click(object sender, RoutedEventArgs e)
+		{
+			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(TipoDeJuego.InteligenciaArtifical);
+			Hide();
+			juegoLocal.ShowDialog();
+			Show();
+			TextBoxNombreDeUsuario.Clear();
+			PasswordBoxContraseña.Clear();
+		}
+
+		private void LabelJuegoLocalAmigo_Click(object sender, RoutedEventArgs e)
+		{
+			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(TipoDeJuego.Local);
+			Hide();
+			juegoLocal.ShowDialog();
+			Show();
+			TextBoxNombreDeUsuario.Clear();
+			PasswordBoxContraseña.Clear();
+		}
+
+
 	}
 }

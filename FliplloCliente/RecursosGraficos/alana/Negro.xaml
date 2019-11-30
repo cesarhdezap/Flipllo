@@ -1,0 +1,79 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+					xmlns:system="http://schemas.microsoft.com/netfx/2009/xaml/presentation">
+
+	<system:ImageSource x:Key="negro">pack://application:,,,/RecursosGraficos;component/Alana/Imagenes/Negro1.png</system:ImageSource>
+	<system:ImageSource x:Key="negro7">pack://application:,,,/RecursosGraficos;component/Alana/Imagenes/Negro7.png</system:ImageSource>
+
+	<Storyboard x:Key="negroStoryboard">
+		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Source" Duration="0:0:0.5">
+			<DiscreteObjectKeyFrame KeyTime="0:0:0">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro2.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro3.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro4.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro5.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro6.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro7.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+		</ObjectAnimationUsingKeyFrames>
+	</Storyboard>
+
+	<Storyboard x:Key="negroStoryboard2">
+		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Source" Duration="0:0:0.5">
+			<DiscreteObjectKeyFrame KeyTime="0:0:0">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro8.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro9.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro10.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro11.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro12.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro1.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+		</ObjectAnimationUsingKeyFrames>
+	</Storyboard>
+
+</ResourceDictionary>

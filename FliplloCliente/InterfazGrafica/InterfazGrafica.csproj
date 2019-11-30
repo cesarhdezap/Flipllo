@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
@@ -56,16 +57,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContadorDeNivel.xaml.cs">
+      <DependentUpon>ContadorDeNivel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIBuscadorDeLobby.xaml.cs">
+      <DependentUpon>GUIBuscadorDeLobby.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUICodigoDeConfirmacion.xaml.cs">
       <DependentUpon>GUICodigoDeConfirmacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIJuego.xaml.cs">
-      <DependentUpon>GUIJuego.xaml</DependentUpon>
+    <Compile Include="GUIJuegoLocal.xaml.cs">
+      <DependentUpon>GUIJuegoLocal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUILobby.xaml.cs">
+      <DependentUpon>GUILobby.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIPanelPostJuego.xaml.cs">
+      <DependentUpon>GUIPanelPostJuego.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIPantallaPostJuego.xaml.cs">
+      <DependentUpon>GUIPantallaPostJuego.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUITerminosDeServicio.xaml.cs">
+      <DependentUpon>GUITerminosDeServicio.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrarCuenta.xaml.cs">
       <DependentUpon>RegistrarCuenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilierias\UtilieriasDeElementosGraficos.cs" />
+    <Page Include="ContadorDeNivel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIBuscadorDeLobby.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIChat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,7 +101,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIJuego.xaml">
+    <Page Include="GUIJuegoLocal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUILobby.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIPanelPostJuego.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIPantallaPostJuego.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUITerminosDeServicio.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,6 +176,10 @@
       <Project>{2a58340a-e7cf-4274-8981-88fa2680b0c9}</Project>
       <Name>LogicaDeNegocios</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RecursosGraficos\RecursosGraficos.csproj">
+      <Project>{702e3757-59f3-4c9b-83ec-bdb90367b859}</Project>
+      <Name>RecursosGraficos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Recursos_en-US\Recursos_en-US.csproj">
       <Project>{3e126412-71e3-4765-8f3b-07abb8371871}</Project>
       <Name>Recursos_en-US</Name>
@@ -169,6 +216,35 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="RecursosGráficos\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\Default\Black1.png" />
+    <Resource Include="RecursosGráficos\Default\Black10.png" />
+    <Resource Include="RecursosGráficos\Default\Black11.png" />
+    <Resource Include="RecursosGráficos\Default\Black12.png" />
+    <Resource Include="RecursosGráficos\Default\Black2.png" />
+    <Resource Include="RecursosGráficos\Default\Black3.png" />
+    <Resource Include="RecursosGráficos\Default\Black4.png" />
+    <Resource Include="RecursosGráficos\Default\Black5.png" />
+    <Resource Include="RecursosGráficos\Default\Black6.png" />
+    <Resource Include="RecursosGráficos\Default\Black7.png" />
+    <Resource Include="RecursosGráficos\Default\Black8.png" />
+    <Resource Include="RecursosGráficos\Default\Black9.png" />
+    <Resource Include="RecursosGráficos\Default\White1.png" />
+    <Resource Include="RecursosGráficos\Default\White10.png" />
+    <Resource Include="RecursosGráficos\Default\White11.png" />
+    <Resource Include="RecursosGráficos\Default\White12.png" />
+    <Resource Include="RecursosGráficos\Default\White2.png" />
+    <Resource Include="RecursosGráficos\Default\White3.png" />
+    <Resource Include="RecursosGráficos\Default\White4.png" />
+    <Resource Include="RecursosGráficos\Default\White5.png" />
+    <Resource Include="RecursosGráficos\Default\White6.png" />
+    <Resource Include="RecursosGráficos\Default\White7.png" />
+    <Resource Include="RecursosGráficos\Default\White8.png" />
+    <Resource Include="RecursosGráficos\Default\White9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

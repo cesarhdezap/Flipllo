@@ -91,5 +91,13 @@ namespace InterfazGrafica
 				MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndMal"].ToString());
 			}
 		}
+
+		private void LabelTerminosDeUso_Click(object sender, RoutedEventArgs e)
+		{
+			GUITerminosDeServicio terminosDeServicio = new GUITerminosDeServicio();
+			Hide();
+			terminosDeServicio.ShowDialog();
+			Show();	
+		}
 	}
 }

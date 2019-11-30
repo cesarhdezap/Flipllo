@@ -5,20 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="303">
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="303" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF03683A">
 	<Grid>
-		<ComboBox x:Name="ComboBoxCambiarIdioma" HorizontalAlignment="Left" Margin="125,367,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBoxCambiarIdioma_SelectionChanged" FontSize="14"/>
-		<Label x:Name="LabelIdioma" Content="{DynamicResource ResourceKey=idioma}" HorizontalAlignment="Left" Margin="30,367,0,0" VerticalAlignment="Top" Width="86" FontSize="14" RenderTransformOrigin="0.401,0.431"/>
-		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="98,42,35,0" VerticalAlignment="Top" FontSize="36" Width="162"/>
-		<Label x:Name="LabelIniciarSesion" Content="{DynamicResource ResourceKey=iniciarSesion}" HorizontalAlignment="Left" Margin="41,141,0,0" VerticalAlignment="Top" FontSize="14" Width="132"/>
+		<local:ContadorDeNivel x:Name="ContadorDeNivel" Margin="24,27,51,316"></local:ContadorDeNivel>
 
-		<TextBox x:Name="TextBoxNombreDeUsuario" HorizontalAlignment="Left" Height="22" Margin="41,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14"/>
-		<PasswordBox x:Name="PasswordBoxContraseña" HorizontalAlignment="Left" Margin="41,210,0,0" VerticalAlignment="Top" Width="204" FontSize="14" Height="22"/>
-		<Button x:Name="ButtonIniciarSesion" Content="{DynamicResource ResourceKey=iniciarSesion}" HorizontalAlignment="Left" Margin="81,258,0,0" VerticalAlignment="Top" Width="127" FontSize="14" Click="ButtonIniciarSesion_Click"/>
-		<Label x:Name="LabelNombreDeUsuario" Content="{DynamicResource ResourceKey=nombreDeUsuario}" HorizontalAlignment="Left" Margin="41,171,0,0" VerticalAlignment="Top" Height="29" Width="204" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="14"/>
-		<Label x:Name="LabelContraseña" Content="{DynamicResource ResourceKey=contraseña}" HorizontalAlignment="Left" Margin="41,206,0,0" VerticalAlignment="Top" Height="28" Width="204" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="14"/>
-		<Label x:Name="LabelNoCuenta" Content="{DynamicResource ResourceKey=noCuenta}" HorizontalAlignment="Left" Margin="30,310,0,0" VerticalAlignment="Top" FontSize="14" Width="178"/>
-		<Button x:Name="LabelCrearUnaCuenta" Content="{DynamicResource ResourceKey=crearUnaCuenta}" HorizontalAlignment="Left" Margin="190,313,0,0" VerticalAlignment="Top" FontSize="14" Width="70" Foreground="#FF1088FF" BorderBrush="{x:Null}" Background="{x:Null}" Click="LabelCrearUnaCuenta_Click"/>
+		<ComboBox x:Name="ComboBoxCambiarIdioma" HorizontalAlignment="Left" Margin="125,367,0,0" VerticalAlignment="Top" Width="135" SelectionChanged="ComboBoxCambiarIdioma_SelectionChanged" FontSize="14"/>
+		<Label x:Name="LabelIdioma" Content="{DynamicResource ResourceKey=idioma}" HorizontalAlignment="Left" Margin="30,367,0,0" VerticalAlignment="Top" Width="86" FontSize="14" RenderTransformOrigin="0.401,0.431"/>
+		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="107,89,28,0" VerticalAlignment="Top" FontSize="36" Width="162"/>
+		<Label x:Name="LabelIniciarSesion" Content="{DynamicResource ResourceKey=iniciarSesion}" HorizontalAlignment="Left" Margin="42,118,0,0" VerticalAlignment="Top" FontSize="14" Width="132"/>
+
+		<TextBox x:Name="TextBoxNombreDeUsuario" HorizontalAlignment="Left" Height="22" Margin="42,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204" FontSize="14" TextChanged="TextBoxNombreDeUsuario_TextChanged"/>
+		<PasswordBox x:Name="PasswordBoxContraseña" HorizontalAlignment="Left" Margin="42,187,0,0" VerticalAlignment="Top" Width="204" FontSize="14" Height="22" PasswordChanged="PasswordBoxContraseña_PasswordChanged"/>
+		<Button x:Name="ButtonIniciarSesion" Content="{DynamicResource ResourceKey=iniciarSesion}" HorizontalAlignment="Left" Margin="82,235,0,0" VerticalAlignment="Top" Width="127" FontSize="14" Click="ButtonIniciarSesion_Click"/>
+		<Label x:Name="LabelNombreDeUsuario" Content="{DynamicResource ResourceKey=nombreDeUsuario}" HorizontalAlignment="Left" Margin="42,148,0,0" VerticalAlignment="Top" Height="29" Width="143" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="14"/>
+		<Label x:Name="LabelContraseña" Content="{DynamicResource ResourceKey=contraseña}" HorizontalAlignment="Left" Margin="42,183,0,0" VerticalAlignment="Top" Height="28" Width="143" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" FontSize="14"/>
+		<Label x:Name="LabelNoCuenta" Content="{DynamicResource ResourceKey=noCuenta}" HorizontalAlignment="Left" Margin="30,273,0,0" VerticalAlignment="Top" FontSize="14" Width="178"/>
+		<Button x:Name="LabelCrearUnaCuenta" Content="{DynamicResource ResourceKey=crearUnaCuenta}" HorizontalAlignment="Left" Margin="190,276,0,0" VerticalAlignment="Top" FontSize="14" Width="70" Foreground="#FF1088FF" BorderBrush="{x:Null}" Background="{x:Null}" Click="LabelCrearUnaCuenta_Click"/>
+		<Label x:Name="LabelO" Content="{DynamicResource oJugarLocal}" HorizontalAlignment="Left" Margin="30,307,0,0" VerticalAlignment="Top" FontSize="14" Width="99" Height="28"/>
+		<Button x:Name="LabelJuegoLocalAI" Content="{DynamicResource ResourceKey=contraAI}" HorizontalAlignment="Left" Margin="129,310,0,0" VerticalAlignment="Top" FontSize="14" Width="144" Foreground="#FF1088FF" BorderBrush="{x:Null}" Background="{x:Null}" Click="LabelJuegoLocalIA_Click"/>
+		<Button x:Name="LabelJuegoLocalAmigo" Content="{DynamicResource ResourceKey=contraPersona}" HorizontalAlignment="Left" Margin="125,333,0,0" VerticalAlignment="Top" FontSize="14" Width="144" Foreground="#FF1088FF" BorderBrush="{x:Null}" Background="{x:Null}" Click="LabelJuegoLocalAmigo_Click"/>
 
 	</Grid>
 </Window>

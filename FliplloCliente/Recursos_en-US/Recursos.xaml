@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Recursos_en_US"
+                    xmlns:local="clr-namespace:InterfazGrafica"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 	<system:String x:Key="nombreDelJuego">Flipllo</system:String>
 	<system:String x:Key="idioma">Language</system:String>
@@ -47,6 +47,55 @@
 	<system:String x:Key="errorDeConexion">The server is not responding. Please verify your connection and try again later.</system:String>
 	<system:String x:Key="credencialesInvalidas">Invalid credentials</system:String>
 	<system:String x:Key="credencialesInvalidasTitulo">Please verify your username and password</system:String>
+	<system:String x:Key="buscar">Search</system:String>
+	<system:String x:Key="crearLobby">Create lobby</system:String>
+	<system:String x:Key="encontrarPartida">Find match</system:String>
+	<system:String x:Key="nombre">Name</system:String>
+	<system:String x:Key="porcentajeDeVictorias">Win %</system:String>
+	<system:String x:Key="creador">Creator</system:String>
+	<system:String x:Key="jugadores">Players</system:String>
+	<system:String x:Key="unirse">Join</system:String>
+	<system:String x:Key="listo">Ready?</system:String>
+	<system:String x:Key="configuracionDePartida">Match settings</system:String>
+	<system:String x:Key="nombreDeLobby">Lobby name</system:String>
+	<system:String x:Key="contraseñaDeLobby">Lobby password</system:String>
+	<system:String x:Key="nivel">Level</system:String>
+	<system:String x:Key="minimo">Min</system:String>
+	<system:String x:Key="maximo">Max</system:String>
+	<system:String x:Key="aparienciaDelTablero">Board skin</system:String>
+	<system:String x:Key="aparienciaDeFichas">Chip skin</system:String>
+	<system:String x:Key="tienesCajas">You have</system:String>
+	<system:String x:Key="cajas">Lootboxes</system:String>
+	<system:String x:Key="abrirCaja">Open</system:String>
+	<system:String x:Key="sonidos">Sounds</system:String>
+	<system:String x:Key="volumenMaestro">Master volume</system:String>
+	<system:String x:Key="volumenDeAnunciadores">Announcer volume</system:String>
+	<system:String x:Key="volumenDeAmbiente">Ambiance volume</system:String>
+	<system:String x:Key="mostrarChat">Show chat</system:String>
+	<system:String x:Key="aplicar">Apply</system:String>
+	<system:String x:Key="partidas">Matches</system:String>
+	<system:String x:Key="cuerpoDeTerminosDeUso">Pending, please don't be bad :(</system:String>
+	<system:String x:Key="gg">GG</system:String>
+	<system:String x:Key="ggHeart">GG! ❤</system:String>
+	<system:String x:Key="wp">WP</system:String>
+	<system:String x:Key="bye">Bye!</system:String>
+	<system:String x:Key="ty">TY</system:String>
+	<system:String x:Key="victoria">Victory!</system:String>
+	<system:String x:Key="derrota">Defeat</system:String>
+	<system:String x:Key="ganador">Winner</system:String>
+	<system:String x:Key="estadisticas">Stats</system:String>
+	<system:String x:Key="experienciaObtenida">Experience gained</system:String>
+	<system:String x:Key="puntos">Score</system:String>
+	<system:String x:Key="fichas">Chips</system:String>
+	<system:String x:Key="tiempoRestante">Remaining time</system:String>
+	<system:String x:Key="victorias">Victories</system:String>
+	<system:String x:Key="puntuacionFinal">Final score:</system:String>
+	<system:String x:Key="ocultar">Hide</system:String>
+	<system:String x:Key="negras">Black</system:String>
+	<system:String x:Key="blancas">White</system:String>
+	<system:String x:Key="oJugarLocal">Or play locally</system:String>
+	<system:String x:Key="contraAI">Against the computer</system:String>
+	<system:String x:Key="contraPersona">Against a friend</system:String>
 
 
 </ResourceDictionary>
