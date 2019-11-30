@@ -1,8 +1,8 @@
-﻿using ServiciosDeComunicacion.InterfacesDeServicios;
-using ServiciosDeComunicacion.ServiciosDeFlipllo;
+﻿using ServiciosDeComunicacion.Clases;
+using ServiciosDeComunicacion.Interfaces.Controladores;
+using ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Threading;
 using System.Windows;
 
@@ -11,9 +11,9 @@ namespace InterfazGrafica
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IControladorDeServiciosDeHost, IControladorDeServiciosDeFlipllo
+    public partial class MainWindow : Window, IControladorDeActualizacionDePantalla
     {
-        private ServiciosDeHost Servidor;
+        private AdministradorDeHostDeServicios AdministradorDeHostDeServicios;
 
         public MainWindow()
         {
@@ -23,47 +23,64 @@ namespace InterfazGrafica
 
         private void ButtonIniciarServidor_Click(object sender, RoutedEventArgs e)
         {
-            Servidor = new ServiciosDeHost(this,this);
-            Servidor.IniciarServidor();
+            AdministradorDeHostDeServicios = new AdministradorDeHostDeServicios(this);
+            AdministradorDeHostDeServicios.IniciarServicios();
+            
         }
 
         private void ButtonPausarServidor_Click(object sender, RoutedEventArgs e)
         {
-            Servidor.PararServidor();
+            AdministradorDeHostDeServicios.PararServicios();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Servidor.PararServidor();
+            if (AdministradorDeHostDeServicios != null)
+            {
+                AdministradorDeHostDeServicios.PararServicios();
+            }
         }
 
-        public void EstadoDelServidorActualizado(EstadoDelServidor estadoDelServidor)
+        public void EstadoDelServidorActualizado(EstadoDelServidor estadoDelServidor, string mensaje = null)
         {
-            if (estadoDelServidor == EstadoDelServidor.Activo)
+            LabelEstadoDeServidor.Content = estadoDelServidor.ToString() + System.Environment.NewLine;
+            if (mensaje != null)
             {
-                LabelEstadoDeServidor.Content = "Servidor corriendo";
-            }
-            else if (estadoDelServidor == EstadoDelServidor.Inactivo)
-            {
-                LabelEstadoDeServidor.Content = "Error al iniciar el host";
-            }
-            else if (estadoDelServidor == EstadoDelServidor.Detenido)
-            {
-                LabelEstadoDeServidor.Content = "Servidor abortado";
-            }
-            else
-            {
-                LabelEstadoDeServidor.Content = "Error en la configuración de la dirección del servidor.";
-                Servidor.PararServidor();
+                LabelEstadoDeServidor.Content += mensaje;
             }
         }
 
         public void ListaDeSesionesActualizado(List<Sesion> sesiones)
         {
+            Dispatcher.Invoke(
+                () => {
+                    DataGridUsuariosConectados.ItemsSource = null;
+                    DataGridUsuariosConectados.ItemsSource = sesiones;
+                    DataGridUsuariosConectados.Items.Refresh();
+                });
+        }
+
+        public void ListaDeSalasActualizado(List<Sala> salas)
+        {
             Dispatcher.BeginInvoke(new ThreadStart(
-                () => DataGridUsuariosConectados.ItemsSource = sesiones
+                () => DataGridSalasConectadas.ItemsSource = null
                 )
             );
+
+            Dispatcher.BeginInvoke(new ThreadStart(
+                () => DataGridSalasConectadas.ItemsSource = salas
+                )
+            );
+        }
+
+        private void ButtonLimpiarSesiones_Click(object sender, RoutedEventArgs e)
+        {
+            AdministradorDeHostDeServicios.LimpiarSesiones();
+        }
+
+        private void ButtonLimpiarSalas_Click(object sender, RoutedEventArgs e)
+        {
+            AdministradorDeHostDeServicios.LimpiarSalas();
         }
     }
 }

@@ -21,5 +21,14 @@ namespace PruebasUnitarias.PruebasDeClasesDeDominio
             usuario.Registrar();
             Assert.IsTrue(true);
         }
+
+        [TestMethod]
+        public void ProbarCargarUsuarioPorCorreo()
+        {
+            Usuario usuario = new Usuario();
+            usuario.CorreoElectronico = "pipa@correo.com";
+            usuario.CargarUsuarioPorCorreo();
+            Assert.AreEqual("QNTSQ", usuario.CodigoDeVerificacion);
+        }
     }
 }

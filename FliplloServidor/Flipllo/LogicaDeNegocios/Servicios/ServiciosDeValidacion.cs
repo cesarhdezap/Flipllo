@@ -18,7 +18,7 @@ namespace LogicaDeNegocios.Servicios
         /// <summary>
         /// Expresión regular que valida que la cadena no tenga espacios en blanco y sea de 6 a 255 de longitud.
         /// </summary>
-        private static readonly Regex ExpresionRegularContraseña = new Regex(@"^\S{6,255}$");
+        private static readonly Regex ExpresionRegularContraseñaConSHA256 = new Regex(@"^[A-Fa-f0-9]{64}$");
         /// <summary>
         /// Expresión regular que valida que el nombre de usuario solo tenga letras, numeros y guiones bajos, que no empieze ni termine con guin bajo, que no haya mas de un guin bajo consecutivo y que tenga entre 6 y 20 caracters de longitud.
         /// </summary>
@@ -58,7 +58,7 @@ namespace LogicaDeNegocios.Servicios
         {
             bool resultadoDeValidacion = false;
 
-            if (ExpresionRegularContraseña.IsMatch(contraseña))
+            if (ExpresionRegularContraseñaConSHA256.IsMatch(contraseña))
             {
                 resultadoDeValidacion = true;
             }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace LogicaDeNegocios.ObjetosDeAccesoADatos
 {
-    public class UsuarioDAO
+    public class UsuarioDao
     {
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
             return usuario;
         }
 
-        public bool CorreoExiste(string correo)
+        public bool ValidarExistenciaDeCorreo(string correo)
         {
             List<AccesoABaseDeDatos.Usuario> usuariosContext;
             using (ModelFliplloContainer context = new ModelFliplloContainer())
@@ -54,7 +54,7 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
             return resultadoDeExistencia;
         }
 
-        public bool NombreDeUsuarioExiste(string nombreDeUsuario)
+        public bool ValidarExistenciaDeNombreDeUsuario(string nombreDeUsuario)
         {
             List<AccesoABaseDeDatos.Usuario> usuariosContext;
             using (ModelFliplloContainer context = new ModelFliplloContainer())
@@ -66,10 +66,16 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
             return resultadoDeExistencia;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException">Cuando no existe el usuario</exception>
         public ClasesDeDominio.Usuario CargarUsuarioPorCorreo(string correo)
         {
             ClasesDeDominio.Usuario usuario = new ClasesDeDominio.Usuario();
-            if (CorreoExiste(correo))
+            if (ValidarExistenciaDeCorreo(correo))
             {
                 AccesoABaseDeDatos.Usuario usuarioBD;
 
@@ -85,7 +91,7 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
             }
             else
             {
-                throw new InvalidOperationException("La id del usuario no existe"); //Consider own exceptions
+                throw new InvalidOperationException("La id del usuario no existe");
             }
             return usuario;
         }
@@ -123,6 +129,7 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
                 usuarioConvertido.Estado = (EstadoUsuario)usuario.Estado;
                 usuarioConvertido.CorreoElectronico = usuario.CorreoElectronico;
                 usuarioConvertido.Contraseña = usuario.Contraseña;
+                usuarioConvertido.CodigoDeVerificacion = usuario.CodigoDeVerificacion;
                 usuarioConvertido.Puntuacion = new Puntuacion
                 {
                     ExperienciaTotal = usuario.ExperienciaTotal,
@@ -135,9 +142,13 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
             return usuariosConvertidos;
         }
 
-        public void ActualizarUsuarioPorID(int IDUsuario, ClasesDeDominio.Usuario usuario)
+        public void ActualizarEstadoPorID(int idUsuario, EstadoUsuario estado)
         {
-
+            using (ModelFliplloContainer context = new ModelFliplloContainer())
+            {
+                context.UsuarioSet.Find(idUsuario).Estado = (short)estado;
+                context.SaveChanges();
+            }
         }
 
         public List<AccesoABaseDeDatos.Usuario> ConvertirListaDeUsuariosDeLogicaAUsuariosDB(List<ClasesDeDominio.Usuario> usuarios)

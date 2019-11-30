@@ -1,13 +1,8 @@
-﻿using static LogicaDeNegocios.Servicios.ServiciosDeValidacion;
-using static LogicaDeNegocios.Servicios.ServiciosDeGeneracionDeCodigosDeVerificacion;
-using static LogicaDeNegocios.Servicios.ServiciosDeEnvioDeCorreos;
-using LogicaDeNegocios.ObjetosDeAccesoADatos;
+﻿using LogicaDeNegocios.ObjetosDeAccesoADatos;
 using System;
-using LogicaDeNegocios.Servicios;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static LogicaDeNegocios.Servicios.ServiciosDeEnvioDeCorreos;
+using static LogicaDeNegocios.Servicios.ServiciosDeGeneracionDeCodigos;
+using static LogicaDeNegocios.Servicios.ServiciosDeValidacion;
 
 namespace LogicaDeNegocios.ClasesDeDominio
 {
@@ -20,34 +15,32 @@ namespace LogicaDeNegocios.ClasesDeDominio
         public EstadoUsuario Estado { get; set; }
         public Puntuacion Puntuacion { get; set; }
         public string CodigoDeVerificacion { get; set; }
-        
+
 
         /// <summary>
         /// Registra un nuevo <see cref="Usuario"/> en la base de datos.
         /// </summary>
+        /// <returns>Si el registro fue exitoso</returns>
         /// <exception cref="FormatException"> Es invocada cuando los campos son inválidos.</exception>
-        public void Registrar()
+        public bool Registrar()
         {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-
-            if (ValidarCamposParaRegistroVacios())
+            bool resultadoDelRegistro = false;
+            if (ValidarCamposParaRegistro())
             {
-                if (ValidarCamposParaRegistro())
+                UsuarioDao usuarioDAO = new UsuarioDao();
+                if (!usuarioDAO.ValidarExistenciaDeCorreo(CorreoElectronico) 
+                    && !usuarioDAO.ValidarExistenciaDeNombreDeUsuario(NombreDeUsuario))
                 {
-                    if (!usuarioDAO.CorreoExiste(CorreoElectronico) && !usuarioDAO.NombreDeUsuarioExiste(NombreDeUsuario))
-                    {
-                        CodigoDeVerificacion = GenerarCodigo();
-                        Puntuacion = new Puntuacion();
-                        Estado = EstadoUsuario.NoValidado;
-                        usuarioDAO.Guardar(this);
-                        EnviarCorreoDeVerficiacion(this);
-                    }
+                    CodigoDeVerificacion = GenerarCodigoDeValidacionDeCorreo();
+                    Puntuacion = new Puntuacion();
+                    Estado = EstadoUsuario.CodigoDeValidacionNovalido;
+                    Contraseña = Servicios.ServiciosDeEncriptación.EncriptarCadena(Contraseña);
+                    usuarioDAO.Guardar(this);
+                    resultadoDelRegistro = true;
+                    EnviarCorreoDeVerficiacion(this);
                 }
             }
-            else
-            {
-                throw new FormatException("Error en Usuario.Registrar, uno de los campos es vacio.");
-            }
+            return resultadoDelRegistro;
         }
         /// <summary>
         /// Actualiza al usuario base con <paramref name="usuario"/>
@@ -55,8 +48,8 @@ namespace LogicaDeNegocios.ClasesDeDominio
         /// <param name="usuario">El usuario</param>
         public void Actualizar(Usuario usuario)
         {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.ActualizarUsuarioPorID(this.Id, usuario);
+            UsuarioDao usuarioDAO = new UsuarioDao();
+            usuarioDAO.ActualizarEstadoPorID(this.Id, usuario.Estado);
         }
 
         /// <summary>
@@ -64,52 +57,61 @@ namespace LogicaDeNegocios.ClasesDeDominio
         /// ya que su validación depende del metodo.
         /// </summary>
         /// <returns></returns>
-        private bool ValidarCamposParaRegistroVacios()
+        private bool ValidarCamposParaRegistro()
         {
             bool resultadoDeValidacion = false;
-            if (!string.IsNullOrEmpty(NombreDeUsuario)
-                && !string.IsNullOrEmpty(Contraseña)
-                && !string.IsNullOrEmpty(CorreoElectronico))
+            if (ValidarNombreDeUsuario(NombreDeUsuario)
+                && ValidarContraseña(Contraseña)
+                && ValidarCorreoElectronico(CorreoElectronico))
             {
                 resultadoDeValidacion = true;
             }
             return resultadoDeValidacion;
         }
 
+        /// <summary>
+        /// Valida la correctitud del <see cref="CorreoElectronico"/> y 
+        /// <see cref="Contraseña"/>, luego valida la existencia de estos en base de datos para 
+        /// evitar consultas excesivas
+        /// </summary>
+        /// <returns></returns>
         public bool ValidarCredenciales()
         {
             bool resultadoDeValidacion = false;
-            if (!string.IsNullOrEmpty(CorreoElectronico)
-                && !string.IsNullOrEmpty(Contraseña))
+            if (ValidarCorreoElectronico(CorreoElectronico)
+                && ValidarContraseña(Contraseña))
             {
-                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                UsuarioDao usuarioDAO = new UsuarioDao();
                 resultadoDeValidacion = usuarioDAO.ValidarExistenciaDeCorreoYContraseña(CorreoElectronico, Contraseña);
             }
             return resultadoDeValidacion;
         }
 
-        public bool ValidarCamposParaRegistro()
-        {
-            bool resultadoDeValidacion = false;
-            if (ValidarCorreoElectronico(CorreoElectronico) && ValidarContraseña(Contraseña) && ValidarNombreDeUsuario(NombreDeUsuario))
-            {
-                resultadoDeValidacion = true;
-            }
-            return resultadoDeValidacion;
-        }
-
+        /// <summary>
+        /// Carga un usuario existente en este objeto por el atributo <see cref="Usuario.CorreoElectronico"/>
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"> Si los datos del usuario no existen</exception>
         public Usuario CargarUsuarioPorCorreo()
         {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            UsuarioDao usuarioDAO = new UsuarioDao();
             Usuario usuario = usuarioDAO.CargarUsuarioPorCorreo(CorreoElectronico);
             return usuario;
+        }
+
+        public void ActualizarEstadoNoValidadoARegistrado(int id)
+        {
+            UsuarioDao usuarioDAO = new UsuarioDao();
+            usuarioDAO.ActualizarEstadoPorID(id, EstadoUsuario.Registrado);
         }
     }
 
     public enum EstadoUsuario
     {
         Indefinido,
-        NoValidado,
-        Registrado
+        Inexistente,
+        CodigoDeValidacionNovalido,
+        Registrado,
+        ActualmenteConectado
     }
 }

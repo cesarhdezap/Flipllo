@@ -26,7 +26,7 @@ namespace Pruebas.PruebasDeObjetosDeAccesoADatos
                 }
             };
 
-            UsuarioDAO prueba = new UsuarioDAO();
+            UsuarioDao prueba = new UsuarioDao();
             prueba.Guardar(usuario);
             Assert.IsTrue(true);
         }
@@ -34,7 +34,7 @@ namespace Pruebas.PruebasDeObjetosDeAccesoADatos
         [TestMethod]
         public void ProbarValidarExistenciaDeCorreoYContraseña()
         {
-            UsuarioDAO prueba = new UsuarioDAO();
+            UsuarioDao prueba = new UsuarioDao();
             bool existen = prueba.ValidarExistenciaDeCorreoYContraseña("pepeq@correo.com", "pepepass");
             Assert.IsTrue(existen);
         }
@@ -42,7 +42,7 @@ namespace Pruebas.PruebasDeObjetosDeAccesoADatos
         [TestMethod]
         public void ProbarCargarUsuarioPorId()
         {
-            UsuarioDAO prueba = new UsuarioDAO();
+            UsuarioDao prueba = new UsuarioDao();
             Usuario usuario = prueba.CargarUsuarioPorId(1);
             Assert.AreEqual(1, usuario.Id);
         }
@@ -84,7 +84,7 @@ namespace Pruebas.PruebasDeObjetosDeAccesoADatos
             usuarios.Add(usuario);
             usuarios.Add(usuario2);
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            UsuarioDao usuarioDAO = new UsuarioDao();
 
             List<AccesoABaseDeDatos.Usuario> usuariosBD = usuarioDAO.ConvertirListaDeUsuariosDeLogicaAUsuariosDB(usuarios);
             if (usuariosBD.Count > 0)
@@ -122,7 +122,7 @@ namespace Pruebas.PruebasDeObjetosDeAccesoADatos
                 }
             };
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            UsuarioDao usuarioDAO = new UsuarioDao();
             AccesoABaseDeDatos.Usuario usuarioBD = usuarioDAO.ConvertirUsuarioDeLogicaAUsuarioDeAccesoADatos(usuario);
             if (usuario.NombreDeUsuario == usuarioBD.NombreDeUsuario
                 && usuario.Contraseña == usuarioBD.Contraseña

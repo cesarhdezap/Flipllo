@@ -30,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,6 +39,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -60,6 +62,7 @@
     <Compile Include="PruebasDeClasesDeDominio\PruebasDeUsuario.cs" />
     <Compile Include="PruebasDeObjetosDeAccesoADatos\PruebasDeUsuarioDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PruebasDeServicios\PruebasDeServiciosDeHost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -73,6 +76,10 @@
     <ProjectReference Include="..\LogicaDeNegocios\LogicaDeNegocios.csproj">
       <Project>{db7d49d7-f783-4787-ab7b-8c8f7f49f074}</Project>
       <Name>LogicaDeNegocios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiciosDeComunicacion\ServiciosDeComunicacion.csproj">
+      <Project>{bdce0daf-5a25-48ff-ad2d-0d6fed2f3098}</Project>
+      <Name>ServiciosDeComunicacion</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
