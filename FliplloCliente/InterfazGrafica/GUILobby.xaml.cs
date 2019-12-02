@@ -26,13 +26,17 @@ namespace InterfazGrafica
 		private Servidor Servidor;
 		private Sesion SesionLocal;
 		private Sala Sala;
-		public GUILobby(Servidor servidor, Sesion sesion, Sala sala)
+		CallBackDeFlipllo CanalDeFlipllo;
+		public GUILobby(Servidor servidor, Sesion sesion, CallBackDeFlipllo callBackDeFlipllo, Sala sala)
 		{
 			InitializeComponent();
 			SesionLocal = sesion;
 			Servidor = servidor;
 			Sala = sala;
+			CanalDeFlipllo = callBackDeFlipllo;
+			CanalDeFlipllo.ActualizarSalaEvent += ActualizarSala;
 			AsignarSalaAinterfaz();
+			VentanaDeChat.AsignarDatos(SesionLocal, servidor, CanalDeFlipllo);
 
 		}
 
@@ -44,15 +48,20 @@ namespace InterfazGrafica
 			TextBoxNivelMinimo.Text = Sala.NivelMinimo.ToString();
 		}
 
+		private void ActualizarSala(Sala sala)
+		{
+			Sala = sala;
+		}
+
 		private void ButtonListo_Click(object sender, RoutedEventArgs e)
 		{
-			//Servidor.CanalDelServidor.Alternar(SesionLocal);
+			Servidor.CanalDelServidor.AlternarListoParaJugar(SesionLocal);
 		}
 
 		private void IniciarJuego()
 		{
-			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(TipoDeJuego.EnRed);
-
+			ObjetoDeInicializacionDeJuego inicializadorDeJuego = new ObjetoDeInicializacionDeJuego(TipoDeJuego.EnRed);
+			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(inicializadorDeJuego);
 		}
 	}
 }

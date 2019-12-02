@@ -88,5 +88,21 @@ namespace LogicaDeNegocios.Servicios
 
 			return resultadoDeValidacion;
 		}
+
+		public static bool ValidarQueTextoSeaEnteros(string texto)
+		{
+			bool resultadoDeValidacion = false;
+			int numeroResultante = 0;
+
+			if (int.TryParse(texto, out numeroResultante))
+			{
+				if (numeroResultante >= 0)
+				{
+					resultadoDeValidacion = true;
+				}
+			}
+
+			return resultadoDeValidacion;
+		}
 	}
 }

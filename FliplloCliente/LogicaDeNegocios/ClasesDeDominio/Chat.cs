@@ -14,8 +14,8 @@ namespace LogicaDeNegocios.ClasesDeDominio
 
         public string MensajeToString(Mensaje mensaje)
         {
-            string resultado = string.Empty;	
-            string nombreDeUsuario = UsuariosConectados.First(usuario => usuario.ID == mensaje.IDDeUsuario.ToString()).Usuario.NombreDeUsuario;
+            string resultado = string.Empty;
+			string nombreDeUsuario = mensaje.NombreDeUsuario;
             resultado = resultado + "[" + mensaje.Fecha.ToString() + "] " + nombreDeUsuario + ": " + mensaje.CuerpoDeMensaje;
             return resultado;
         }

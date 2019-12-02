@@ -5,17 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="800" ResizeMode="NoResize" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen">
-	<Window.Background>
-		<ImageBrush ImageSource="RecursosGráficos/background.jpg"/>
-	</Window.Background>
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="800" ResizeMode="NoResize" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
 	<Grid>
 		<Label Content="{DynamicResource ResourceKey= encontrarPartida}" HorizontalAlignment="Left" Margin="27,35,0,0" VerticalAlignment="Top" FontSize="24"/>
 		<Button x:Name="ButtonRegresar" Content="d-*" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="23" FontSize="14" Click="ButtonRegresar_Click"/>
 		<Button x:Name="ButtonActualizarListaDeLobbies" Content="Update*" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Margin="400,49,0,0" FontSize="14" Click="ButtonActualizarListaDeLobbies_Click"/>
 		<TextBox x:Name="TextBoxBusqueda" HorizontalAlignment="Left" Height="23" Margin="481,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" FontSize="14"/>
 		<Label x:Name="LabelBusqueda" Content="{DynamicResource ResourceKey=buscar}" HorizontalAlignment="Left" Margin="481,46,0,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Width="101"/>
-		<Button x:Name="ButtonCrearLobby" Content="{DynamicResource ResourceKey=crearLobby}" HorizontalAlignment="Left" Margin="671,49,0,0" VerticalAlignment="Top" Width="89" FontSize="14"/>
+		<Button x:Name="ButtonCrearLobby" Content="{DynamicResource ResourceKey=crearLobby}" HorizontalAlignment="Left" Margin="671,49,0,0" VerticalAlignment="Top" Width="89" FontSize="14" Click="ButtonCrearLobby_Click"/>
 		<DataGrid x:Name="DataGridLobbies" HorizontalAlignment="Left" Height="282" Margin="27,82,0,0" VerticalAlignment="Top" Width="733" AutoGenerateColumns="False" BorderBrush="{x:Null}" FontSize="14" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False">
 			<DataGrid.Background>
 				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>

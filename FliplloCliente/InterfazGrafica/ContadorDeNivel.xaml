@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:InterfazGrafica"
              mc:Ignorable="d" Height="78" Width="222.417"
 			 RenderOptions.BitmapScalingMode="NearestNeighbor">
-	<Grid>
-		<Image Source="RecursosGráficos/Icon.ico" HorizontalAlignment="Left" Height="64" Margin="0,9,0,0" VerticalAlignment="Top" Width="64"/>
-		<ProgressBar Value="50" Maximum="1000" x:Name="ProgressBarProgresoDeNivel" HorizontalAlignment="Left" Height="20" Margin="57,31,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF2E6DC7" Panel.ZIndex="-2"/>
-		<Label x:Name="LabelNivel" Content="LN" Margin="0,9,158,0" VerticalAlignment="Top" FontSize="30" HorizontalAlignment="Center" Foreground="Gray" Width="64" Height="64" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}"/>
-		<Label x:Name="LabelNombreDeUsuario" Content="{DynamicResource ResourceKey=nombreDeUsuario}" HorizontalAlignment="Left" Margin="57,5,0,0" VerticalAlignment="Top" FontSize="16"/>
+    <Grid>
+        <Image Source="RecursosGráficos/Icon.ico" HorizontalAlignment="Left" Height="64" Margin="0,9,0,0" VerticalAlignment="Top" Width="64"/>
+        <ProgressBar Value="50" Maximum="1000" x:Name="ProgressBarProgresoDeNivel" HorizontalAlignment="Left" Height="20" Margin="57,31,0,0" VerticalAlignment="Top" Width="154" Foreground="#FF2E6DC7" Panel.ZIndex="-2"/>
+        <Label x:Name="LabelNivel" Content="LN" Margin="0,9,0,0" VerticalAlignment="Top" FontSize="30" HorizontalAlignment="Left" Foreground="Gray" Width="64" Height="64" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="{x:Null}"/>
+        <Label x:Name="LabelNombreDeUsuario" Content="{DynamicResource ResourceKey=nombreDeUsuario}" HorizontalAlignment="Left" Margin="57,5,0,0" VerticalAlignment="Top" FontSize="16"/>
 
-	</Grid>
+    </Grid>
 </UserControl>

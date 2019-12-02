@@ -20,65 +20,30 @@ namespace InterfazGrafica
 		public Sesion SesionLocal;
 		public Window Padre;
 
-		public ServiciosDeCallBack CanalDeCallback;
+		public CallBackDeFlipllo CanalDeCallback;
 
 
-		public GUIMenuPrincipal(Sesion Sesion, Servidor servidor, ServiciosDeCallBack canalDeCallback)
+		public GUIMenuPrincipal(Sesion Sesion, Servidor servidor, CallBackDeFlipllo canalDeCallback)
 		{
 			InitializeComponent();
 			Chat = new LogicaDeNegocios.ClasesDeDominio.Chat();
 			SesionLocal = Sesion;
 			Servidor = servidor;
 			CanalDeCallback = canalDeCallback;
+			VentanaDeChat.AsignarDatos(SesionLocal, servidor, canalDeCallback);
 			ContadorDeNivel.AsignarValores(SesionLocal.Usuario);
-			ServiciosDeCallBack servicioDeCliente = new ServiciosDeCallBack();
-			servicioDeCliente.ListaDeClientesConectadosEvent += ActualizarListaDeClientesConectados;
-			servicioDeCliente.NuevoMensajeRecibidoEvent += MostrarNuevoMensaje;
-			servicioDeCliente.ActualizarIDDeUsuarioEvent += ActualizarIDDeUsuario;
-			
+			canalDeCallback.ActualizarListaDeSesionesDeChatEvent += ActualizarListaDeClientesConectados;
+			canalDeCallback.RecibirMensajeEvent += RecibirMensaje;
 		}
 
-		private void ActualizarListaDeClientesConectados(List<Sesion> clientesConectados)
+		private void RecibirMensaje(Mensaje mensaje)
 		{
-			Chat.UsuariosConectados = clientesConectados;
-			DataGridUsuariosConectados.ItemsSource = Chat.UsuariosConectados;
+			VentanaDeChat.RecibirMensaje(mensaje);
 		}
 
-		private void MostrarNuevoMensaje(Mensaje mensaje)
+		private void ActualizarListaDeClientesConectados(List<Sesion> usuariosConectados)
 		{
-			Chat.MensajesRecibidos.Add(mensaje);
-			TextBlockChat.Text = Chat.MensajesToString();
-		}
-
-		private void ActualizarIDDeUsuario(int id)
-		{
-			//SesionLocal.ID = id;
-		}
-
-		private void ButtonSendMessage_Click(object sender, RoutedEventArgs e)
-		{
-			if (!string.IsNullOrEmpty(TextBoxMensaje.Text) && SesionLocal.Usuario.Estado == EstadoUsuario.Registrado)
-			{
-				Mensaje mensaje = new Mensaje
-				{
-					//IDDeUsuario = SesionLocal.ID,
-					Fecha = DateTime.Now,
-					CuerpoDeMensaje = TextBoxMensaje.Text
-				};
-				try
-				{
-					Servidor.CanalDelServidor.EnviarMensajeAChatGlobal(mensaje, SesionLocal);
-				}
-				catch (TimeoutException)
-				{
-					MessageBox.Show(Application.Current.Resources["tiempoAgotado"].ToString(), Application.Current.Resources["algoAndaMal"].ToString());
-				}
-				catch (CommunicationException)
-				{
-					MessageBox.Show(Application.Current.Resources["errorDeConexion"].ToString(), Application.Current.Resources["algoAndaMal"].ToString());
-				}
-				TextBoxMensaje.Text = string.Empty;
-			}
+			VentanaDeChat.ActualizarListaDeClientesConectados(usuariosConectados);
 		}
 
 		private void ButtonJugar_Click(object sender, RoutedEventArgs e)
@@ -127,13 +92,14 @@ namespace InterfazGrafica
 			finally
 			{
 				Close();
+				Padre.Show();
 			}
+
 		}
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
 			CerrarSesion();
-			Padre.Show();
 		}
 	}
 

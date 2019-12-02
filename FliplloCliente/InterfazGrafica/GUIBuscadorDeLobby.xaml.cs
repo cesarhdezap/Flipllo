@@ -27,13 +27,14 @@ namespace InterfazGrafica
 		private List<Sala> Salas = new List<Sala>();
 		private Servidor Servidor;
 		private Sesion SesionLocal;
-		private ServiciosDeCallBack CanalDeCallback;
-		public GUIBuscadorDeLobby(Servidor servidor, Sesion sesion, ServiciosDeCallBack canalDeCallback)
+		private CallBackDeFlipllo CanalDeCallback;
+		public GUIBuscadorDeLobby(Servidor servidor, Sesion sesion, CallBackDeFlipllo canalDeCallback)
 		{
 			InitializeComponent();
 			SesionLocal = sesion;
 			Servidor = servidor;
 			CanalDeCallback = canalDeCallback;
+			CanalDeCallback.RecibirSalaEvent += RecibirSala;
 			Dispatcher.Invoke(() =>
 			{
 				CargarSalas();
@@ -70,7 +71,7 @@ namespace InterfazGrafica
 				Sala salaEncontrada = BuscarSesionLocalEnListaDeSalas();
 				if (salaEncontrada != null)
 				{
-					GUILobby Lobby = new GUILobby(Servidor, SesionLocal, salaEncontrada);
+					GUILobby Lobby = new GUILobby(Servidor, SesionLocal, CanalDeCallback, salaEncontrada);
 					Hide();
 					Lobby.ShowDialog();
 					CargarSalas();
@@ -99,6 +100,20 @@ namespace InterfazGrafica
 			}
 
 			return salaResultado;
+		}
+
+		private void ButtonCrearLobby_Click(object sender, RoutedEventArgs e)
+		{
+			GUICrearLobby crearLobby = new GUICrearLobby(Servidor, SesionLocal);
+			Hide();
+			crearLobby.ShowDialog();
+
+			Show();
+		}
+
+		private void RecibirSala(Sala sala)
+		{
+			GUILobby lobby = new GUILobby(Servidor, SesionLocal, CanalDeCallback, sala);
 		}
 	}
 }

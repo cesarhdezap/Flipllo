@@ -70,7 +70,7 @@ namespace InterfazGrafica
 				NombreDeUsuario = TextBoxNombreDeUsuario.Text,
 				Contraseña = TextBoxContraseña.Text
 			};
-			Servidor = new Servidor(new ServiciosDeCallBack());
+			Servidor = new Servidor(new CallBackDeFlipllo());
 			Servidor.CrearCanal();
 			try
 			{

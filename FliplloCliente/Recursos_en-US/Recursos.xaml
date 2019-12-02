@@ -96,6 +96,13 @@
 	<system:String x:Key="oJugarLocal">Or play locally</system:String>
 	<system:String x:Key="contraAI">Against the computer</system:String>
 	<system:String x:Key="contraPersona">Against a friend</system:String>
+	<system:String x:Key="alana">Alana</system:String>
+	<system:String x:Key="blancoGana">White wins!</system:String>
+	<system:String x:Key="negroGana">Black wins!</system:String>
+	<system:String x:Key="empate">It's a tie!</system:String>
+	<system:String x:Key="alanaGana">Looks like I won!</system:String>
+	<system:String x:Key="alanaPierde">Woa, you're good!</system:String>
+	<system:String x:Key="alanaEmpate">We're evenly matched!</system:String>
 
 
 </ResourceDictionary>

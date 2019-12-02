@@ -96,6 +96,7 @@
 	<system:String x:Key="oJugarLocal">Or play locally</system:String>
 	<system:String x:Key="contraAI">Against the computer</system:String>
 	<system:String x:Key="contraPersona">Against a friend</system:String>
+	<system:String x:Key="alana">alana</system:String>
 
 
 </ResourceDictionary>

@@ -1,36 +1,53 @@
-﻿using System;
+﻿using LogicaDeNegocios.ServiciosDeFlipllo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LogicaDeNegocios.ServiciosDeFlipllo;
 
 namespace ServiciosDeComunicacion
 {
-	
-    public class ServiciosDeCallBack : IServiciosDeFliplloCallback
-    {
-        public delegate void NuevoMensajeRecibidoDelegate(Mensaje mensaje);
-        public event NuevoMensajeRecibidoDelegate NuevoMensajeRecibidoEvent;
 
-        public delegate void ActualizacionDeListaDeClientesConectadosDelegate(List<Sesion> clientesConectados);
-        public event ActualizacionDeListaDeClientesConectadosDelegate ListaDeClientesConectadosEvent;
-
-        public delegate void ActualizacionDeIDDeUsuarioDelegate(int id);
-        public event ActualizacionDeIDDeUsuarioDelegate ActualizarIDDeUsuarioEvent;
+	public class CallBackDeFlipllo : IServiciosDeFliplloCallback
+	{
+		public delegate void ActualizacionDeListaDeClientesConectadosDelegate(List<Sesion> clientesConectados);
+		public event ActualizacionDeListaDeClientesConectadosDelegate ListaDeClientesConectadosEvent;
 
 		public delegate void RecibirSesionDelegate(Sesion sesion);
 		public event RecibirSesionDelegate RecibirSesionEvent;
 
-        public void ActualizarListaDeUsuarios(Sesion[] usuariosConectados)
-        {
-            ListaDeClientesConectadosEvent(usuariosConectados.ToList());
-        }
+		public delegate void PedirActualizarSesionDelegate();
+		public event PedirActualizarSesionDelegate PedirActualizarSesionEvent;
 
-        public void EnviarIDUsuario(int id)
-        {
-            ActualizarIDDeUsuarioEvent(id);
-        }
+		public delegate void RecibirSalaDelegate(Sala sala);
+		public event RecibirSalaDelegate RecibirSalaEvent;
+
+		public delegate void ActualizarListaDeSesionesDeChatDelegate(List<Sesion> usuariosConectados);
+		public event ActualizarListaDeSesionesDeChatDelegate ActualizarListaDeSesionesDeChatEvent;
+
+		public delegate void RecibirMensajeDelegate(Mensaje mensaje);
+		public event RecibirMensajeDelegate RecibirMensajeEvent;
+
+		public delegate void ActualizarSalaDelegate(Sala sala);
+		public event ActualizarSalaDelegate ActualizarSalaEvent;
+
+		public void ActualizarSala(Sala sala)
+		{
+			ActualizarSalaEvent(sala);
+		}
+
+		public void RecibirSala(Sala sala)
+		{
+			RecibirSalaEvent(sala);
+		}
+
+		public void ActualizarListaDeSesionesDeChat(Sesion[] usuariosConectados)
+		{
+			ActualizarListaDeSesionesDeChatEvent(usuariosConectados.ToList());
+		}
+
+		public void ActualizarListaDeUsuarios(Sesion[] usuariosConectados)
+		{
+			ListaDeClientesConectadosEvent(usuariosConectados.ToList());
+		}
 
 		public void RecibirSesion(Sesion sesion)
 		{
@@ -39,22 +56,12 @@ namespace ServiciosDeComunicacion
 
 		public void PedirActualizarSesion()
 		{
-			throw new NotImplementedException();
+			PedirActualizarSesionEvent();
 		}
 
-		public void RecibirSala(Sala sala)
+		public void RecibirMensaje(Mensaje mensaje)
 		{
-			throw new NotImplementedException();
-		}
-
-		public void ActualizarListaDeSesionesDeChat(Sesion[] usuariosConectados)
-		{
-
-		}
-
-		public void RecibirMensajeGlobal(Mensaje mensaje)
-		{
-			NuevoMensajeRecibidoEvent(mensaje);
+			RecibirMensajeEvent(mensaje);
 		}
 	}
 }

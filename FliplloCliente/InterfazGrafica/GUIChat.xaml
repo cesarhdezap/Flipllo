@@ -5,42 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="718" Width="1281" ResizeMode="NoResize" Closed="Window_Closed" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="718" Width="1281" ResizeMode="NoResize" Closed="Window_Closed" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
 	<Grid Margin="0,0,0,0">
-		<Grid.Background>
-			<ImageBrush ImageSource="RecursosGráficos/background.jpg"/>
-		</Grid.Background>
 		<local:ContadorDeNivel x:Name="ContadorDeNivel" Margin="15,12,1045,603"></local:ContadorDeNivel>
-		<TextBlock x:Name="TextBlockChat" HorizontalAlignment="Left" Height="202" Margin="14,447,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" OpacityMask="#FF444444">
-			<TextBlock.Background>
-				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>
-			</TextBlock.Background>
-		</TextBlock>
-		<TextBox x:Name="TextBoxMensaje" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="24" Margin="13,653,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266">
-			<TextBox.Style>
-				<Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-					<Style.Resources>
-						<VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-							<VisualBrush.Visual>
-								<Label Content="{DynamicResource ResourceKey=mensaje}" Foreground="Gray" FontSize="14"/>
-							</VisualBrush.Visual>
-						</VisualBrush>
-					</Style.Resources>
-					<Style.Triggers>
-						<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-							<Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-						</Trigger>
-						<Trigger Property="Text" Value="{x:Null}">
-							<Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-						</Trigger>
-						<Trigger Property="IsKeyboardFocused" Value="True">
-							<Setter Property="Background" Value="White" />
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</TextBox.Style>
-		</TextBox>
-		<Button x:Name="ButtonEnviarMensaje" Content="{DynamicResource ResourceKey=enviarMensaje}" HorizontalAlignment="Left" Margin="279,653,0,0" VerticalAlignment="Top" Width="84" Height="24" Click="ButtonSendMessage_Click"/>
+		<local:GUIChat x:Name="VentanaDeChat" Margin="15,451,923,29" ></local:GUIChat>
 		<DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="304" Margin="15,137,0,0" VerticalAlignment="Top" Width="350">
 			<DataGrid.Background>
 				<SolidColorBrush Color="#FFF0F0F0" Opacity="0.5"/>
@@ -50,7 +18,6 @@
 				<DataGridTextColumn Header="Usuario" IsReadOnly="True" Binding="{Binding Usuario.NombreDeUsuario}"/>
 			</DataGrid.Columns>
 		</DataGrid>
-		<Rectangle HorizontalAlignment="Left" Height="204" Margin="13,446,0,0" Stroke="Black" VerticalAlignment="Top" Width="352" Panel.ZIndex="-1"/>
 		<Button x:Name="ButtonBotin"  HorizontalAlignment="Left" Margin="616,513,0,0" VerticalAlignment="Top" Width="100" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBotin_Click">
 			<Image Source="/RecursosGráficos/treasure.png">
 

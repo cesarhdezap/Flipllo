@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=crearCuenta}" Height="599" Width="303" Icon="RecursosGráficos/Icon.ico" BorderBrush="#FF666666" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource ResourceKey=crearCuenta}" Height="599" Width="303" Icon="RecursosGráficos/Icon.ico" BorderBrush="#FF666666" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
 	<Grid>
 		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="34,29,42,0" VerticalAlignment="Top" FontSize="36" Width="219" HorizontalContentAlignment="Center"/>
 		<Label x:Name="LabelCrearCuenta" Content="{DynamicResource ResourceKey=crearCuenta}" HorizontalAlignment="Center" Margin="34,110,152,0" VerticalAlignment="Top" FontSize="14" Width="109"/>

@@ -66,6 +66,20 @@ namespace InterfazGrafica.Utilierias
 			}
 		}
 
+		public static void MostrarEstadoDeValidacionEntero(TextBox textBoxNumeroEntero)
+		{
+			if (ValidarQueTextoSeaEnteros(textBoxNumeroEntero.Text))
+			{
+				textBoxNumeroEntero.BorderBrush = Brushes.Green;
+				OcultarToolTip(textBoxNumeroEntero);
+			}
+			else
+			{
+				textBoxNumeroEntero.BorderBrush = Brushes.Red;
+				MostrarToolTip(textBoxNumeroEntero, Application.Current.Resources["debeSerNumeroEnteroYPositivo"].ToString());
+			}
+		}
+
 		public static void OcultarPista(TextBox textBox, Label pista)
 		{
 			if (textBox.Text == string.Empty)

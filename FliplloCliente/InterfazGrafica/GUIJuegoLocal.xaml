@@ -7,51 +7,9 @@
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
         Title="{DynamicResource nombreDelJuego}" Height="719.8" Width="1280"
-		Background="#FF03683A"
-		RenderOptions.BitmapScalingMode="NearestNeighbor" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-	<Window.Resources>
-		<DrawingBrush x:Key="Tablero" Stretch="None" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute" >
-			<DrawingBrush.Drawing>
-				<DrawingGroup>
-					<GeometryDrawing Brush="Green">
-						<GeometryDrawing.Geometry>
-							<RectangleGeometry Rect="0,0,2,2" />
-						</GeometryDrawing.Geometry>
-					</GeometryDrawing>
-					<GeometryDrawing Brush="Green" >
-						<GeometryDrawing.Geometry>
-							<GeometryGroup>
-								<RectangleGeometry Rect="0,0,1,1" />
-								<RectangleGeometry Rect="1,1,1,1" />
-							</GeometryGroup>
-						</GeometryDrawing.Geometry>
-					</GeometryDrawing>
-				</DrawingGroup>
-			</DrawingBrush.Drawing>
-		</DrawingBrush>
-		<DrawingBrush x:Key="TableroTransparente" Stretch="None" TileMode="Tile" Viewport="0,0,2,2" ViewportUnits="Absolute" >
-			<DrawingBrush.Drawing>
-				<DrawingGroup>
-					<GeometryDrawing Brush="Transparent">
-						<GeometryDrawing.Geometry>
-							<RectangleGeometry Rect="0,0,2,2" />
-						</GeometryDrawing.Geometry>
-					</GeometryDrawing>
-					<GeometryDrawing Brush="Transparent">
-						<GeometryDrawing.Geometry>
-							<GeometryGroup>
-								<RectangleGeometry Rect="0,0,1,1" />
-								<RectangleGeometry Rect="1,1,1,1" />
-							</GeometryGroup>
-						</GeometryDrawing.Geometry>
-					</GeometryDrawing>
-				</DrawingGroup>
-			</DrawingBrush.Drawing>
-		</DrawingBrush>
-
-
-	</Window.Resources>
+		RenderOptions.BitmapScalingMode="NearestNeighbor" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
 	<Grid>
+		<local:GUIChat x:Name="VentanaDeChat" Margin="10,516,949,10"></local:GUIChat>
 		<Rectangle HorizontalAlignment="Left" Height="78" Margin="20,39,0,0" Stroke="Black" VerticalAlignment="Top" Width="313"/>
 		<Label Content="{DynamicResource ResourceKey=ultimaJugada}" HorizontalAlignment="Left" Margin="33,50,0,0" VerticalAlignment="Top" FontSize="30"/>
 		<Label x:Name="LabelYo" Content="{DynamicResource ResourceKey=negras}" HorizontalAlignment="Left" Margin="20,5,0,0" VerticalAlignment="Top" FontSize="18"/>
@@ -87,7 +45,7 @@
 			<WrapPanel x:Name="BotonesDeTablero" Height="8" Width="8"/>
 		</Viewbox>
 		<Viewbox x:Name="PanelPostJuego" Margin="366,119,382,51" IsHitTestVisible="False" Height="512" Width="512" Panel.ZIndex="9">
-			<local:GUIPanelPostJuego Height="528"></local:GUIPanelPostJuego>
+			<local:GUIPanelPostJuego x:Name="ElementosDePanelPostJuego" Height="528"></local:GUIPanelPostJuego>
 		</Viewbox>
 		<Viewbox Margin="367,120,383,52" IsHitTestVisible="False" Height="512" Width="512">
 			<ItemsControl Name="TableroNegro" Height="8" Width="8" IsTabStop="False">
@@ -195,16 +153,5 @@
 				</Canvas.Background>
 			</Canvas>
 		</Viewbox>
-
-		<TextBlock x:Name="TextBlockChatBox" HorizontalAlignment="Left" Height="122" Margin="11,525,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="321" OpacityMask="#FF444444">
-			<TextBlock.Background>
-				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>
-			</TextBlock.Background>
-		</TextBlock>
-
-		<TextBox x:Name="TextBoxCajaDeMensaje" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="24" Margin="10,650,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" TextChanged="TextBoxCajaDeMensaje_TextChanged"/>
-		<Label x:Name="LabelCajaDeMensaje" Content="{DynamicResource enviarMensaje}" Margin="11,647,1211,17"/>
-		<Button x:Name="ButtonEnviarMensaje" Content="{DynamicResource enviarMensaje}" HorizontalAlignment="Left" Margin="254,650,0,0" VerticalAlignment="Top" Width="77" Height="24"/>
-		<Rectangle x:Name="RectangleEnviarMensaje" HorizontalAlignment="Left" Height="124" Margin="10,524,0,0" Stroke="Black" VerticalAlignment="Top" Width="323" Panel.ZIndex="-1"/>
 	</Grid>
 </Window>

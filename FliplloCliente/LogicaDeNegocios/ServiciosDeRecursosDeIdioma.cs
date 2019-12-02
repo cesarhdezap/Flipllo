@@ -17,13 +17,14 @@ namespace LogicaDeNegocios
 
 			try
 			{
-				diccionarioDeRecursos.Source = new Uri("pack://application:,,,/Recursos_" + locale + ";component/Recursos.xaml", UriKind.Absolute);
+				string directorioDeLaAplicacion = Directory.GetCurrentDirectory();
+				diccionarioDeRecursos.Source = new Uri(directorioDeLaAplicacion + "\\Recursos\\" + locale + ".xaml", UriKind.Absolute);
 			}
-			catch (System.IO.IOException e)
+			catch (System.Net.WebException e)
 			{
 				throw new RecursoNoEncontradoException("Resource " + locale + " not found.", e);
 			}
-			var recursoActual = Application.Current.Resources.MergedDictionaries.FirstOrDefault(recurso => recurso.Source.OriginalString.EndsWith("Recursos.xaml"));
+			var recursoActual = Application.Current.Resources.MergedDictionaries.FirstOrDefault(recurso => recurso.Source.OriginalString.Contains("-"));
 
 			if (recursoActual != null)
 			{
@@ -44,7 +45,7 @@ namespace LogicaDeNegocios
 			}
 			catch (System.IO.IOException e)
 			{
-				throw new RecursoNoEncontradoException("Resource " + nombreDeSkin + " not found.", e);
+				throw new RecursoNoEncontradoException("Resource " + nombreDeSkin + colorDeSkin.ToString() + " not found.", e);
 			}
 			var recursoActual = Application.Current.Resources.MergedDictionaries.FirstOrDefault(recurso => recurso.Source.OriginalString.EndsWith(colorDeSkin.ToString() + ".xaml"));
 
@@ -83,18 +84,15 @@ namespace LogicaDeNegocios
 
 		public static List<string> ListarRecursosDeIdioma()
 		{
-			const string identificadorDeRecursosDeIdioma = "Recursos_";
-			string[] recursosDeAplicacion = Directory.GetDirectories("pack://application:,,,/");
-			List<string> listaDeRecursosDeAplicacion = new List<string>();
-			listaDeRecursosDeAplicacion = recursosDeAplicacion.ToList();
+			const string carpetaDeRecursos = "Recursos";
+			string directorioDeAplicacion = Directory.GetCurrentDirectory();
+			string caminoACarpetaDeRecursos = directorioDeAplicacion + "\\" + carpetaDeRecursos;
+			List<string> listaDeRecursosDeIdioma = Directory.GetFiles(caminoACarpetaDeRecursos).ToList();
 
-			List<string> listaDeRecursosDeIdioma = recursosDeAplicacion.Where(recurso => recurso.Contains(identificadorDeRecursosDeIdioma)).ToList();
-			foreach (string nombreDeRecurso in listaDeRecursosDeIdioma)
+			for (int i = 0; i<listaDeRecursosDeIdioma.Count;i++)
 			{
-				foreach (char caracter in identificadorDeRecursosDeIdioma)
-				{
-					nombreDeRecurso.TrimStart(caracter);
-				}
+				listaDeRecursosDeIdioma[i] = listaDeRecursosDeIdioma[i].Remove(0, caminoACarpetaDeRecursos.Length + 1);
+				listaDeRecursosDeIdioma[i] = listaDeRecursosDeIdioma[i].Remove(listaDeRecursosDeIdioma[i].IndexOf("."), 5);
 			}
 
 			return listaDeRecursosDeIdioma;

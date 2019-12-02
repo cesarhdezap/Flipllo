@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="597" Width="303" Background="White" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="597" Width="303" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
 	<Grid>
 		<Label x:Name="LabelFlipllo" Content="{DynamicResource ResourceKey=nombreDelJuego}" HorizontalAlignment="Center" Margin="34,29,42,0" VerticalAlignment="Top" FontSize="36" Width="219" HorizontalContentAlignment="Center"/>
 		<Label Content="{DynamicResource ResourceKey=gracias}" HorizontalAlignment="Left" Margin="69,107,0,0" VerticalAlignment="Top"/>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/" />
+  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
+  <xs:complexType name="Usuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodigoDeVerificacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contraseña" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CorreoElectronico" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" type="tns:EstadoUsuario" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreDeUsuario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Puntuacion" nillable="true" type="tns:Puntuacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
+  <xs:simpleType name="EstadoUsuario">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Indefinido" />
+      <xs:enumeration value="Inexistente" />
+      <xs:enumeration value="CodigoDeValidacionNovalido" />
+      <xs:enumeration value="Registrado" />
+      <xs:enumeration value="ActualmenteConectado" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoUsuario" nillable="true" type="tns:EstadoUsuario" />
+  <xs:complexType name="Puntuacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExperienciaTotal" type="xs:double" />
+      <xs:element minOccurs="0" name="PartidasJugadas" type="xs:int" />
+      <xs:element minOccurs="0" name="Victorias" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Puntuacion" nillable="true" type="tns:Puntuacion" />
+  <xs:complexType name="ArrayOfFicha">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Ficha" nillable="true" type="tns:Ficha" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFicha" nillable="true" type="tns:ArrayOfFicha" />
+  <xs:complexType name="Ficha">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="ColorActual" type="q1:ColorDeFicha" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="ColorAnterior" type="q2:ColorDeFicha" />
+      <xs:element minOccurs="0" name="FueGirada" type="xs:boolean" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="Posicion" type="q3:Point" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ficha" nillable="true" type="tns:Ficha" />
+</xs:schema>

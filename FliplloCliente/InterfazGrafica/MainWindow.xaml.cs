@@ -24,7 +24,7 @@ namespace InterfazGrafica
 		private const int PRIMER_INDICE_DE_COMBOBOX = 0;
 		private Sesion SesionActual;
 		private Servidor Servidor; 
-		private ServiciosDeCallBack CanalDeCallback = new ServiciosDeCallBack();
+		private CallBackDeFlipllo CanalDeCallback = new CallBackDeFlipllo();
 		DispatcherTimer Timer = new DispatcherTimer()
 		{
 			Interval = TimeSpan.FromSeconds(10)
@@ -36,11 +36,7 @@ namespace InterfazGrafica
 			CanalDeCallback.RecibirSesionEvent += RecibirSesion;
 			Servidor = new Servidor(CanalDeCallback);
 			CargarRecursosGraficosPorDefecto();
-			List<string> listaDeIdiomas = new List<string>
-			{
-				"en-US",
-				"es-MX"
-			};
+			List<string> listaDeIdiomas = ListarRecursosDeIdioma();
 
 			bool huboExcepcion = false;
 			CargarRecursos(culturaPorDefecto);
@@ -81,7 +77,6 @@ namespace InterfazGrafica
 
 		private void ButtonIniciarSesion_Click(object sender, RoutedEventArgs e)
 		{
-
 			SesionActual = new Sesion()
 			{
 				Usuario = new Usuario
@@ -93,7 +88,6 @@ namespace InterfazGrafica
 			try
 			{
 				Timer.Tick += new EventHandler(RestaurarCanal);
-
 				Servidor.CrearCanal();
 				Timer.Start();
 				Servidor.CanalDelServidor.AutenticarUsuario(SesionActual.Usuario);
@@ -126,7 +120,7 @@ namespace InterfazGrafica
 
 		private void RecibirSesion(Sesion sesion)
 		{
-				SesionActual = sesion;
+			SesionActual = sesion;
 			sesion.Usuario.Contraseña = PasswordBoxContraseña.Password;
 			sesion.Usuario.CorreoElectronico = TextBoxNombreDeUsuario.Text;
 			if (SesionActual.Usuario.Estado == EstadoUsuario.Inexistente)
@@ -146,8 +140,10 @@ namespace InterfazGrafica
 				}
 				else if (SesionActual.Usuario.Estado == EstadoUsuario.Registrado)
 				{
-					GUIMenuPrincipal menuPrincipal = new GUIMenuPrincipal(SesionActual, Servidor, CanalDeCallback);
-						menuPrincipal.Padre= this;
+					GUIMenuPrincipal menuPrincipal = new GUIMenuPrincipal(SesionActual, Servidor, CanalDeCallback)
+					{
+						Padre = this
+					};
 					Hide();
 					menuPrincipal.Show();
 					TextBoxNombreDeUsuario.Clear();
@@ -169,24 +165,26 @@ namespace InterfazGrafica
 
 		private void LabelJuegoLocalIA_Click(object sender, RoutedEventArgs e)
 		{
-			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(TipoDeJuego.InteligenciaArtifical);
+			ObjetoDeInicializacionDeJuego inicializadorDeJuego = new ObjetoDeInicializacionDeJuego(TipoDeJuego.InteligenciaArtifical, "Alana", "Alana");
+			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(inicializadorDeJuego);
 			Hide();
 			juegoLocal.ShowDialog();
 			Show();
 			TextBoxNombreDeUsuario.Clear();
 			PasswordBoxContraseña.Clear();
+			int i = 0;
+			i -= -1;
 		}
 
 		private void LabelJuegoLocalAmigo_Click(object sender, RoutedEventArgs e)
 		{
-			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(TipoDeJuego.Local);
+			ObjetoDeInicializacionDeJuego inicializadorDeJuego = new ObjetoDeInicializacionDeJuego(TipoDeJuego.Local);
+			GUIJuegoLocal juegoLocal = new GUIJuegoLocal(inicializadorDeJuego);
 			Hide();
 			juegoLocal.ShowDialog();
 			Show();
 			TextBoxNombreDeUsuario.Clear();
 			PasswordBoxContraseña.Clear();
 		}
-
-
 	}
 }

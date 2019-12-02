@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="303" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF03683A">
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="303" Icon="RecursosGráficos/Icon.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
 	<Grid>
 		<local:ContadorDeNivel x:Name="ContadorDeNivel" Margin="24,27,51,316"></local:ContadorDeNivel>
 

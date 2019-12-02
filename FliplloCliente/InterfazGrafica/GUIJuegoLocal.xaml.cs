@@ -1,6 +1,9 @@
 ﻿using LogicaDeNegocios;
 using LogicaDeNegocios.ClasesDeDominio;
 using LogicaDeNegocios.ServiciosDeFlipllo;
+using LogicaDeNegocios.ServiciosDeJuego;
+using ServiciosDeComunicacion;
+using ServiciosDeComunicacion.Proxy;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,43 +21,47 @@ namespace InterfazGrafica
 	/// <summary>
 	/// Interaction logic for GUIJuegoLocal.xaml
 	/// </summary>
-	public partial class GUIJuegoLocal : Window
+	public partial class GUIJuegoLocal : Window, IServiciosDeJuegoCallback
 	{
-		private ObservableCollection<Ficha> Fichas;
-		private ObservableCollection<Ficha> FichasDeVistaPrevia;
+		private ObservableCollection<LogicaDeNegocios.Ficha> Fichas;
+		private ObservableCollection<LogicaDeNegocios.Ficha> FichasDeVistaPrevia;
 		private readonly int TAMAÑO_DE_TABLERO = 8;
 		private Juego Juego = new Juego();
 		private List<Jugador> Jugadores = new List<Jugador>();
-		private TipoDeJuego TipoDeJuego;
 		private bool tiradaDisponible = true;
-		public GUIJuegoLocal(TipoDeJuego tipoDeJuego, string skinNegra = "Alana", string skinBlanca = "Alana", List<Jugador> jugadores = null)
+		private LogicaDeNegocios.ServiciosDeFlipllo.Sesion SesionLocal;
+		private CallbackDeJuego CanalDeCallback = new CallbackDeJuego();
+		private ServidorDeJuego ServidorDeJuego;
+		public GUIJuegoLocal(ObjetoDeInicializacionDeJuego Inicializador, LogicaDeNegocios.ServiciosDeFlipllo.Sesion Sesion = null, CallBackDeFlipllo CanalDeCallback = null, Servidor Servidor = null)
 		{
 			InitializeComponent();
-			TipoDeJuego = tipoDeJuego;
+			SesionLocal = Sesion;
+			ServidorDeJuego = new ServidorDeJuego(this.CanalDeCallback);
+			Juego.TipoDeJuego = Inicializador.TipoDeJuego;
 			PanelPostJuego.Visibility = Visibility.Hidden;
+			ElementosDePanelPostJuego.Padre = this;
+			
 
-			if (TipoDeJuego != TipoDeJuego.EnRed)
+			if (Juego.TipoDeJuego != TipoDeJuego.EnRed)
 			{
-				TextBlockChatBox.Visibility = Visibility.Hidden;
-				LabelCajaDeMensaje.Visibility = Visibility.Hidden;
-				TextBoxCajaDeMensaje.Visibility = Visibility.Hidden;
-				ButtonEnviarMensaje.Visibility = Visibility.Hidden;
-				RectangleEnviarMensaje.Visibility = Visibility.Hidden;
+				VentanaDeChat.Visibility = Visibility.Hidden;
+				VentanaDeChat.AsignarDatos(Sesion, Servidor, CanalDeCallback);
+
 			}
 
-			if (TipoDeJuego != TipoDeJuego.Local)
+			if (Juego.TipoDeJuego != TipoDeJuego.Local)
 			{
 				VistaPreviaBlanco.Visibility = Visibility.Hidden;
 			}
 
-			if(TipoDeJuego == TipoDeJuego.EnRed || jugadores != null)
+			if(Juego.TipoDeJuego == TipoDeJuego.EnRed || Inicializador.Jugadores != null)
 			{
-				Jugadores = jugadores;
-				AsignarLadosDelTablero(skinNegra, skinBlanca);
+				Jugadores = Inicializador.Jugadores;
+				AsignarLadosDelTablero(Inicializador.SkinNegra, Inicializador.SkinBlanca);
 			}
 			else
 			{
-				CargarSkins(skinNegra, skinBlanca);
+				Inicializador.CargarSkins();
 			}
 
 			InicializarTablero();
@@ -93,8 +100,8 @@ namespace InterfazGrafica
 
 		private void InicializarTablero()
 		{
-			FichasDeVistaPrevia = new ObservableCollection<Ficha>();
-			Fichas = new ObservableCollection<Ficha>();
+			FichasDeVistaPrevia = new ObservableCollection<LogicaDeNegocios.Ficha>();
+			Fichas = new ObservableCollection<LogicaDeNegocios.Ficha>();
 			TableroBlanco.ItemsSource = Fichas;
 			TableroNegro.ItemsSource = Fichas;
 			VistaPreviaBlanco.ItemsSource = FichasDeVistaPrevia;
@@ -133,12 +140,12 @@ namespace InterfazGrafica
 			{
 				
 				LabelUltimoMovimientoYo.Content = ConvertirPuntoACoordenadasDeJuego(puntoDeTirada);
-				if (TipoDeJuego == TipoDeJuego.EnRed)
+				if (Juego.TipoDeJuego == TipoDeJuego.EnRed)
 				{
 					tiradaDisponible = false;
-					//Juego.Tirar(puntoDeTirada); Pero el metodo en la red
+					ServidorDeJuego.CanalDelServidor.TirarFicha(ServidorDeJuego.ConvertirSesion(SesionLocal), puntoDeTirada);
 				}
-				else if (TipoDeJuego == TipoDeJuego.Local)
+				else if (Juego.TipoDeJuego == TipoDeJuego.Local)
 				{
 					Juego.Tirar(puntoDeTirada);
 					if (Juego.ColorDeJugadorActual == LogicaDeNegocios.ColorDeFicha.Blanco)
@@ -183,18 +190,12 @@ namespace InterfazGrafica
 			});
 		}
 
-		private void RecibirTirada(Point puntoDeTirada)
-		{
-			Juego.Tirar(puntoDeTirada);
-			tiradaDisponible = true;
-		}
-
 		private void MostrarVistaPreviaDeFicha(object sender, RoutedEventArgs e)
 		{
 			Button boton = sender as Button;
 			int indiceDeBoton = BotonesDeTablero.Children.IndexOf(boton);
 			Point puntoDeTirada = new Point(indiceDeBoton % TAMAÑO_DE_TABLERO, indiceDeBoton / TAMAÑO_DE_TABLERO);
-			Ficha fichaAAñadir = new Ficha
+			LogicaDeNegocios.Ficha fichaAAñadir = new LogicaDeNegocios.Ficha
 			{
 				Posicion = puntoDeTirada,
 				ColorActual = Juego.ColorDeJugadorActual
@@ -216,10 +217,10 @@ namespace InterfazGrafica
 
 		private void CargarFichas()
 		{
-			List<Ficha> listaDeFichas = Juego.ObtenerFichasComoLista();
+			List<LogicaDeNegocios.Ficha> listaDeFichas = Juego.ObtenerFichasComoLista();
 			Fichas.Clear();
 
-			foreach (Ficha ficha in listaDeFichas)
+			foreach (LogicaDeNegocios.Ficha ficha in listaDeFichas)
 			{
 				Fichas.Add(ficha);
 			}
@@ -227,6 +228,7 @@ namespace InterfazGrafica
 
 		private string ConvertirPuntoACoordenadasDeJuego(Point punto)
 		{
+			//TODO
 			char letraDeX = 'A';
 			string resultado = string.Empty;
 			if (punto.X == 0)
@@ -276,12 +278,26 @@ namespace InterfazGrafica
 			if (Juego.JuegoTerminado)
 			{
 				PanelPostJuego.Visibility = Visibility.Visible;
+				PanelPostJuego.IsHitTestVisible = true;
+				ElementosDePanelPostJuego.Mostrar(Juego);
 			}
 		}
 
-		private void TextBoxCajaDeMensaje_TextChanged(object sender, TextChangedEventArgs e)
+		public void RecibirTablero(LogicaDeNegocios.ServiciosDeJuego.Ficha[] tablero)
 		{
-			OcultarPista(TextBoxCajaDeMensaje, LabelCajaDeMensaje);
+			throw new System.NotImplementedException();
+		}
+
+		public void TerminarJuego(int experenciaPorPuntos, int experenciaPorFichas, bool ganaste)
+		{
+			Juego.JuegoTerminado = true;
+			ActualizarInterfaz();
+		}
+
+		public void RecibirTirada(Point tirada)
+		{
+			Juego.Tirar(tirada);
+			tiradaDisponible = true;
 		}
 	}
 }

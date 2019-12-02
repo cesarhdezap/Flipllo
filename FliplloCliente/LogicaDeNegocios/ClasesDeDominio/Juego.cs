@@ -13,6 +13,7 @@ namespace LogicaDeNegocios.ClasesDeDominio
 		public int FichasNegras { get; set; } = 0;
 		public int PuntosNegros { get; set; } = 0;
 		public int PuntosBlancos { get; set; } = 0;
+		public TipoDeJuego TipoDeJuego { get; set; }	
 		public bool[,] MovimientosLegales { get; set; } = new bool[TAMAÑO_DE_TABLERO, TAMAÑO_DE_TABLERO];
 		private bool[,] PiezasAGirar { get; set; } = new bool[TAMAÑO_DE_TABLERO, TAMAÑO_DE_TABLERO];
 		public bool JuegoTerminado { get; set; } = false;
@@ -187,7 +188,7 @@ namespace LogicaDeNegocios.ClasesDeDominio
 				}
 			}
 
-			int puntosASumar = (int)((float)cuentaDePuntos * multiplicadorDePuntos)*10;
+			int puntosASumar = (int)((float)cuentaDePuntos * multiplicadorDePuntos) * 10;
 
 			if (ColorDeJugadorActual == ColorDeFicha.Blanco)
 			{

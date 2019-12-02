@@ -4,7 +4,7 @@
                     xmlns:local="clr-namespace:RecursosGraficos"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-
+	<SolidColorBrush x:Key="VerdeFlipllo">#FF03683A</SolidColorBrush>
 	<Style x:Key="FichasNegras" TargetType="{x:Type Image}">
 		<Style.Triggers>
 			<MultiDataTrigger>
@@ -102,6 +102,4 @@
 			</MultiDataTrigger>
 		</Style.Triggers>
 	</Style>
-	
-	
 </ResourceDictionary>
