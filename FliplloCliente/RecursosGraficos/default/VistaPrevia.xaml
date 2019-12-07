@@ -1,0 +1,133 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Storyboard x:Key="vistaPreviaBlancoStoryboard" RepeatBehavior="Forever">
+		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Source" Duration="0:0:1.8">
+			<DiscreteObjectKeyFrame KeyTime="0:0:0">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco1.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco2.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco3.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.6">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco4.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.7">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco5.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco6.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.9">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco7.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.3">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco8.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.4">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco9.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.5">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco10.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.6">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco11.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.7">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Blanco12.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+		</ObjectAnimationUsingKeyFrames>
+	</Storyboard>
+
+	<Storyboard x:Key="vistaPreviaNegroStoryboard" RepeatBehavior="Forever">
+		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Source" Duration="0:0:1.8">
+			<DiscreteObjectKeyFrame KeyTime="0:0:0">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro1.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro2.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro3.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.6">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro4.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.7">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro5.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro6.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:0.9">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro7.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.3">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro8.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.4">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro9.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.5">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro10.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.6">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro11.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+			<DiscreteObjectKeyFrame KeyTime="0:0:1.7">
+				<DiscreteObjectKeyFrame.Value>
+					<BitmapImage UriSource="Imagenes/Negro12.png"/>
+				</DiscreteObjectKeyFrame.Value>
+			</DiscreteObjectKeyFrame>
+		</ObjectAnimationUsingKeyFrames>
+	</Storyboard>
+
+</ResourceDictionary>

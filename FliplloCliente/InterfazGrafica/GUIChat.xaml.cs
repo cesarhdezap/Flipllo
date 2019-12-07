@@ -16,7 +16,7 @@ namespace InterfazGrafica
 	public partial class GUIMenuPrincipal : Window
 	{
 		public Servidor Servidor;
-		public LogicaDeNegocios.ClasesDeDominio.Chat Chat;
+		public Chat Chat;
 		public Sesion SesionLocal;
 		public Window Padre;
 
@@ -26,7 +26,7 @@ namespace InterfazGrafica
 		public GUIMenuPrincipal(Sesion Sesion, Servidor servidor, CallBackDeFlipllo canalDeCallback)
 		{
 			InitializeComponent();
-			Chat = new LogicaDeNegocios.ClasesDeDominio.Chat();
+			Chat = new Chat();
 			SesionLocal = Sesion;
 			Servidor = servidor;
 			CanalDeCallback = canalDeCallback;
@@ -94,7 +94,6 @@ namespace InterfazGrafica
 				Close();
 				Padre.Show();
 			}
-
 		}
 
 		private void Window_Closed(object sender, EventArgs e)

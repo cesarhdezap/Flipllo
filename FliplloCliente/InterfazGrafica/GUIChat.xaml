@@ -9,7 +9,7 @@
 	<Grid Margin="0,0,0,0">
 		<local:ContadorDeNivel x:Name="ContadorDeNivel" Margin="15,12,1045,603"></local:ContadorDeNivel>
 		<local:GUIChat x:Name="VentanaDeChat" Margin="15,451,923,29" ></local:GUIChat>
-		<DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="304" Margin="15,137,0,0" VerticalAlignment="Top" Width="350">
+		<DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="304" Margin="33,123,0,0" VerticalAlignment="Top" Width="350">
 			<DataGrid.Background>
 				<SolidColorBrush Color="#FFF0F0F0" Opacity="0.5"/>
 			</DataGrid.Background>
@@ -20,7 +20,6 @@
 		</DataGrid>
 		<Button x:Name="ButtonBotin"  HorizontalAlignment="Left" Margin="616,513,0,0" VerticalAlignment="Top" Width="100" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBotin_Click">
 			<Image Source="/RecursosGráficos/treasure.png">
-
 			</Image>
 		</Button>
 		<Button x:Name="ButtonTablaDePuntuaciones" HorizontalAlignment="Left" Margin="1006,11,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" BorderBrush="{x:Null}">

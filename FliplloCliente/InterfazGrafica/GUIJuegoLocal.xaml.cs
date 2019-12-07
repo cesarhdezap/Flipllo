@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using static InterfazGrafica.Utilierias.UtilieriasDeElementosGraficos;
 using static LogicaDeNegocios.InteligenciaArtificial.InteligenciaArtificial;
 using static LogicaDeNegocios.ServiciosDeRecursos;
@@ -40,7 +41,20 @@ namespace InterfazGrafica
 			Juego.TipoDeJuego = Inicializador.TipoDeJuego;
 			PanelPostJuego.Visibility = Visibility.Hidden;
 			ElementosDePanelPostJuego.Padre = this;
+			//Storyboard storyboard = (Storyboard)Application.Current.Resources["negroStoryboard"];
+			//storyboard.FillBehavior = FillBehavior.Stop;
+			//Storyboard storyboard2 = (Storyboard)Application.Current.Resources["negroStoryboard2"];
+			//storyboard2.FillBehavior = FillBehavior.Stop;
+			//Storyboard storyboard3 = (Storyboard)Application.Current.Resources["blancoStoryboard"];
+			//storyboard3.FillBehavior = FillBehavior.Stop;
+			//Storyboard storyboard4 = (Storyboard)Application.Current.Resources["blancoStoryboard"];
 			
+			//storyboard4.FillBehavior = FillBehavior.Stop;
+
+			//DescongelarRecursoCongelable("negroStoryboard");
+			//DescongelarRecursoCongelable("negroStoryboard2");
+			//DescongelarRecursoCongelable("blancoStoryboard");
+			//DescongelarRecursoCongelable("blancoStoryboard2");
 
 			if (Juego.TipoDeJuego != TipoDeJuego.EnRed)
 			{

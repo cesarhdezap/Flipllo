@@ -29,14 +29,17 @@ namespace ServiciosDeComunicacion
 		public delegate void ActualizarSalaDelegate(Sala sala);
 		public event ActualizarSalaDelegate ActualizarSalaEvent;
 
+		public delegate void JuegoIniciadoDelegate();
+		public event JuegoIniciadoDelegate JuegoIniciadoEvent;
+
+		public void JuegoIniciado()
+		{
+			JuegoIniciadoEvent();
+		}
+
 		public void ActualizarSala(Sala sala)
 		{
 			ActualizarSalaEvent(sala);
-		}
-
-		public void RecibirSala(Sala sala)
-		{
-			RecibirSalaEvent(sala);
 		}
 
 		public void ActualizarListaDeSesionesDeChat(Sesion[] usuariosConectados)
@@ -62,6 +65,16 @@ namespace ServiciosDeComunicacion
 		public void RecibirMensaje(Mensaje mensaje)
 		{
 			RecibirMensajeEvent(mensaje);
+		}
+
+		public void SkinDeFichaActualizada(Sala sala)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void RecibirSalaCreada(Sala sala)
+		{
+			RecibirSalaEvent(sala);
 		}
 	}
 }

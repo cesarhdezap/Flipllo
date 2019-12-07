@@ -15,7 +15,7 @@ namespace LogicaDeNegocios.ClasesDeDominio
 		public string SkinBlanca { get; }
 		public List<Jugador> Jugadores { get; }
 
-		public ObjetoDeInicializacionDeJuego(TipoDeJuego tipoDeJuego, string skinNegra = "Alana", string skinBlanca = "Alana", List<Jugador> jugadores = null)
+		public ObjetoDeInicializacionDeJuego(TipoDeJuego tipoDeJuego, string skinNegra = "Default", string skinBlanca = "Default", List<Jugador> jugadores = null)
 		{
 			TipoDeJuego = tipoDeJuego;
 			SkinBlanca = skinBlanca;

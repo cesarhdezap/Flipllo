@@ -51,7 +51,7 @@ namespace InterfazGrafica
 		{
 			Chat.UsuariosConectados = clientesConectados;
 		}
-
+		
 		public void RecibirMensaje(Mensaje mensaje)
 		{
 			Chat.MensajesRecibidos.Add(mensaje);

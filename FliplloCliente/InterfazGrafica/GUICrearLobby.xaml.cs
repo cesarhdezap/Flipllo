@@ -1,6 +1,8 @@
 ﻿using LogicaDeNegocios.ServiciosDeFlipllo;
 using ServiciosDeComunicacion.Proxy;
 using System.Windows;
+using System.Windows.Controls;
+using static LogicaDeNegocios.Servicios.ServiciosDeLogicaDeJuego;
 
 namespace InterfazGrafica
 {
@@ -11,29 +13,57 @@ namespace InterfazGrafica
 	{
 		private Servidor Servidor;
 		private Sesion SesionLocal;
+		private ColorDeFicha ColorElegido = ColorDeFicha.Negro;
 		public GUICrearLobby(Servidor servidor, Sesion sesion)
 		{
 			InitializeComponent();
 			SesionLocal = sesion;
 			Servidor = servidor;
+			ButtonCambiarColorANegro.IsEnabled = false;
 
+		}
+
+		public GUICrearLobby()
+		{
+			InitializeComponent();
+			ButtonCambiarColorANegro.IsEnabled = false;
 		}
 
 		private void ButtonCrearLobby_Click(object sender, RoutedEventArgs e)
 		{
 			string nombreDeSala = TextBoxNombreDeLobby.Text;
-			int nivelMinimo = 0;
-			int nivelMaximo = 0;
-			if (int.TryParse(TextBoxNivelMinimo.Text, out nivelMinimo) && int.TryParse(TextBoxNivelMaximo.Text, out nivelMaximo));
-			Sala salaResultado = new Sala()
+			if (int.TryParse(TextBoxNivelMinimo.Text, out int nivelMinimo) && int.TryParse(TextBoxNivelMaximo.Text, out int nivelMaximo))
 			{
-				Nombre = nombreDeSala,
-				NivelMaximo = nivelMaximo,
-				NivelMinimo = nivelMinimo
-			};
+				Sala salaResultado = new Sala()
+				{
+					Nombre = nombreDeSala,
+					NivelMaximo = nivelMaximo,
+					NivelMinimo = nivelMinimo
+				};
 
-			Servidor.CanalDelServidor.CrearSala(salaResultado, SesionLocal);
-			Close();
+				Servidor.CanalDelServidor.CrearSala(salaResultado, SesionLocal, ColorElegido);
+				Close();
+			}
+		}
+
+		private void CambiarColorElegido()
+		{
+			LogicaDeNegocios.ColorDeFicha colorConvertido = (LogicaDeNegocios.ColorDeFicha)(int)ColorElegido;
+			ColorElegido = (ColorDeFicha)(int)ColorContrario(colorConvertido);
+		}
+
+		private void ButtonCambiarColorANegro_Click(object sender, RoutedEventArgs e)
+		{
+			CambiarColorElegido();
+			ButtonCambiarColorANegro.IsEnabled = false;
+			ButtonCambiarColorABlanco.IsEnabled = true;
+		}
+
+		private void ButtonCambiarColorABlanco_Click(object sender, RoutedEventArgs e)
+		{
+			CambiarColorElegido();
+			ButtonCambiarColorABlanco.IsEnabled = false;
+			ButtonCambiarColorANegro.IsEnabled = true;
 		}
 	}
 }

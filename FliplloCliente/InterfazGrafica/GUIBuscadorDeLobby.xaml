@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
+		xmlns:converters="clr-namespace:InterfazGrafica.ConvertidoresDeDatos"
         mc:Ignorable="d"
         Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="450" Width="800" ResizeMode="NoResize" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
+	<Window.Resources>
+		<converters:ConvertidorDeListaDeJugadoresACuentaDeJugadores x:Key="ConvertidorDeListaDeJugadoresACuentaDeJugadores" />
+	</Window.Resources>
 	<Grid>
 		<Label Content="{DynamicResource ResourceKey= encontrarPartida}" HorizontalAlignment="Left" Margin="27,35,0,0" VerticalAlignment="Top" FontSize="24"/>
 		<Button x:Name="ButtonRegresar" Content="d-*" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="23" FontSize="14" Click="ButtonRegresar_Click"/>
@@ -19,9 +23,8 @@
 			</DataGrid.Background>
 			<DataGrid.Columns>
 				<DataGridTextColumn Width="250" Header="{DynamicResource ResourceKey=nombre}" IsReadOnly="True" Binding="{Binding Nombre}"/>
-				<DataGridTextColumn Width="50" Header="{DynamicResource ResourceKey=porcentajeDeVictorias}" IsReadOnly="True" Binding="{Binding Usuario.Puntuacion.PorcentajeDeVictorias}"/>
-				<DataGridTextColumn Width="200" Header="{DynamicResource ResourceKey=creador}" IsReadOnly="True" Binding="{Binding Usuario.NombreDeUsuario}"/>
-				<DataGridTextColumn Width="120" Header="{DynamicResource ResourceKey=jugadores}" IsReadOnly="True" Binding="{Binding NumeroDeJugadores}"/>
+				<DataGridTextColumn Width="200" Header="{DynamicResource ResourceKey=creador}" IsReadOnly="True" Binding="{Binding NombreDeUsuarioCreador}"/>
+				<DataGridTextColumn Width="120" Header="{DynamicResource ResourceKey=jugadores}" IsReadOnly="True" Binding="{Binding Jugadores, Converter={StaticResource ConvertidorDeListaDeJugadoresACuentaDeJugadores}}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 		<Button x:Name="ButtonUnirse" Content="{DynamicResource ResourceKey=unirse}" HorizontalAlignment="Left" Margin="354,380,0,0" VerticalAlignment="Top" Width="75" FontSize="14" Click="ButtonUnirse_Click"/>

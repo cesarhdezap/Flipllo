@@ -1,20 +1,9 @@
 ﻿using LogicaDeNegocios.ServiciosDeFlipllo;
 using ServiciosDeComunicacion;
 using ServiciosDeComunicacion.Proxy;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 
 namespace InterfazGrafica
@@ -25,6 +14,7 @@ namespace InterfazGrafica
 	public partial class GUIBuscadorDeLobby : Window
 	{
 		private List<Sala> Salas = new List<Sala>();
+		private List<Sala> SalasFiltradas = new List<Sala>();
 		private Servidor Servidor;
 		private Sesion SesionLocal;
 		private CallBackDeFlipllo CanalDeCallback;
@@ -35,10 +25,8 @@ namespace InterfazGrafica
 			Servidor = servidor;
 			CanalDeCallback = canalDeCallback;
 			CanalDeCallback.RecibirSalaEvent += RecibirSala;
-			Dispatcher.Invoke(() =>
-			{
-				CargarSalas();
-			});
+			CargarSalas();
+
 		}
 
 		private void ButtonRegresar_Click(object sender, RoutedEventArgs e)
@@ -48,10 +36,8 @@ namespace InterfazGrafica
 
 		private void ButtonActualizarListaDeLobbies_Click(object sender, RoutedEventArgs e)
 		{
-			Dispatcher.Invoke(() =>
-			{
-				CargarSalas();
-			});
+			CargarSalas();
+			TextBoxBusqueda.Clear();
 		}
 
 		private void CargarSalas()
@@ -88,9 +74,9 @@ namespace InterfazGrafica
 		{
 			Sala salaResultado = null;
 
-			foreach(Sala sala in Salas)
+			foreach (Sala sala in Salas)
 			{
-				foreach(Jugador jugador in sala.Jugadores)
+				foreach (Jugador jugador in sala.Jugadores)
 				{
 					if (jugador.Sesion.ID == SesionLocal.ID)
 					{
@@ -107,13 +93,27 @@ namespace InterfazGrafica
 			GUICrearLobby crearLobby = new GUICrearLobby(Servidor, SesionLocal);
 			Hide();
 			crearLobby.ShowDialog();
-
 			Show();
 		}
 
 		private void RecibirSala(Sala sala)
 		{
 			GUILobby lobby = new GUILobby(Servidor, SesionLocal, CanalDeCallback, sala);
+			Hide();
+			lobby.ShowDialog();
+			Show();
+		}
+
+		private void FiltrarSalas(string criterioDeBusqueda)
+		{
+			List<Sala> salasFiltradas = new List<Sala>();
+
+			if (TextBoxBusqueda.Text != string.Empty)
+			{
+				salasFiltradas = Salas.FindAll(sala => sala.Nombre.Contains(criterioDeBusqueda));
+				Salas = salasFiltradas;
+			}
+
 		}
 	}
 }

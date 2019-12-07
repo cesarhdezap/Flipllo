@@ -13,6 +13,7 @@ using static InterfazGrafica.Utilierias.UtilieriasDeElementosGraficos;
 using static LogicaDeNegocios.Servicios.ServiciosDeEncriptacion;
 using LogicaDeNegocios.ClasesDeDominio;
 using System.Windows.Threading;
+using System.Linq;
 
 namespace InterfazGrafica
 {
@@ -52,6 +53,9 @@ namespace InterfazGrafica
 			}
 
 			ComboBoxCambiarIdioma.SelectedIndex = PRIMER_INDICE_DE_COMBOBOX;
+
+			//GUILobby lobby = new GUILobby();
+			//lobby.Show();
 		}
 
 		/// <summary>
@@ -172,8 +176,6 @@ namespace InterfazGrafica
 			Show();
 			TextBoxNombreDeUsuario.Clear();
 			PasswordBoxContraseña.Clear();
-			int i = 0;
-			i -= -1;
 		}
 
 		private void LabelJuegoLocalAmigo_Click(object sender, RoutedEventArgs e)
