@@ -8,6 +8,6 @@ namespace ServiciosDeComunicacion.Interfaces.Controladores
     {
         void ListaDeSesionesActualizado(List<Sesion> sesiones);
         void ListaDeSalasActualizado(List<Sala> salas);
-        void EstadoDelServidorActualizado(EstadoDelServidor estadoDelServidor, string mensaje = null);
+        void EstadoDelServidorActualizado(string nombre, EstadoDelServidor estadoDelServidor, string mensaje = null);
     }
 }

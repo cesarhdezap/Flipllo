@@ -14,6 +14,7 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
         /// </summary>
         /// <param name="usuario">Es un usuario de la clase generada por el EntityFramework de AccesoABaseDeDatos</param>
         /// <exception cref="System.Data.Entity.Infrastructure.DbUpdateException"></exception>
+        /// /// <exception cref="InvalidOperationException"></exception>
         public void Guardar(ClasesDeDominio.Usuario usuario)
         {
             using (ModelFliplloContainer context = new ModelFliplloContainer())
@@ -110,6 +111,32 @@ namespace LogicaDeNegocios.ObjetosDeAccesoADatos
             }
 
             return resultadoDeExistencia;
+        }
+
+        public void AumentarPuntuacionDeUsuarioPorIdUsuario(int idUsuario, int experienciaTotalSumada, bool victoria)
+        {
+            if (experienciaTotalSumada > 0)
+            {
+                using (ModelFliplloContainer context = new ModelFliplloContainer())
+                {
+                    context.UsuarioSet.FirstOrDefault(usuario => usuario.Id == idUsuario).ExperienciaTotal += experienciaTotalSumada;
+                    context.UsuarioSet.FirstOrDefault(usuario => usuario.Id == idUsuario).PartidasJugadas += 1;
+                    if (victoria)
+                        context.UsuarioSet.FirstOrDefault(usuario => usuario.Id == idUsuario).Victorias += 1;
+                    context.SaveChanges();
+                }
+            }   
+        }
+
+        public List<ClasesDeDominio.Usuario> CargarTop10UsuariosPorExperienciaTotal()
+        {
+            List<AccesoABaseDeDatos.Usuario> usuarios = new List<AccesoABaseDeDatos.Usuario>();
+            using (ModelFliplloContainer context = new ModelFliplloContainer())
+            {
+                usuarios = context.UsuarioSet.OrderBy(u => u.ExperienciaTotal).Take(10).ToList();
+            }
+            List<ClasesDeDominio.Usuario> listaUsuariosClaseDominio = ConvertirListaDeUsuariosBDaUsuariosLogica(usuarios);
+            return listaUsuariosClaseDominio;
         }
 
         /// <summary>

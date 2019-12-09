@@ -1,15 +1,16 @@
 ﻿using LogicaDeNegocios.ClasesDeDominio;
+using ServiciosDeComunicacion.Interfaces;
 using ServiciosDeComunicacion.Interfaces.Controladores;
 using ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.ServiceModel;
-using System.Text;
 
 namespace ServiciosDeComunicacion.Servicios
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single , ConcurrencyMode = ConcurrencyMode.Single)]
     public partial class ServiciosDeFlipllo : IServiciosDeFlipllo
     {
         public List<Sesion> SesionesConectadas;
@@ -22,6 +23,11 @@ namespace ServiciosDeComunicacion.Servicios
             SalasCreadas = salas;
         }
 
+        public ServiciosDeFlipllo()
+        {
+            SesionesConectadas = new List<Sesion>();
+            SalasCreadas = new List<Sala>();
+        }
 
         public bool RegistrarUsuario(Usuario usuario)
         {
@@ -97,8 +103,8 @@ namespace ServiciosDeComunicacion.Servicios
             if (sesionEnviadaCorrectamente && sesion.Usuario.Estado == EstadoUsuario.Registrado)
             {
                 SesionesConectadas.Add(sesion);
-                ControladorServiciosDeFlipllo.ListaDeSesionesActualizado(SesionesConectadas);
-                ConectarAlChatGlobal(sesion);
+                if (ControladorServiciosDeFlipllo != null)
+                    ControladorServiciosDeFlipllo.ListaDeSesionesActualizado(SesionesConectadas);
             }
         }
 
@@ -128,9 +134,16 @@ namespace ServiciosDeComunicacion.Servicios
         {
             if (ValidarAutenticidadDeSesion(sesion))
             {
-                SesionesConectadas.Remove(sesion);
-                DesconectarDelChatGlobal(sesion.ID);
-                ControladorServiciosDeFlipllo.ListaDeSesionesActualizado(SesionesConectadas);
+                if (ValidarExistenciaDeSesionEnSalasCreadas(sesion))
+                {
+                    DesconectarDeSala(sesion);
+                }
+
+                Sesion sesionLocal = SesionesConectadas.FirstOrDefault(s => s.ID == sesion.ID);
+                SesionesConectadas.Remove(sesionLocal);
+
+                if (ControladorServiciosDeFlipllo != null)
+                    ControladorServiciosDeFlipllo.ListaDeSesionesActualizado(SesionesConectadas);
             }
         }
 
@@ -145,8 +158,7 @@ namespace ServiciosDeComunicacion.Servicios
             Sesion sesion = new Sesion
             {
                 ID = Guid.NewGuid().ToString(),
-                Creacion = DateTime.Now,
-                UltimaActualizacion = DateTime.Now,
+
                 Usuario = new Usuario
                 {
                     Estado = usuario.Estado,

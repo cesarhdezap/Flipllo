@@ -17,5 +17,8 @@ namespace ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeJuego
 
         [OperationContract(IsOneWay = true)]
         void PedirActualizacionDeTablero(Sesion sesion);
+
+        [OperationContract(IsOneWay = true)]
+        void ActualizarCanalDeCallback(Sesion sesion);
     }
 }

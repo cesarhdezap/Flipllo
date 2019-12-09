@@ -63,6 +63,7 @@
     <Compile Include="Interfaces\InterfacesDeServiciosDeFlipllo\IServiciosDeCallBackChatGlobal.cs" />
     <Compile Include="Interfaces\InterfacesDeServiciosDeJuego\IServiciosDeCallBackJuego.cs" />
     <Compile Include="Interfaces\InterfacesDeServiciosDeJuego\IServiciosDeJuego.cs" />
+    <Compile Include="Interfaces\SalaSerializada.cs" />
     <Compile Include="Servicios\ServiciosDeJuego.cs" />
     <Compile Include="Interfaces\InterfacesDeServiciosDeFlipllo\IServiciosDeCallBackSala.cs" />
     <Compile Include="Interfaces\InterfacesDeServiciosDeFlipllo\IServiciosDeFliplloDeSesion.cs" />
@@ -70,9 +71,8 @@
     <Compile Include="Interfaces\InterfacesDeServiciosDeFlipllo\IServiciosDeFliplloDeChat.cs" />
     <Compile Include="Interfaces\InterfacesDeServiciosDeFlipllo\IServiciosDeFliplloDeSalas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Clases\Chat.cs" />
     <Compile Include="Interfaces\Controladores\IControladorDeActualizacionDePantalla.cs" />
-    <Compile Include="Servicios\ServiciosDeChatGlobal.cs" />
+    <Compile Include="Servicios\ServiciosDeChat.cs" />
     <Compile Include="Servicios\ServiciosDeSesion.cs" />
     <Compile Include="Clases\HostDeServiciosDeFlipllo.cs" />
     <Compile Include="Servicios\ServiciosDeSalas.cs" />

@@ -14,36 +14,45 @@ namespace ServiciosDeComunicacion.Clases
     {
         private ServiceHost HostDelServidor;
         private IControladorDeActualizacionDePantalla ControladorDeActualizacionDePantalla;
-        private ServiciosDeFlipllo ServiciosDeFlipllo;
+        private ServiciosDeFlipllo ServicioDeFlipllo;
         private EstadoDelServidor EstadoDelServidor = EstadoDelServidor.Inactivo;
 
         public HostDeServiciosDeFlipllo(List<Sesion> sesiones, List<Sala> salas, IControladorDeActualizacionDePantalla controladorServiciosDeFlipllo)
         {
             ControladorDeActualizacionDePantalla = controladorServiciosDeFlipllo;
-            ServiciosDeFlipllo = new ServiciosDeFlipllo(sesiones, salas, controladorServiciosDeFlipllo);
+            ServicioDeFlipllo = new ServiciosDeFlipllo(sesiones, salas, controladorServiciosDeFlipllo);
         }
 
         public async void IniciarServidor()
         {
-            string mensajeDelServidor = await Task.Run<string>(AbrirHost);
-            ControladorDeActualizacionDePantalla.EstadoDelServidorActualizado(EstadoDelServidor, mensajeDelServidor);
+            if (EstadoDelServidor != EstadoDelServidor.Activo)
+            {
+                string mensajeDelServidor = await Task.Run<string>(AbrirHost);
+                ControladorDeActualizacionDePantalla.EstadoDelServidorActualizado(GetType().Name, EstadoDelServidor, mensajeDelServidor);
+            }
         }
 
         public void PararServidor()
         {
-            HostDelServidor.Abort();
-            ServiciosDeFlipllo.SesionesConectadas.Clear();
-            ServiciosDeFlipllo.ControladorServiciosDeFlipllo.ListaDeSesionesActualizado(ServiciosDeFlipllo.SesionesConectadas);
-            EstadoDelServidor = EstadoDelServidor.Detenido;
-            ControladorDeActualizacionDePantalla.EstadoDelServidorActualizado(EstadoDelServidor);
+            if (EstadoDelServidor != EstadoDelServidor.Detenido)
+            {
+                if (HostDelServidor != null)
+                {
+                    HostDelServidor.Abort();
+                }
+                ServicioDeFlipllo.SesionesConectadas.Clear();
+                ServicioDeFlipllo.ControladorServiciosDeFlipllo.ListaDeSesionesActualizado(ServicioDeFlipllo.SesionesConectadas);
+                EstadoDelServidor = EstadoDelServidor.Detenido;
+                ControladorDeActualizacionDePantalla.EstadoDelServidorActualizado(GetType().Name, EstadoDelServidor);
+            }
         }
 
         private string AbrirHost()
         {
             string mensajeDeErrorDeEstado = string.Empty;
-            HostDelServidor = new ServiceHost(ServiciosDeFlipllo);
+            HostDelServidor = new ServiceHost(ServicioDeFlipllo);
 
-            if (!(HostDelServidor.State == CommunicationState.Opened))
+            if (!(HostDelServidor.State == CommunicationState.Opened) && EstadoDelServidor != EstadoDelServidor.Activo)
             {
                 try
                 {
@@ -65,23 +74,7 @@ namespace ServiciosDeComunicacion.Clases
             }
             return mensajeDeErrorDeEstado;
         }
-
-        public void LimpiarSesiones()
-        {
-            ServiciosDeFlipllo.SesionesConectadas.Clear();
-        }
-
-        public void LimpiarSalas()
-        {
-            ServiciosDeFlipllo.SalasCreadas.Clear();
-        }
     }
 
-    public enum EstadoDelServidor
-    {
-        Incomunicado,
-        Inactivo,
-        Activo,
-        Detenido
-    }
+    
 }

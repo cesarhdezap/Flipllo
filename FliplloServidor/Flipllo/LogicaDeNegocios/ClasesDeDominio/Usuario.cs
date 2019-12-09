@@ -1,5 +1,6 @@
 ﻿using LogicaDeNegocios.ObjetosDeAccesoADatos;
 using System;
+using System.Collections.Generic;
 using static LogicaDeNegocios.Servicios.ServiciosDeEnvioDeCorreos;
 using static LogicaDeNegocios.Servicios.ServiciosDeGeneracionDeCodigos;
 using static LogicaDeNegocios.Servicios.ServiciosDeValidacion;
@@ -50,6 +51,12 @@ namespace LogicaDeNegocios.ClasesDeDominio
         {
             UsuarioDao usuarioDAO = new UsuarioDao();
             usuarioDAO.ActualizarEstadoPorID(this.Id, usuario.Estado);
+        }
+
+        public void AumentarPuntuacion(bool victoria, int experienciaTotalGanada)
+        {
+            UsuarioDao usuarioDAO = new UsuarioDao();
+            usuarioDAO.AumentarPuntuacionDeUsuarioPorIdUsuario(Id, experienciaTotalGanada, victoria);
         }
 
         /// <summary>
@@ -103,6 +110,13 @@ namespace LogicaDeNegocios.ClasesDeDominio
         {
             UsuarioDao usuarioDAO = new UsuarioDao();
             usuarioDAO.ActualizarEstadoPorID(id, EstadoUsuario.Registrado);
+        }
+
+        public List<Usuario> CargarUsuariosPorMejorPuntuacion()
+        {
+            UsuarioDao usuarioDAO = new UsuarioDao();
+            List<Usuario> topUsuarios = usuarioDAO.CargarTop10UsuariosPorExperienciaTotal();
+            return topUsuarios;
         }
     }
 

@@ -1,9 +1,11 @@
-﻿using LogicaDeNegocios;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.ServiceModel;
+﻿using LogicaDeNegocios.ClasesDeDominio;
+using ServiciosDeComunicacion.Interfaces;
 using ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using static LogicaDeNegocios.Servicios.ServiciosDeLogicaDeJuego;
 
 namespace ServiciosDeComunicacion.Servicios
 {
@@ -12,76 +14,126 @@ namespace ServiciosDeComunicacion.Servicios
         public List<Sala> SalasCreadas;
         private readonly int NUMERO_MAXIMO_DE_JUGADORES_EN_SALA = 2;
 
-        public void CrearSala(Sala sala, Sesion sesion)
+        public Sala CrearSala(Sala sala, Sesion sesion, ColorDeFicha colorDeFicha)
         {
-            if (ValidarAutenticidadDeSesion(sesion) 
+            Sala salaAEnviar = new Sala();
+            if (ValidarAutenticidadDeSesion(sesion)
                 && !ValidarExistenciaDeSesionEnSalasCreadas(sesion)
-                &&  ValidarDatosDeSala(sala) 
+                && ValidarDatosDeSala(sala)
                 && !ValidarExistenciaDeSala(sala))
             {
-                Sesion sesionCargada = SesionesConectadas.Find(s => s.ID == sesion.ID);
+                Sesion sesionCargada = SesionesConectadas.FirstOrDefault(s => s.ID == sesion.ID);
+                Sala salaAGuardar = new Sala
+                {
+                    ID = Guid.NewGuid().ToString(),
+                    Nombre = sala.Nombre,
+                    NivelMaximo = sala.NivelMaximo,
+                    NivelMinimo = sala.NivelMinimo,
+                    NombreDeUsuarioCreador = sesionCargada.Usuario.NombreDeUsuario,
+                    Estado = EstadoSala.Registrada,
+                };
+
                 Jugador jugador = new Jugador
                 {
-                    Color = ColorDeFicha.Ninguno,
+                    Color = colorDeFicha,
                     Sesion = sesionCargada,
                     ListoParaJugar = false
                 };
-                sala.IDSesionCreadora = sesion.ID;
-                sala.Jugadores = new List<Jugador>();
-                sala.Jugadores.Add(jugador);
-                sala.ID = Guid.NewGuid().ToString();
-                sala.Estado = EstadoSala.Registrada;
-                
-                bool sesionEnviadaCorrectamente = false;
-                sesion.CanalDeCallback = OperationContext.Current.GetCallbackChannel<IServiciosDeCallBack>();
-                try
-                {
-                    sesion.CanalDeCallback.RecibirSala(sala);
-                    sesionEnviadaCorrectamente = true;
-                }
-                catch (CommunicationException e)
-                {
-                    NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-                    logger.Warn(e);
-                }
 
-                if (sesionEnviadaCorrectamente)
-                {
-                    SalasCreadas.Add(sala);
+                salaAGuardar.Jugadores = new List<Jugador>();
+                salaAGuardar.Jugadores.Add(jugador);
+
+                SalasCreadas.Add(salaAGuardar);
+                salaAEnviar = salaAGuardar;
+                if (ControladorServiciosDeFlipllo != null)
                     ControladorServiciosDeFlipllo.ListaDeSalasActualizado(SalasCreadas);
+
+
+            }
+            return salaAEnviar;
+        }
+
+
+        public void CambiarSkinDeFicha(Sesion sesion, string nombreSkin)
+        {
+            if (ValidarAutenticidadDeSesion(sesion))
+            {
+                Sala sala = BuscarSalaDeSesion(sesion);
+                if (sala != null)
+                {
+                    foreach (Jugador jugador in sala.Jugadores)
+                    {
+                        if (jugador.Sesion.ID != sesion.ID)
+                        {
+                            try
+                            {
+                                jugador.Sesion.CanalDeCallback.SkinDeOponenteActualizada(nombreSkin);
+                            }
+                            catch (CommunicationObjectAbortedException e)
+                            {
+                                NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+                                CerrarSesion(sesion);
+                                logger.Warn(e);
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        public void BorrarSala(Sesion sesion)
+        public void DesconectarDeSala(Sesion sesion)
         {
             Sala sala = BuscarSalaDeSesion(sesion);
 
             if (sala != null)
             {
-                if (ValidarExistenciaDeSala(sala)
-                    && sala.IDSesionCreadora == sesion.ID)
+                int indiceJugador = sala.Jugadores.FindIndex(j => j.Sesion.ID == sesion.ID);
+                sala.Jugadores.RemoveAt(indiceJugador);
+                if (sala.NombreDeUsuarioCreador == sesion.ID)
+                {
+                    foreach (Jugador jugador in sala.Jugadores)
+                    {
+                        jugador.Sesion.CanalDeCallback.SalaBorrada();
+                    }
+                    SalasCreadas.Remove(sala);
+                }
+                else
+                {
+                    foreach (Jugador jugador in sala.Jugadores)
+                    {
+                        Sala salaClonada = ClonarSala(sala);
+                        try
+                        {
+                            jugador.Sesion.CanalDeCallback.ActualizarSala(salaClonada);
+                        }
+                        catch (CommunicationObjectAbortedException e)
+                        {
+                            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+                            CerrarSesion(sesion);
+                            logger.Warn(e);
+                        }
+                        catch (ObjectDisposedException e)
+                        {
+                            NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+                            CerrarSesion(sesion);
+                            logger.Warn(e);
+                        }
+                    }
+                }
+                Sesion sesionCargada = SesionesConectadas.FirstOrDefault(s => s.ID == sesion.ID);
+
+                if (sala.Jugadores.Count <= 0)
                 {
                     SalasCreadas.Remove(sala);
                 }
-            }
-            
-        }
 
-        public void DesconectarDeSala(Sesion sesion)
-        {
-            throw new NotImplementedException();
-            //SI ES EL DUEÑO BORRAR
+                if (ControladorServiciosDeFlipllo != null)
+                    ControladorServiciosDeFlipllo.ListaDeSalasActualizado(SalasCreadas);
+            }
         }
 
         public void CambiarConfiguracionDeLaSala(Sesion sesion, Sala sala)
         {
-            throw new NotImplementedException();
-        }
-
-        public void IniciarJuego(Sesion sesion)
-        {
-            //Si los dos estan listos
             throw new NotImplementedException();
         }
 
@@ -96,22 +148,17 @@ namespace ServiciosDeComunicacion.Servicios
         /// </returns>
         public List<Sala> SolicitarSalas(Sesion sesion)
         {
-            //Regresar todo menos ids mas que la de sesion
-            List<Sala> salas = new List<Sala>(SalasCreadas);
+            List<Sala> salas = new List<Sala>();
 
             if (ValidarAutenticidadDeSesion(sesion))
             {
+                salas = ClonarListaDeSalas(SalasCreadas);
                 foreach (Sala sala in salas)
                 {
-                    foreach (Jugador jugador in sala.Jugadores)
-                    {
-                        if (jugador.Sesion.ID != sesion.ID)
-                        {
-                            jugador.Sesion.ID = string.Empty;
-                        }
-                    }
+                    RemoverIDsDeOtrasSesionesAListaDeJugadores(sala.Jugadores, sesion.ID);
                 }
             }
+
             return salas;
         }
 
@@ -127,37 +174,75 @@ namespace ServiciosDeComunicacion.Servicios
                 && !ValidarExistenciaDeSesionEnSalasCreadas(sesion))
             {
                 Sala salaLocal = SalasCreadas.FirstOrDefault(s => s.ID == sala.ID);
+                Sesion sesionLocal = SesionesConectadas.FirstOrDefault(s => s.ID == sesion.ID);
                 if (salaLocal.Jugadores.Count < NUMERO_MAXIMO_DE_JUGADORES_EN_SALA)
                 {
-                    if (sesion.Usuario.Puntuacion.Nivel >= salaLocal.NivelMinimo
-                    && sesion.Usuario.Puntuacion.Nivel <= salaLocal.NivelMaximo
-                    )
+                    if (sesionLocal.Usuario.Puntuacion.Nivel >= salaLocal.NivelMinimo
+                    && sesionLocal.Usuario.Puntuacion.Nivel <= salaLocal.NivelMaximo)
                     {
+                        ColorDeFicha colorDeCreador = ColorDeFicha.Ninguno;
+                        foreach (Jugador jugadorEnSala in salaLocal.Jugadores)
+                        {
+                            if (jugadorEnSala.Sesion.Usuario.NombreDeUsuario == salaLocal.NombreDeUsuarioCreador)
+                            {
+                                colorDeCreador = jugadorEnSala.Color;
+                            }
+                        }
+
                         Jugador jugador = new Jugador
                         {
-                            Color = ColorDeFicha.Ninguno,
-                            Sesion = sesion,
+                            Color = ColorContrario(colorDeCreador),
+                            Sesion = sesionLocal,
                             ListoParaJugar = false
                         };
 
                         int indiceSalaLocal = SalasCreadas.IndexOf(salaLocal);
                         SalasCreadas[indiceSalaLocal].Jugadores.Add(jugador);
-                        ControladorServiciosDeFlipllo.ListaDeSalasActualizado(SalasCreadas);
+
+
+                        NotificarCambioEnSalaAJugadores(SalasCreadas[indiceSalaLocal]);
+
+                        if (ControladorServiciosDeFlipllo != null)
+                            ControladorServiciosDeFlipllo.ListaDeSalasActualizado(SalasCreadas);
+                    }
+                    else
+                    {
+                        int indiceSala = SalasCreadas.IndexOf(salaLocal);
+                        SalasCreadas[indiceSala].Estado = EstadoSala.CupoLleno;
+                        if (ControladorServiciosDeFlipllo != null)
+                            ControladorServiciosDeFlipllo.ListaDeSalasActualizado(SalasCreadas);
                     }
                 }
-                else
-                {
-                    int indiceSala = SalasCreadas.IndexOf(salaLocal);
-                    SalasCreadas[indiceSala].Estado = EstadoSala.CupoLleno;
-                    ControladorServiciosDeFlipllo.ListaDeSalasActualizado(SalasCreadas);
-                }
-                
+
             }
         }
 
+
+        /// <summary>
+        /// Cambia el color del jugador creador de una sala y cambia el de los demás al color contrario
+        /// </summary>
+        /// <param name="sesion">Sesion creadora de la sala</param>
+        /// <param name="color">Color de la sesion a cambiar</param>
         public void CambiarColorDeJugadorEnSala(Sesion sesion, ColorDeFicha color)
         {
-            throw new NotImplementedException();
+            Sala sala = BuscarSalaDeSesion(sesion);
+            if (sala != null)
+            {
+                if (sesion.Usuario.NombreDeUsuario == sala.NombreDeUsuarioCreador)
+                {
+                    int indiceSala = SalasCreadas.IndexOf(sala);
+                    sala.Jugadores.FirstOrDefault(j => j.Sesion.ID == sesion.ID).Color = color;
+                    if (color != ColorDeFicha.Ninguno)
+                    {
+                        foreach (Jugador jugador in sala.Jugadores)
+                        {
+                            jugador.Color = ColorContrario(color);
+                        }
+                    }
+
+                    NotificarCambioEnSalaAJugadores(SalasCreadas[indiceSala]);
+                }
+            }
         }
 
         public void AlternarListoParaJugar(Sesion sesion)
@@ -165,8 +250,151 @@ namespace ServiciosDeComunicacion.Servicios
             Sala sala = BuscarSalaDeSesion(sesion);
             if (sala != null)
             {
-
+                int indiceSala = SalasCreadas.IndexOf(sala);
+                bool listoParaJugarActual = sala.Jugadores.FirstOrDefault(j => j.Sesion.ID == sesion.ID).ListoParaJugar;
+                sala.Jugadores.FirstOrDefault(j => j.Sesion.ID == sesion.ID).ListoParaJugar = !listoParaJugarActual;
+                SalasCreadas[indiceSala] = sala;
+                NotificarCambioEnSalaAJugadores(SalasCreadas[indiceSala]);
             }
+        }
+
+        public bool IniciarJuego(Sesion sesion)
+        {
+            bool resultadoDeValidacion = false;
+
+            if (ValidarAutenticidadDeSesion(sesion))
+            {
+                Sala sala = BuscarSalaDeSesion(sesion);
+
+                if (sala != null)
+                {
+                    bool jugadoresListos = sala.Jugadores.All(j => j.ListoParaJugar == true);
+                    if (jugadoresListos)
+                    {
+                        int indiceSala = SalasCreadas.IndexOf(sala);
+                        SalasCreadas[indiceSala].Juego = new Juego();
+                        NotificarCambioEnSalaAJugadores(SalasCreadas[indiceSala]);
+
+                        foreach (Jugador jugador in sala.Jugadores)
+                        {
+                            jugador.Sesion.CanalDeCallback.JuegoIniciado();
+                        }
+
+                        resultadoDeValidacion = true;
+                    }
+                }
+            }
+
+
+            return resultadoDeValidacion;
+        }
+
+
+        private List<Sala> ClonarListaDeSalas(List<Sala> salas)
+        {
+            List<Sala> listaClonada = new List<Sala>();
+            foreach (Sala sala in salas)
+            {
+                listaClonada.Add(ClonarSala(sala));
+            }
+            return listaClonada;
+        }
+
+        private Sala ClonarSala(Sala sala)
+        {
+            Sala salaClonada = new Sala
+            {
+                ID = sala.ID,
+                Estado = sala.Estado,
+                Juego = sala.Juego,
+                NivelMaximo = sala.NivelMaximo,
+                NivelMinimo = sala.NivelMinimo,
+                Nombre = sala.Nombre,
+                NombreDeUsuarioCreador = sala.NombreDeUsuarioCreador,
+                Jugadores = new List<Jugador>()
+            };
+
+            foreach (Jugador jugador in sala.Jugadores)
+            {
+                Jugador jugadorDeSala = ClonarJugador(jugador);
+                salaClonada.Jugadores.Add(jugadorDeSala);
+            }
+
+            return salaClonada;
+        }
+
+        /// <summary>
+        /// Regresa un objeto con los atributos y clases iguales al <paramref name="jugador"/> menos el <see cref="Sesion.CanalDeCallback"/>
+        /// ya que este es un objeto que no se debe clonar.
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <returns></returns>
+        private Jugador ClonarJugador(Jugador jugador)
+        {
+            Jugador jugadorDeSala = new Jugador
+            {
+                Color = jugador.Color,
+                ListoParaJugar = jugador.ListoParaJugar,
+                Sesion = new Sesion
+                {
+                    ID = jugador.Sesion.ID,
+                    Creacion = jugador.Sesion.Creacion,
+                    UltimaActualizacion = jugador.Sesion.UltimaActualizacion,
+                    Usuario = new Usuario
+                    {
+                        Id = jugador.Sesion.Usuario.Id,
+                        NombreDeUsuario = jugador.Sesion.Usuario.NombreDeUsuario,
+                        Puntuacion = new Puntuacion
+                        {
+                            ExperienciaTotal = jugador.Sesion.Usuario.Puntuacion.ExperienciaTotal,
+                            PartidasJugadas = jugador.Sesion.Usuario.Puntuacion.PartidasJugadas,
+                            Victorias = jugador.Sesion.Usuario.Puntuacion.Victorias
+                        }
+                    }
+                }
+            };
+
+            return jugadorDeSala;
+        }
+
+        /// <summary>
+        /// Notifica por el canal de callback a las sesiones de la sala por <paramref name="indiceSala"/> con la nueva sala
+        /// y unicamente la ID de su Sesion ya que la ID no debe mostrarse por motivos de seguridad
+        /// </summary>
+        /// <param name="indiceSala"></param>
+        /// <param name="inicioDeJuego"></param>
+        private void NotificarCambioEnSalaAJugadores(Sala sala, bool inicioDeJuego = false)
+        {
+            foreach (Jugador jugador in sala.Jugadores)
+            {
+                Sala salaDelJugador = ClonarSala(sala);
+                RemoverIDsDeOtrasSesionesAListaDeJugadores(salaDelJugador.Jugadores, jugador.Sesion.ID);
+
+                jugador.Sesion.CanalDeCallback.ActualizarSala(salaDelJugador);
+            }
+        }
+
+        private void RemoverIDsDeOtrasSesionesAListaDeJugadores(List<Jugador> jugadores, string idSesion)
+        {
+            foreach (Jugador jugador in jugadores)
+            {
+                if (jugador.Sesion.ID != idSesion)
+                {
+                    jugador.Sesion.ID = string.Empty;
+                }
+            }
+        }
+
+        public List<Usuario> SolicitarTopDePuntuacionesDeUsuarios(Sesion sesion)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            if (ValidarAutenticidadDeSesion(sesion))
+            {
+                usuarios = new Usuario().CargarUsuariosPorMejorPuntuacion();
+            }
+
+            return usuarios;
+
         }
 
         private bool ValidarDatosDeSala(Sala sala)
@@ -174,7 +402,7 @@ namespace ServiciosDeComunicacion.Servicios
             bool resultadoDeValidacion = false;
             if (!string.IsNullOrEmpty(sala.Nombre)
                 && sala.NivelMinimo >= 0
-                && sala.NivelMaximo >= 0 
+                && sala.NivelMaximo >= 0
                 && sala.NivelMaximo >= sala.NivelMinimo)
             {
                 resultadoDeValidacion = true;
@@ -239,6 +467,4 @@ namespace ServiciosDeComunicacion.Servicios
             return sala;
         }
     }
-
-    
 }

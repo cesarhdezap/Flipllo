@@ -8,7 +8,7 @@ namespace ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo
 	public partial interface IServiciosDeFlipllo 
 	{
         [OperationContract(IsOneWay = true)]
-        void EnviarMensajeAChatGlobal(Mensaje mensaje, Sesion sesion);
+        void EnviarMensaje(Mensaje mensaje, Sesion sesion);
 
     }
 
@@ -20,6 +20,6 @@ namespace ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo
 		[DataMember]
 		public DateTime Fecha { get; set; }
 		[DataMember]
-		public int IDDeUsuario { get; set; }
+		public string NombreDeUsuario { get; set; }
 	}
 }

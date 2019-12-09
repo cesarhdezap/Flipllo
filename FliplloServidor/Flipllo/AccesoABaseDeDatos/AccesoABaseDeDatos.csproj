@@ -91,6 +91,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="ModelFlipllo.edmx.diagram">
       <DependentUpon>ModelFlipllo.edmx</DependentUpon>
     </None>

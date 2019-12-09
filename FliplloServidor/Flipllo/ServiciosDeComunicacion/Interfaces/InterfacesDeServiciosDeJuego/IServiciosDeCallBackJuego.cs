@@ -18,6 +18,5 @@ namespace ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeJuego
         void TerminarJuego(int experenciaPorPuntos, int experenciaPorFichas, bool ganaste);
         [OperationContract(IsOneWay = true)]
         void RecibirTirada(Point tirada);
-
     }
 }

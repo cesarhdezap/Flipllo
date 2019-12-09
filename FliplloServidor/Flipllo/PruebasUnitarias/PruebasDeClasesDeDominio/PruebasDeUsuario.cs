@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LogicaDeNegocios.ClasesDeDominio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -29,6 +30,14 @@ namespace PruebasUnitarias.PruebasDeClasesDeDominio
             usuario.CorreoElectronico = "pipa@correo.com";
             usuario.CargarUsuarioPorCorreo();
             Assert.AreEqual("QNTSQ", usuario.CodigoDeVerificacion);
+        }
+
+        [TestMethod]
+        public void ProbarCargarTopUsuariosPorPuntuacion()
+        {
+            Usuario usuario = new Usuario();
+            List<Usuario> usuarios = usuario.CargarUsuariosPorMejorPuntuacion();
+            Assert.AreEqual(8, usuarios.Count);
         }
     }
 }

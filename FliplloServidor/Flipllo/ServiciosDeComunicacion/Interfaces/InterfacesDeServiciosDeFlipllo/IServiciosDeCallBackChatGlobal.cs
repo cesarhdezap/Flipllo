@@ -10,6 +10,6 @@ namespace ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo
     public partial interface IServiciosDeCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void RecibirMensajeGlobal(Mensaje mensaje);
+        void RecibirMensaje(Mensaje mensaje);
     }
 }

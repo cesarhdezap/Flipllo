@@ -1,8 +1,10 @@
 ﻿using ServiciosDeComunicacion.Clases;
+using ServiciosDeComunicacion.Interfaces;
 using ServiciosDeComunicacion.Interfaces.Controladores;
 using ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows;
 
@@ -19,13 +21,12 @@ namespace InterfazGrafica
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            AdministradorDeHostDeServicios = new AdministradorDeHostDeServicios(this);
         }
 
         private void ButtonIniciarServidor_Click(object sender, RoutedEventArgs e)
         {
-            AdministradorDeHostDeServicios = new AdministradorDeHostDeServicios(this);
             AdministradorDeHostDeServicios.IniciarServicios();
-            
         }
 
         private void ButtonPausarServidor_Click(object sender, RoutedEventArgs e)
@@ -41,22 +42,28 @@ namespace InterfazGrafica
             }
         }
 
-        public void EstadoDelServidorActualizado(EstadoDelServidor estadoDelServidor, string mensaje = null)
+        public void EstadoDelServidorActualizado(string nombre, EstadoDelServidor estadoDelServidor, string mensaje = null)
         {
-            LabelEstadoDeServidor.Content = estadoDelServidor.ToString() + System.Environment.NewLine;
+            TextBlockEstadoDelServidor.Text += "Nombre: " + nombre + Environment.NewLine + 
+                "Estado: " + estadoDelServidor.ToString() + Environment.NewLine;
             if (mensaje != null)
             {
-                LabelEstadoDeServidor.Content += mensaje;
+                TextBlockEstadoDelServidor.Text += mensaje + Environment.NewLine + Environment.NewLine;
             }
         }
+
 
         public void ListaDeSesionesActualizado(List<Sesion> sesiones)
         {
             Dispatcher.Invoke(
                 () => {
+                    ObservableCollection<Sesion> listaSesiones = new ObservableCollection<Sesion>();
+                    foreach (Sesion sesion in sesiones)
+                    {
+                        listaSesiones.Add(sesion);
+                    }
                     DataGridUsuariosConectados.ItemsSource = null;
-                    DataGridUsuariosConectados.ItemsSource = sesiones;
-                    DataGridUsuariosConectados.Items.Refresh();
+                    DataGridUsuariosConectados.ItemsSource = listaSesiones;
                 });
         }
 

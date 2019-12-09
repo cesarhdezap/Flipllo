@@ -5,9 +5,6 @@ namespace ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo
 {
     public partial interface IServiciosDeCallBack
 	{
-		[OperationContract(IsOneWay = true)]
-		void ActualizarListaDeSesionesDeChat(List<Sesion> usuariosConectados);
-
         [OperationContract(IsOneWay = true)]
         void RecibirSesion(Sesion sesion);
 

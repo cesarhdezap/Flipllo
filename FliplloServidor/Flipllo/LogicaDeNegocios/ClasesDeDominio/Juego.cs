@@ -21,19 +21,6 @@ namespace LogicaDeNegocios.ClasesDeDominio
         private bool[,] PiezasAGirar { get; set; } = new bool[TAMAÑO_DE_TABLERO, TAMAÑO_DE_TABLERO];
         public bool JuegoTerminado { get; set; } = false;
 
-        public Juego Clonar()
-        {
-            return new Juego
-            {
-                Tablero = this.Tablero.Clonar(),
-                FichasBlancas = this.FichasBlancas,
-                FichasNegras = this.FichasNegras,
-                ColorDeJugadorActual = this.ColorDeJugadorActual,
-                MovimientosLegales = this.MovimientosLegales,
-                PiezasAGirar = this.PiezasAGirar,
-                JuegoTerminado = this.JuegoTerminado
-            };
-        }
 
         private void CalcularMovimientosLegales()
         {
@@ -238,6 +225,41 @@ namespace LogicaDeNegocios.ClasesDeDominio
             }
 
             return cuenta;
+        }
+
+        public int ObtenerPuntosPorColor(ColorDeFicha colorDeFicha)
+        {
+            int cuenta = 0;
+
+            if (colorDeFicha == ColorDeFicha.Blanco)
+            {
+                cuenta = PuntosBlancos;
+            }
+            if (colorDeFicha == ColorDeFicha.Negro)
+            {
+                cuenta = PuntosNegros;
+            }
+
+            return cuenta;
+        }
+
+        public ColorDeFicha CalcularColorGanador()
+        {
+            ColorDeFicha color;
+            if (FichasBlancas > FichasNegras)
+            {
+                color = ColorDeFicha.Blanco;
+            }
+            else if (FichasBlancas < FichasNegras)
+            {
+                color = ColorDeFicha.Negro;
+            }
+            else
+            {
+                color = ColorDeFicha.Negro;
+            }
+
+            return color;
         }
     }
 }

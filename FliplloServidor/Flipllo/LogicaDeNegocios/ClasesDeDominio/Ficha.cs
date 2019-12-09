@@ -25,8 +25,8 @@ namespace LogicaDeNegocios.ClasesDeDominio
         }
         public ColorDeFicha ColorActual
         {
-            get { return ColorActual; }
-            set { this.ColorAnterior = this.ColorActual; this.ColorActual = value; }
+            get { return colorActual; }
+            set { this.ColorAnterior = ColorActual; this.colorActual = value; }
         }
         public ColorDeFicha ColorAnterior { get; set; }
 
