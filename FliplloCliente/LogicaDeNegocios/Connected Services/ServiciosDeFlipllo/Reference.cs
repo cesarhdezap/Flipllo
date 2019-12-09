@@ -236,16 +236,25 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
     public enum EstadoUsuario : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        NoValidado = 0,
+        Indefinido = 0,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        Registrado = 1,
+        Inexistente = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CodigoDeValidacionNovalido = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Registrado = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ActualmenteConectado = 4,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Sesion", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.InterfacesDeServi" +
-        "cios")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sesion", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.Interf" +
+        "acesDeServiciosDeFlipllo")]
     [System.SerializableAttribute()]
     public partial class Sesion : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -256,7 +265,7 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
         private System.DateTime CreacionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
+        private string IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime UltimaActualizacionField;
@@ -288,12 +297,12 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
+        public string ID {
             get {
                 return this.IDField;
             }
             set {
-                if ((this.IDField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
                 }
@@ -338,8 +347,8 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Mensaje", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.InterfacesDeServi" +
-        "cios")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Mensaje", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.Interf" +
+        "acesDeServiciosDeFlipllo")]
     [System.SerializableAttribute()]
     public partial class Mensaje : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -353,7 +362,7 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
         private System.DateTime FechaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDDeUsuarioField;
+        private string NombreDeUsuarioField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -392,14 +401,14 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IDDeUsuario {
+        public string NombreDeUsuario {
             get {
-                return this.IDDeUsuarioField;
+                return this.NombreDeUsuarioField;
             }
             set {
-                if ((this.IDDeUsuarioField.Equals(value) != true)) {
-                    this.IDDeUsuarioField = value;
-                    this.RaisePropertyChanged("IDDeUsuario");
+                if ((object.ReferenceEquals(this.NombreDeUsuarioField, value) != true)) {
+                    this.NombreDeUsuarioField = value;
+                    this.RaisePropertyChanged("NombreDeUsuario");
                 }
             }
         }
@@ -412,6 +421,255 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Sala", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces")]
+    [System.SerializableAttribute()]
+    public partial class Sala : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicaDeNegocios.ServiciosDeFlipllo.EstadoSala EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicaDeNegocios.ServiciosDeFlipllo.Jugador[] JugadoresField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NivelMaximoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NivelMinimoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreDeUsuarioCreadorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicaDeNegocios.ServiciosDeFlipllo.EstadoSala Estado {
+            get {
+                return this.EstadoField;
+            }
+            set {
+                if ((this.EstadoField.Equals(value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicaDeNegocios.ServiciosDeFlipllo.Jugador[] Jugadores {
+            get {
+                return this.JugadoresField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JugadoresField, value) != true)) {
+                    this.JugadoresField = value;
+                    this.RaisePropertyChanged("Jugadores");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NivelMaximo {
+            get {
+                return this.NivelMaximoField;
+            }
+            set {
+                if ((this.NivelMaximoField.Equals(value) != true)) {
+                    this.NivelMaximoField = value;
+                    this.RaisePropertyChanged("NivelMaximo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NivelMinimo {
+            get {
+                return this.NivelMinimoField;
+            }
+            set {
+                if ((this.NivelMinimoField.Equals(value) != true)) {
+                    this.NivelMinimoField = value;
+                    this.RaisePropertyChanged("NivelMinimo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NombreDeUsuarioCreador {
+            get {
+                return this.NombreDeUsuarioCreadorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreDeUsuarioCreadorField, value) != true)) {
+                    this.NombreDeUsuarioCreadorField = value;
+                    this.RaisePropertyChanged("NombreDeUsuarioCreador");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EstadoSala", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces")]
+    public enum EstadoSala : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Inexistente = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Registrada = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EnPartida = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        CupoLleno = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Jugador", Namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces")]
+    [System.SerializableAttribute()]
+    public partial class Jugador : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha ColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ListoParaJugarField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicaDeNegocios.ServiciosDeFlipllo.Sesion SesionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha Color {
+            get {
+                return this.ColorField;
+            }
+            set {
+                if ((this.ColorField.Equals(value) != true)) {
+                    this.ColorField = value;
+                    this.RaisePropertyChanged("Color");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ListoParaJugar {
+            get {
+                return this.ListoParaJugarField;
+            }
+            set {
+                if ((this.ListoParaJugarField.Equals(value) != true)) {
+                    this.ListoParaJugarField = value;
+                    this.RaisePropertyChanged("ListoParaJugar");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicaDeNegocios.ServiciosDeFlipllo.Sesion Sesion {
+            get {
+                return this.SesionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SesionField, value) != true)) {
+                    this.SesionField = value;
+                    this.RaisePropertyChanged("Sesion");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ColorDeFicha", Namespace="http://schemas.datacontract.org/2004/07/")]
+    public enum ColorDeFicha : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Negro = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Blanco = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ninguno = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -442,36 +700,96 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/ActualizarSesion")]
         System.Threading.Tasks.Task ActualizarSesionAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/ConectarDelChat")]
-        void ConectarDelChat(LogicaDeNegocios.ServiciosDeFlipllo.Sesion usuario);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CerrarSesion")]
+        void CerrarSesion(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/ConectarDelChat")]
-        System.Threading.Tasks.Task ConectarDelChatAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion usuario);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/DesconectarDelChat")]
-        void DesconectarDelChat(int IDDeUsuario);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/DesconectarDelChat")]
-        System.Threading.Tasks.Task DesconectarDelChatAsync(int IDDeUsuario);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CerrarSesion")]
+        System.Threading.Tasks.Task CerrarSesionAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/EnviarMensaje")]
-        void EnviarMensaje(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje);
+        void EnviarMensaje(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/EnviarMensaje")]
-        System.Threading.Tasks.Task EnviarMensajeAsync(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje);
+        System.Threading.Tasks.Task EnviarMensajeAsync(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeFlipllo/CrearSala", ReplyAction="http://tempuri.org/IServiciosDeFlipllo/CrearSalaResponse")]
+        LogicaDeNegocios.ServiciosDeFlipllo.Sala CrearSala(LogicaDeNegocios.ServiciosDeFlipllo.Sala sala, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeFlipllo/CrearSala", ReplyAction="http://tempuri.org/IServiciosDeFlipllo/CrearSalaResponse")]
+        System.Threading.Tasks.Task<LogicaDeNegocios.ServiciosDeFlipllo.Sala> CrearSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sala sala, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeFlipllo/SolicitarSalas", ReplyAction="http://tempuri.org/IServiciosDeFlipllo/SolicitarSalasResponse")]
+        LogicaDeNegocios.ServiciosDeFlipllo.Sala[] SolicitarSalas(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeFlipllo/SolicitarSalas", ReplyAction="http://tempuri.org/IServiciosDeFlipllo/SolicitarSalasResponse")]
+        System.Threading.Tasks.Task<LogicaDeNegocios.ServiciosDeFlipllo.Sala[]> SolicitarSalasAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/IngresarASala")]
+        void IngresarASala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/IngresarASala")]
+        System.Threading.Tasks.Task IngresarASalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/DesconectarDeSala")]
+        void DesconectarDeSala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/DesconectarDeSala")]
+        System.Threading.Tasks.Task DesconectarDeSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CambiarColorDeJugadorEnSala")]
+        void CambiarColorDeJugadorEnSala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CambiarColorDeJugadorEnSala")]
+        System.Threading.Tasks.Task CambiarColorDeJugadorEnSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CambiarConfiguracionDeLaSala")]
+        void CambiarConfiguracionDeLaSala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CambiarConfiguracionDeLaSala")]
+        System.Threading.Tasks.Task CambiarConfiguracionDeLaSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/AlternarListoParaJugar")]
+        void AlternarListoParaJugar(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/AlternarListoParaJugar")]
+        System.Threading.Tasks.Task AlternarListoParaJugarAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeFlipllo/IniciarJuego", ReplyAction="http://tempuri.org/IServiciosDeFlipllo/IniciarJuegoResponse")]
+        bool IniciarJuego(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiciosDeFlipllo/IniciarJuego", ReplyAction="http://tempuri.org/IServiciosDeFlipllo/IniciarJuegoResponse")]
+        System.Threading.Tasks.Task<bool> IniciarJuegoAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CambiarSkinDeFicha")]
+        void CambiarSkinDeFicha(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, string nombreSkin);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/CambiarSkinDeFicha")]
+        System.Threading.Tasks.Task CambiarSkinDeFichaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, string nombreSkin);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IServiciosDeFliplloCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/ActualizarListaDeUsuarios")]
-        void ActualizarListaDeUsuarios(LogicaDeNegocios.ServiciosDeFlipllo.Sesion[] usuariosConectados);
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/RecibirMensaje")]
         void RecibirMensaje(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/EnviarIDUsuario")]
-        void EnviarIDUsuario(int id);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/RecibirSalaCreada")]
+        void RecibirSalaCreada(LogicaDeNegocios.ServiciosDeFlipllo.Sala sala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/ActualizarSala")]
+        void ActualizarSala(LogicaDeNegocios.ServiciosDeFlipllo.Sala sala);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/JuegoIniciado")]
+        void JuegoIniciado();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/SkinDeOponenteActualizada")]
+        void SkinDeOponenteActualizada(string skinNueva);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/SalaBorrada")]
+        void SalaBorrada();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/ColorDeJugadorActualizado")]
+        void ColorDeJugadorActualizado();
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeFlipllo/RecibirSesion")]
         void RecibirSesion(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion);
@@ -540,28 +858,92 @@ namespace LogicaDeNegocios.ServiciosDeFlipllo {
             return base.Channel.ActualizarSesionAsync(sesion);
         }
         
-        public void ConectarDelChat(LogicaDeNegocios.ServiciosDeFlipllo.Sesion usuario) {
-            base.Channel.ConectarDelChat(usuario);
+        public void CerrarSesion(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            base.Channel.CerrarSesion(sesion);
         }
         
-        public System.Threading.Tasks.Task ConectarDelChatAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion usuario) {
-            return base.Channel.ConectarDelChatAsync(usuario);
+        public System.Threading.Tasks.Task CerrarSesionAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.CerrarSesionAsync(sesion);
         }
         
-        public void DesconectarDelChat(int IDDeUsuario) {
-            base.Channel.DesconectarDelChat(IDDeUsuario);
+        public void EnviarMensaje(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            base.Channel.EnviarMensaje(mensaje, sesion);
         }
         
-        public System.Threading.Tasks.Task DesconectarDelChatAsync(int IDDeUsuario) {
-            return base.Channel.DesconectarDelChatAsync(IDDeUsuario);
+        public System.Threading.Tasks.Task EnviarMensajeAsync(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.EnviarMensajeAsync(mensaje, sesion);
         }
         
-        public void EnviarMensaje(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje) {
-            base.Channel.EnviarMensaje(mensaje);
+        public LogicaDeNegocios.ServiciosDeFlipllo.Sala CrearSala(LogicaDeNegocios.ServiciosDeFlipllo.Sala sala, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color) {
+            return base.Channel.CrearSala(sala, sesion, color);
         }
         
-        public System.Threading.Tasks.Task EnviarMensajeAsync(LogicaDeNegocios.ServiciosDeFlipllo.Mensaje mensaje) {
-            return base.Channel.EnviarMensajeAsync(mensaje);
+        public System.Threading.Tasks.Task<LogicaDeNegocios.ServiciosDeFlipllo.Sala> CrearSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sala sala, LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color) {
+            return base.Channel.CrearSalaAsync(sala, sesion, color);
+        }
+        
+        public LogicaDeNegocios.ServiciosDeFlipllo.Sala[] SolicitarSalas(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.SolicitarSalas(sesion);
+        }
+        
+        public System.Threading.Tasks.Task<LogicaDeNegocios.ServiciosDeFlipllo.Sala[]> SolicitarSalasAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.SolicitarSalasAsync(sesion);
+        }
+        
+        public void IngresarASala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala) {
+            base.Channel.IngresarASala(sesion, sala);
+        }
+        
+        public System.Threading.Tasks.Task IngresarASalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala) {
+            return base.Channel.IngresarASalaAsync(sesion, sala);
+        }
+        
+        public void DesconectarDeSala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            base.Channel.DesconectarDeSala(sesion);
+        }
+        
+        public System.Threading.Tasks.Task DesconectarDeSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.DesconectarDeSalaAsync(sesion);
+        }
+        
+        public void CambiarColorDeJugadorEnSala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color) {
+            base.Channel.CambiarColorDeJugadorEnSala(sesion, color);
+        }
+        
+        public System.Threading.Tasks.Task CambiarColorDeJugadorEnSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.ColorDeFicha color) {
+            return base.Channel.CambiarColorDeJugadorEnSalaAsync(sesion, color);
+        }
+        
+        public void CambiarConfiguracionDeLaSala(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala) {
+            base.Channel.CambiarConfiguracionDeLaSala(sesion, sala);
+        }
+        
+        public System.Threading.Tasks.Task CambiarConfiguracionDeLaSalaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, LogicaDeNegocios.ServiciosDeFlipllo.Sala sala) {
+            return base.Channel.CambiarConfiguracionDeLaSalaAsync(sesion, sala);
+        }
+        
+        public void AlternarListoParaJugar(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            base.Channel.AlternarListoParaJugar(sesion);
+        }
+        
+        public System.Threading.Tasks.Task AlternarListoParaJugarAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.AlternarListoParaJugarAsync(sesion);
+        }
+        
+        public bool IniciarJuego(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.IniciarJuego(sesion);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IniciarJuegoAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion) {
+            return base.Channel.IniciarJuegoAsync(sesion);
+        }
+        
+        public void CambiarSkinDeFicha(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, string nombreSkin) {
+            base.Channel.CambiarSkinDeFicha(sesion, nombreSkin);
+        }
+        
+        public System.Threading.Tasks.Task CambiarSkinDeFichaAsync(LogicaDeNegocios.ServiciosDeFlipllo.Sesion sesion, string nombreSkin) {
+            return base.Channel.CambiarSkinDeFichaAsync(sesion, nombreSkin);
         }
     }
 }

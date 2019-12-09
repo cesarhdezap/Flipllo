@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recursos_es-MX", "Recursos_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiciosDeComunicacion", "ServiciosDeComunicacion\ServiciosDeComunicacion.csproj", "{2DCF5E4F-245C-40CA-8039-CC3763BB42F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecursosGraficos", "RecursosGraficos\RecursosGraficos.csproj", "{702E3757-59F3-4C9B-83EC-BDB90367B859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebasFlipllo", "PruebasFlipllo\PruebasFlipllo.csproj", "{D8B47501-3F2C-40DE-9DE6-00DF5E3E2752}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{2DCF5E4F-245C-40CA-8039-CC3763BB42F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DCF5E4F-245C-40CA-8039-CC3763BB42F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DCF5E4F-245C-40CA-8039-CC3763BB42F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702E3757-59F3-4C9B-83EC-BDB90367B859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702E3757-59F3-4C9B-83EC-BDB90367B859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702E3757-59F3-4C9B-83EC-BDB90367B859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702E3757-59F3-4C9B-83EC-BDB90367B859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B47501-3F2C-40DE-9DE6-00DF5E3E2752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B47501-3F2C-40DE-9DE6-00DF5E3E2752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B47501-3F2C-40DE-9DE6-00DF5E3E2752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B47501-3F2C-40DE-9DE6-00DF5E3E2752}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

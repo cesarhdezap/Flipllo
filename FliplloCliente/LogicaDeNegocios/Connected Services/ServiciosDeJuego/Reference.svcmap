@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3e9c4add-08a6-4222-9e10-1066c76a9a94" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2dcfc3ef-9db0-4127-b8b5-ebcb417d3185" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,17 +19,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.50.96:8081/ServiciosDeJuego" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.100.10:8081/ServiciosDeJuego" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiciosDeJuego.disco" MetadataType="Disco" ID="a48d1949-05c2-4cd1-b619-7f3f839cd85a" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?disco" />
-    <MetadataFile FileName="ServiciosDeJuego.xsd" MetadataType="Schema" ID="58386397-5d91-4e1a-ad35-328281742e41" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd0" />
-    <MetadataFile FileName="ServiciosDeJuego1.xsd" MetadataType="Schema" ID="44774873-d0e4-4575-9ea5-266ba792e711" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd1" />
-    <MetadataFile FileName="ServiciosDeJuego.wsdl" MetadataType="Wsdl" ID="60b3a006-8786-43e0-983f-1b177c558cf5" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?wsdl" />
-    <MetadataFile FileName="ServiciosDeJuego2.xsd" MetadataType="Schema" ID="90823486-209a-42d5-9e83-627e761c89bc" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd5" />
-    <MetadataFile FileName="ServiciosDeJuego3.xsd" MetadataType="Schema" ID="877541ad-e192-4299-b4c5-e9130284f4a8" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd4" />
-    <MetadataFile FileName="ServiciosDeJuego4.xsd" MetadataType="Schema" ID="965c885e-c6f9-4d69-964a-6ecbece28551" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd2" />
-    <MetadataFile FileName="ServiciosDeJuego5.xsd" MetadataType="Schema" ID="7876e3e8-b608-45c9-81c2-acafa75058f9" SourceId="1" SourceUrl="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd3" />
+    <MetadataFile FileName="ServiciosDeJuego.xsd" MetadataType="Schema" ID="422fe3a3-eb48-4d5b-b849-618dfbca3025" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd4" />
+    <MetadataFile FileName="ServiciosDeJuego.disco" MetadataType="Disco" ID="e49a997f-1723-4ee8-bc55-dea63004639b" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?disco" />
+    <MetadataFile FileName="ServiciosDeJuego1.xsd" MetadataType="Schema" ID="860a3748-473c-4d46-909a-b21edf9f666b" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd2" />
+    <MetadataFile FileName="ServiciosDeJuego2.xsd" MetadataType="Schema" ID="11589d85-3c1d-4b56-911b-d6a669247360" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd0" />
+    <MetadataFile FileName="ServiciosDeJuego3.xsd" MetadataType="Schema" ID="d0eba567-c4d0-4f1a-bddd-ff12c408cca7" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd1" />
+    <MetadataFile FileName="ServiciosDeJuego4.xsd" MetadataType="Schema" ID="fe74019e-b876-49f8-a4fb-970c45b69165" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd5" />
+    <MetadataFile FileName="ServiciosDeJuego5.xsd" MetadataType="Schema" ID="db1315fd-8b0e-4fc2-996c-a5ded901ef6d" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd3" />
+    <MetadataFile FileName="ServiciosDeJuego.wsdl" MetadataType="Wsdl" ID="be27e216-f502-43ca-9899-9c64a72b2e35" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeJuego?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

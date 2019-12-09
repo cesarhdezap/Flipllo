@@ -8,8 +8,6 @@ namespace ServiciosDeComunicacion
 
 	public class CallBackDeFlipllo : IServiciosDeFliplloCallback
 	{
-		public delegate void ActualizacionDeListaDeClientesConectadosDelegate(List<Sesion> clientesConectados);
-		public event ActualizacionDeListaDeClientesConectadosDelegate ListaDeClientesConectadosEvent;
 
 		public delegate void RecibirSesionDelegate(Sesion sesion);
 		public event RecibirSesionDelegate RecibirSesionEvent;
@@ -20,9 +18,6 @@ namespace ServiciosDeComunicacion
 		public delegate void RecibirSalaDelegate(Sala sala);
 		public event RecibirSalaDelegate RecibirSalaEvent;
 
-		public delegate void ActualizarListaDeSesionesDeChatDelegate(List<Sesion> usuariosConectados);
-		public event ActualizarListaDeSesionesDeChatDelegate ActualizarListaDeSesionesDeChatEvent;
-
 		public delegate void RecibirMensajeDelegate(Mensaje mensaje);
 		public event RecibirMensajeDelegate RecibirMensajeEvent;
 
@@ -32,6 +27,9 @@ namespace ServiciosDeComunicacion
 		public delegate void JuegoIniciadoDelegate();
 		public event JuegoIniciadoDelegate JuegoIniciadoEvent;
 
+		public delegate void CambiarSkinDelegate(string skin);
+		public event CambiarSkinDelegate CambiarSkinEvent;
+
 		public void JuegoIniciado()
 		{
 			JuegoIniciadoEvent();
@@ -40,16 +38,6 @@ namespace ServiciosDeComunicacion
 		public void ActualizarSala(Sala sala)
 		{
 			ActualizarSalaEvent(sala);
-		}
-
-		public void ActualizarListaDeSesionesDeChat(Sesion[] usuariosConectados)
-		{
-			ActualizarListaDeSesionesDeChatEvent(usuariosConectados.ToList());
-		}
-
-		public void ActualizarListaDeUsuarios(Sesion[] usuariosConectados)
-		{
-			ListaDeClientesConectadosEvent(usuariosConectados.ToList());
 		}
 
 		public void RecibirSesion(Sesion sesion)
@@ -67,14 +55,24 @@ namespace ServiciosDeComunicacion
 			RecibirMensajeEvent(mensaje);
 		}
 
-		public void SkinDeFichaActualizada(Sala sala)
+		public void SkinDeOponenteActualizada(string skin)
 		{
-			throw new NotImplementedException();
+			CambiarSkinEvent(skin);
 		}
 
 		public void RecibirSalaCreada(Sala sala)
 		{
 			RecibirSalaEvent(sala);
+		}
+
+		public void SalaBorrada()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ColorDeJugadorActualizado()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

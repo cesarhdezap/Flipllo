@@ -19,15 +19,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.50.96:8081" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://192.168.100.10:8081/ServiciosDeFlipllo" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="4b500459-9672-4530-b352-e3fdd889f57d" SourceId="1" SourceUrl="http://192.168.50.96:8081/?disco" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="19b9e0e1-ff68-4f97-9be1-c6ebbc56c3d0" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd0" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="dea92ca9-13c4-4cc2-9df4-246f4424f583" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd3" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="b04e0bcc-8173-4722-8f56-e76ef76ba405" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd1" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="0a828bf5-cd95-4e76-a492-acab702a5ef3" SourceId="1" SourceUrl="http://192.168.50.96:8081/?xsd=xsd2" />
-    <MetadataFile FileName="ServiciosDeFlipllo.wsdl" MetadataType="Wsdl" ID="9d4194c6-6d6e-49ef-8528-aacc8a167e13" SourceId="1" SourceUrl="http://192.168.50.96:8081/?wsdl" />
+    <MetadataFile FileName="ServiciosDeFlipllo.xsd" MetadataType="Schema" ID="7a57df37-1643-4c63-8f42-0f575ce3da9a" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?xsd=xsd4" />
+    <MetadataFile FileName="ServiciosDeFlipllo5.xsd" MetadataType="Schema" ID="6a74c5c2-fcba-4b23-98f8-ea01c7ddbcff" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?xsd=xsd5" />
+    <MetadataFile FileName="ServiciosDeFlipllo1.xsd" MetadataType="Schema" ID="61eae9c1-2859-4707-84ac-2278839537d9" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?xsd=xsd2" />
+    <MetadataFile FileName="ServiciosDeFlipllo2.xsd" MetadataType="Schema" ID="bed28161-c9ce-4992-b233-e44ef05e2a91" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?xsd=xsd3" />
+    <MetadataFile FileName="ServiciosDeFlipllo3.xsd" MetadataType="Schema" ID="094f0301-07e3-4b6b-af17-7cc3c2b7df2f" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?xsd=xsd0" />
+    <MetadataFile FileName="ServiciosDeFlipllo4.xsd" MetadataType="Schema" ID="b006c245-7a87-4d05-a01a-2e2db3391835" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?xsd=xsd1" />
+    <MetadataFile FileName="ServiciosDeFlipllo.disco" MetadataType="Disco" ID="a79a9f3c-84ac-49d6-bcd3-20a6ad0f39cd" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?disco" />
+    <MetadataFile FileName="ServiciosDeFlipllo1.wsdl" MetadataType="Wsdl" ID="9912a512-8586-4cd4-add0-1f7904a66b4b" SourceId="1" SourceUrl="http://192.168.100.10:8081/ServiciosDeFlipllo?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

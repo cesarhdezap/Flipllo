@@ -10,6 +10,12 @@ namespace LogicaDeNegocios.Servicios
 {
 	public static class ServiciosDeLogicaDeJuego
 	{
+		/// <summary>
+		/// Asigna la direccion de una corrida de tablero
+		/// </summary>
+		/// <param name="incremento">El incremento de la corrida</param>
+		/// <param name="direccion">La direccion deseada</param>
+		/// <returns></returns>
 		public static Point AsignarDireccion(Point incremento, Direccion direccion)
 		{
 			if (direccion == Direccion.Arriba)
@@ -56,7 +62,11 @@ namespace LogicaDeNegocios.Servicios
 			return incremento;
 		}
 
-
+		/// <summary>
+		/// Calcula el color opuesto al color indicado
+		/// </summary>
+		/// <param name="colorDeJugador">El color del que se desea saber el contrario</param>
+		/// <returns>El color contrario del color indicado</returns>
 		public static ColorDeFicha ColorContrario(ColorDeFicha colorDeJugador)
 		{
 			ColorDeFicha resultado = ColorDeFicha.Ninguno;
@@ -71,6 +81,12 @@ namespace LogicaDeNegocios.Servicios
 			return resultado;
 		}
 
+		/// <summary>
+		/// Combina dos tableros booleanos en uno solo con la operacion de bits OR
+		/// </summary>
+		/// <param name="tableroBase"></param>
+		/// <param name="tableroASumar"></param>
+		/// <returns>El tablero sumado</returns>
 		public static bool[,] SumarTableros(bool[,] tableroBase, bool[,] tableroASumar)
 		{
 			for (int i = 0; i < 8; i++)

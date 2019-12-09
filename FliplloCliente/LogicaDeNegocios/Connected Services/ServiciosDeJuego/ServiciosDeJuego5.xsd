@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/" />
-  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
+  <xs:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/" />
+  <xs:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
   <xs:complexType name="Usuario">
     <xs:sequence>
       <xs:element minOccurs="0" name="CodigoDeVerificacion" nillable="true" type="xs:string" />

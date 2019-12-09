@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="InterfazGrafica.GUIPanelPostJuego"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InterfazGrafica"
+             mc:Ignorable="d" 
+             d:DesignHeight="512" d:DesignWidth="512" Background="#FF03683A">
+    <Grid>
+        <Label Name="LabelMensajeDeVictoria" Content="MensajeDeVictoria" HorizontalAlignment="Left" Margin="43,48,0,0" VerticalAlignment="Top" FontSize="48"/>
+        <Label Name="LabelNombreDeUsuarioOponente" Content="Oponente" HorizontalAlignment="Left" Margin="-286,122,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Name="LabelMiNombreDeUsuario" Content="Yo" HorizontalAlignment="Left" Margin="-517,122,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Name="LabelPuntuacionFinalMiColor" Content="{DynamicResource puntuacionFinal}" HorizontalAlignment="Left" Margin="-517,164,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Name="LabelPuntuacionFinalColorDelOponente" Content="{DynamicResource puntuacionFinal}" HorizontalAlignment="Left" Margin="-286,164,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Name="LabelValorPuntuacionFinalMiColor" Content="x" HorizontalAlignment="Left" Margin="-414,164,0,0" VerticalAlignment="Top" FontSize="18" Width="109"/>
+        <Label Name="LabelValorPuntuacionFinalColorDelOponente" Content="x" HorizontalAlignment="Left" Margin="-183,164,0,0" VerticalAlignment="Top" FontSize="18" Width="94"/>
+        <Button x:Name="ButtonGG" Content="{DynamicResource ggHeart}" Margin="215,455,214,0" VerticalAlignment="Top" Click="ButtonGG_Click"/>
+        <Label x:Name="LabelEstadisticas" Content="{DynamicResource estadisticas}" HorizontalAlignment="Left" Margin="-243,251,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="LabelPartidasJugadas" Content="{DynamicResource partidas}" HorizontalAlignment="Left" Margin="-242,294,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="LabelVictorias" Content="{DynamicResource victorias}" HorizontalAlignment="Left" Margin="-242,344,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="LabelPorcentajeDeVictorias" Content="{DynamicResource porcentajeDeVictorias}" HorizontalAlignment="Left" Margin="-242,319,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label x:Name="LabelValorDePartidasJugadas" Content="x" HorizontalAlignment="Left" Margin="-160,294,0,0" VerticalAlignment="Top" FontSize="18" Width="109"/>
+        <Label x:Name="LabelValorDeVictorias" Content="x" HorizontalAlignment="Left" Margin="-159,319,0,0" VerticalAlignment="Top" FontSize="18" Width="109"/>
+        <Label x:Name="LabelValorDePorcentajeDeVictorias" Content="x" HorizontalAlignment="Left" Margin="-159,344,0,0" VerticalAlignment="Top" FontSize="18" Width="109"/>
+        <TextBlock x:Name="TextBlockDesgloseDeExperiencia" Text="" HorizontalAlignment="Left" Margin="153,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="84" Width="175" FontSize="18"/>
+        <Label x:Name="LabelExperienciaGanada" Content="{DynamicResource experienciaObtenida}" HorizontalAlignment="Left" Margin="153,127,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <local:ContadorDeNivel x:Name="ContadorDeNivel" Margin="153,301,137,133"></local:ContadorDeNivel>
+    </Grid>
+</UserControl>

@@ -35,10 +35,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616" />
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,43 +72,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ContadorDeNivel.xaml.cs">
-      <DependentUpon>ContadorDeNivel.xaml</DependentUpon>
+    <Compile Include="UserControlChat.xaml.cs">
+      <DependentUpon>UserControlChat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIBuscadorDeLobby.xaml.cs">
-      <DependentUpon>GUIBuscadorDeLobby.xaml</DependentUpon>
+    <Compile Include="UserControlContadorDeNivel.xaml.cs">
+      <DependentUpon>UserControlContadorDeNivel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConvertidoresDeDatos\ConvertidorDeExperienciaANivel.cs" />
+    <Compile Include="ConvertidoresDeDatos\ConvertidorDeListaDeJugadoresACuentaDeJugadores.cs" />
+    <Compile Include="GUIBuscadorDeSala.xaml.cs">
+      <DependentUpon>GUIBuscadorDeSala.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUICodigoDeConfirmacion.xaml.cs">
       <DependentUpon>GUICodigoDeConfirmacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIJuegoLocal.xaml.cs">
-      <DependentUpon>GUIJuegoLocal.xaml</DependentUpon>
+    <Compile Include="GUICrearSala.xaml.cs">
+      <DependentUpon>GUICrearSala.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUILobby.xaml.cs">
-      <DependentUpon>GUILobby.xaml</DependentUpon>
+    <Compile Include="GUIJuego.xaml.cs">
+      <DependentUpon>GUIJuego.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIPanelPostJuego.xaml.cs">
-      <DependentUpon>GUIPanelPostJuego.xaml</DependentUpon>
+    <Compile Include="GUISala.xaml.cs">
+      <DependentUpon>GUISala.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIPantallaPostJuego.xaml.cs">
-      <DependentUpon>GUIPantallaPostJuego.xaml</DependentUpon>
+    <Compile Include="UserControlPanelPostJuego.xaml.cs">
+      <DependentUpon>UserControlPanelPostJuego.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUITerminosDeServicio.xaml.cs">
       <DependentUpon>GUITerminosDeServicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManejadorDeExcepciones\ManejadorDeExcepciones.cs" />
+    <Compile Include="ManejadorDeExcepciones\MensajeDeError.cs" />
     <Compile Include="RegistrarCuenta.xaml.cs">
       <DependentUpon>RegistrarCuenta.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilierias\UtilieriasDeElementosGraficos.cs" />
-    <Page Include="ContadorDeNivel.xaml">
+    <Compile Include="Utilerias\UtilieriasDeElementosGraficos.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="UserControlChat.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControlContadorDeNivel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIBuscadorDeLobby.xaml">
+    <Page Include="GUIBuscadorDeSala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIChat.xaml">
+    <Page Include="GUIMenuPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,19 +129,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIJuegoLocal.xaml">
+    <Page Include="GUICrearSala.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIJuego.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUILobby.xaml">
+    <Page Include="GUISala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIPanelPostJuego.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUIPantallaPostJuego.xaml">
+    <Page Include="UserControlPanelPostJuego.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +149,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="GUILogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -129,11 +157,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GUIChat.xaml.cs">
-      <DependentUpon>GUIChat.xaml</DependentUpon>
+    <Compile Include="GUIMenuPrincipal.xaml.cs">
+      <DependentUpon>GUIMenuPrincipal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="GUILogin.xaml.cs">
+      <DependentUpon>GUILogin.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Recursos.xaml">
@@ -163,6 +191,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -218,33 +247,35 @@
     <Resource Include="RecursosGráficos\background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="RecursosGráficos\Default\Black1.png" />
-    <Resource Include="RecursosGráficos\Default\Black10.png" />
-    <Resource Include="RecursosGráficos\Default\Black11.png" />
-    <Resource Include="RecursosGráficos\Default\Black12.png" />
-    <Resource Include="RecursosGráficos\Default\Black2.png" />
-    <Resource Include="RecursosGráficos\Default\Black3.png" />
-    <Resource Include="RecursosGráficos\Default\Black4.png" />
-    <Resource Include="RecursosGráficos\Default\Black5.png" />
-    <Resource Include="RecursosGráficos\Default\Black6.png" />
-    <Resource Include="RecursosGráficos\Default\Black7.png" />
-    <Resource Include="RecursosGráficos\Default\Black8.png" />
-    <Resource Include="RecursosGráficos\Default\Black9.png" />
-    <Resource Include="RecursosGráficos\Default\White1.png" />
-    <Resource Include="RecursosGráficos\Default\White10.png" />
-    <Resource Include="RecursosGráficos\Default\White11.png" />
-    <Resource Include="RecursosGráficos\Default\White12.png" />
-    <Resource Include="RecursosGráficos\Default\White2.png" />
-    <Resource Include="RecursosGráficos\Default\White3.png" />
-    <Resource Include="RecursosGráficos\Default\White4.png" />
-    <Resource Include="RecursosGráficos\Default\White5.png" />
-    <Resource Include="RecursosGráficos\Default\White6.png" />
-    <Resource Include="RecursosGráficos\Default\White7.png" />
-    <Resource Include="RecursosGráficos\Default\White8.png" />
-    <Resource Include="RecursosGráficos\Default\White9.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="RecursosGráficos\Icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RecursosGráficos\Arrow.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco1.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco10.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco11.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco12.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco2.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco3.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco4.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco5.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco6.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco7.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco8.png" />
+    <Resource Include="RecursosGráficos\Default\Blanco9.png" />
+    <Resource Include="RecursosGráficos\Default\Negro1.png" />
+    <Resource Include="RecursosGráficos\Default\Negro10.png" />
+    <Resource Include="RecursosGráficos\Default\Negro11.png" />
+    <Resource Include="RecursosGráficos\Default\Negro12.png" />
+    <Resource Include="RecursosGráficos\Default\Negro2.png" />
+    <Resource Include="RecursosGráficos\Default\Negro3.png" />
+    <Resource Include="RecursosGráficos\Default\Negro4.png" />
+    <Resource Include="RecursosGráficos\Default\Negro5.png" />
+    <Resource Include="RecursosGráficos\Default\Negro6.png" />
+    <Resource Include="RecursosGráficos\Default\Negro7.png" />
+    <Resource Include="RecursosGráficos\Default\Negro8.png" />
+    <Resource Include="RecursosGráficos\Default\Negro9.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

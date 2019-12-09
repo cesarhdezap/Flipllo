@@ -4,20 +4,70 @@ using static LogicaDeNegocios.Servicios.ServiciosDeLogicaDeJuego;
 
 namespace LogicaDeNegocios.ClasesDeDominio
 {
+	/// <summary>
+	/// Clase con servicios para manejar un juego de Othello
+	/// </summary>
 	public class Juego
 	{
+		/// <summary>
+		/// El color del jugador que tiene el turno actual
+		/// </summary>
 		public ColorDeFicha ColorDeJugadorActual { get; set; } = ColorDeFicha.Negro;
+
+		/// <summary>
+		/// Tamaño del tablero
+		/// </summary>
 		public const int TAMAÑO_DE_TABLERO = 8;
+
+		/// <summary>
+		/// El tablero del juego
+		/// </summary>
 		public Tablero Tablero { get; set; } = new Tablero();
-		public int FichasBlancas { get; set; } = 0;
-		public int FichasNegras { get; set; } = 0;
+
+		/// <summary>
+		/// La cantidad de fichas blancas que tiene el tablero actualmente
+		/// </summary>
+		public int FichasBlancas { get; set; } = 2;
+
+		/// <summary>
+		/// La cantidad de fichas negras que tiene el tablero actualmente
+		/// </summary>
+		public int FichasNegras { get; set; } = 2;
+
+		/// <summary>
+		/// La puntuacion del jugador negro
+		/// </summary>
 		public int PuntosNegros { get; set; } = 0;
+
+		/// <summary>
+		/// La puntuacion del jugador blanco
+		/// </summary>
 		public int PuntosBlancos { get; set; } = 0;
+
+		/// <summary>
+		/// El tipo del juego
+		/// </summary>
 		public TipoDeJuego TipoDeJuego { get; set; }	
+
+		/// <summary>
+		/// Matriz bidimencional que representa el tablero, una posicion es un movimiento legal si es verdadera
+		/// </summary>
 		public bool[,] MovimientosLegales { get; set; } = new bool[TAMAÑO_DE_TABLERO, TAMAÑO_DE_TABLERO];
+
+		/// <summary>
+		/// Piezas que se deben girar a resultado del ultimo movimiento realizado
+		/// </summary>
 		private bool[,] PiezasAGirar { get; set; } = new bool[TAMAÑO_DE_TABLERO, TAMAÑO_DE_TABLERO];
+
+		/// <summary>
+		/// Indica si el juego acabo
+		/// </summary>
 		public bool JuegoTerminado { get; set; } = false;
 
+		/// <summary>
+		/// Clona el objeto juego actual por valores
+		/// </summary>
+		/// <returns>Clon profundo del objeto juego original</returns>
 		public Juego Clonar()
 		{
 			return new Juego
@@ -32,11 +82,28 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			};
 		}
 
+		public Juego()
+		{
+			CalcularMovimientosLegales();
+			ContarFichas();
+			Termino();
+			CalcularPuntos();
+		}
+
+		/// <summary>
+		/// Calcula los movimientos legales para el siguiente movimiento
+		/// </summary>
 		private void CalcularMovimientosLegales()
 		{
 			MovimientosLegales = Tablero.CalcularMovimientosLegales(ColorDeJugadorActual);
 		}
 
+		/// <summary>
+		/// Calcula las piezas a como resultado del ultimo movimiento
+		/// </summary>
+		/// <param name="tirada">La posicion donde se tiro</param>
+		/// <param name="colorDeJugadorTirando">El color del jugador que tiro</param>
+		/// <returns></returns>
 		private bool[,] CalcularPiezasAGirar(Point tirada, ColorDeFicha colorDeJugadorTirando)
 		{
 			bool[,] piezas = new bool[TAMAÑO_DE_TABLERO, TAMAÑO_DE_TABLERO];
@@ -63,6 +130,13 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			return piezas;
 		}
 
+		/// <summary>
+		/// Indica si una ficha en especifico se debe a resultado de una tirada
+		/// </summary>
+		/// <param name="tirada">La posicion de la tirada</param>
+		/// <param name="incremento">El incremento actual</param>
+		/// <param name="colorDeJugadorTirando">El color ddel jugador que realizola tirada</param>
+		/// <returns></returns>
 		private bool[,] SeDebeGirar(Point tirada, Point incremento, ColorDeFicha colorDeJugadorTirando)
 		{
 			bool finalEncontrado = false;
@@ -106,12 +180,18 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			return piezasAGirar;
 		}
 
+		/// <summary>
+		/// Cuenta la cantidad de fichas de cada color del juego
+		/// </summary>
 		private void ContarFichas()
 		{
 			FichasBlancas = Tablero.ContarFichas(ColorDeFicha.Blanco);
 			FichasNegras = Tablero.ContarFichas(ColorDeFicha.Negro);
 		}
 
+		/// <summary>
+		/// Determina si el juego ha terminado
+		/// </summary>
 		private void Termino()
 		{
 			JuegoTerminado = true;
@@ -129,6 +209,11 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			}
 		}
 
+		/// <summary>
+		/// Determina si una tirada es valida
+		/// </summary>
+		/// <param name="tirada">La posicion de la tirada</param>
+		/// <returns>Representa si la tirada es valida o no</returns>
 		public bool SePuedeTirar(Point tirada)
 		{
 			bool resultado = false;
@@ -141,6 +226,10 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			return resultado;
 		}
 
+		/// <summary>
+		/// Hace una tirada con el color de jugador actual del juego en la posicion especificada
+		/// </summary>
+		/// <param name="tirada">La posicion en donde  tirar</param>
 		public void Tirar(Point tirada)
 		{
 			Tablero.LimpiarGiros();
@@ -171,6 +260,9 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			ContarFichas();
 		}
 
+		/// <summary>
+		/// Calcula la cantidad de puntos total de ambos jugadores
+		/// </summary>
 		private void CalcularPuntos()
 		{
 			int cuentaDePuntos = 0;
@@ -200,6 +292,10 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			}
 		}
 
+		/// <summary>
+		/// Obtiene las fichas del tablero como una lista
+		/// </summary>
+		/// <returns>Lista de fichas del tablero</returns>
 		public List<Ficha> ObtenerFichasComoLista()
 		{
 			List<Ficha> listaDeFichas = new List<Ficha>();
@@ -221,6 +317,11 @@ namespace LogicaDeNegocios.ClasesDeDominio
 			return listaDeFichas;
 		}
 
+		/// <summary>
+		/// Obtiene la cantidad de fichas del color especificado
+		/// </summary>
+		/// <param name="colorDeFicha">Color de ficha del que se desea conocer la cantidad de fichas</param>
+		/// <returns>La cantidad de fichas del color especificado</returns>
 		public int ObtenerCuentaDeFichas(ColorDeFicha colorDeFicha)
 		{
 			int cuenta = 0;

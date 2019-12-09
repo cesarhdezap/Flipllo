@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="vvR1yH2kj0ZD+bQBaHcXEo0wqRQ=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="iYP9mU7Als6FHa5ptQC0FDLV880=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IServiciosDeFlipllo">
       <properties>
@@ -121,10 +121,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IServiciosDeFlipllo" contract="ServiciosDeFlipllo.IServiciosDeFlipllo" bindingType="netTcpBinding" address="net.tcp://192.168.50.96:8091/ServiciosDeComunicacion" bindingConfiguration="NetTcpBinding_IServiciosDeFlipllo">
+    <endpoint name="NetTcpBinding_IServiciosDeFlipllo" contract="ServiciosDeFlipllo.IServiciosDeFlipllo" bindingType="netTcpBinding" address="net.tcp://192.168.100.10:8091/ServiciosDeFlipllo/ServiciosDeComunicacion.ServiciosDeFlipllo" bindingConfiguration="NetTcpBinding_IServiciosDeFlipllo">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://192.168.50.96:8091/ServiciosDeComunicacion</serializedValue>
+          <serializedValue>net.tcp://192.168.100.10:8091/ServiciosDeFlipllo/ServiciosDeComunicacion.ServiciosDeFlipllo</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

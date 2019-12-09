@@ -1,51 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" />
-  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
-  <xs:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" />
-  <xs:element name="TirarFicha">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" minOccurs="0" name="sesion" nillable="true" type="q1:Sesion" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="point" type="q2:Point" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="TirarFichaResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="TirarFichaResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PedirActualizacionDeTablero">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" minOccurs="0" name="sesion" nillable="true" type="q3:Sesion" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RecibirTablero">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" minOccurs="0" name="tablero" nillable="true" type="q4:ArrayOfFicha" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="TerminarJuego">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="experenciaPorPuntos" type="xs:int" />
-        <xs:element minOccurs="0" name="experenciaPorFichas" type="xs:int" />
-        <xs:element minOccurs="0" name="ganaste" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RecibirTirada">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="tirada" type="q5:Point" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Windows" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Windows" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Point">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="_x" type="xs:double" />
+      <xs:element name="_y" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Point" nillable="true" type="tns:Point" />
 </xs:schema>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="InterfazGrafica.GUIMenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfazGrafica"
+        mc:Ignorable="d"
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="718" Width="1281" ResizeMode="NoResize" Closed="Window_Closed" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}">
+	<Grid Margin="0,0,0,0">
+		<local:ContadorDeNivel x:Name="ContadorDeNivel" Margin="15,12,1045,603"></local:ContadorDeNivel>
+		<local:GUIChat x:Name="VentanaDeChat" Margin="15,451,923,29" ></local:GUIChat>
+		<DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="304" Margin="-414,110,0,0" VerticalAlignment="Top" Width="350">
+			<DataGrid.Background>
+				<SolidColorBrush Color="#FFF0F0F0" Opacity="0.5"/>
+			</DataGrid.Background>
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ID en Chat" IsReadOnly="True" Binding="{Binding ID}"/>
+				<DataGridTextColumn Header="Usuario" IsReadOnly="True" Binding="{Binding Usuario.NombreDeUsuario}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Button x:Name="ButtonBotin"  HorizontalAlignment="Left" Margin="1485,538,-310,0" VerticalAlignment="Top" Width="100" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonBotin_Click">
+			<Image Source="/RecursosGráficos/treasure.png">
+			</Image>
+		</Button>
+		<Button x:Name="ButtonTablaDePuntuaciones" HorizontalAlignment="Left" Margin="1378,339,-178,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" BorderBrush="{x:Null}">
+			<Image Source="/RecursosGráficos/trophy.png"/>
+		</Button>
+		<Button x:Name="ButtonSalir"  HorizontalAlignment="Left" Margin="1192,14,0,0" VerticalAlignment="Top" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonSalir_Click">
+			<Image Source="/RecursosGráficos/exit.png"/>
+		</Button>
+		<Button x:Name="ButtonConfiguracion"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="1558,339,-358,0" Background="{x:Null}" BorderBrush="{x:Null}">
+			<Image Source="/RecursosGráficos/settings.png"/>
+		</Button>
+		<Button x:Name="ButtonContactanos" HorizontalAlignment="Left" Margin="1100,595,0,0" VerticalAlignment="Top" Width="75" Height="75" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonContactanos_Click">
+			<Image Source="/RecursosGráficos/telegram.png"/>
+		</Button>
+		<Button x:Name="ButtoGitHub"  HorizontalAlignment="Left" Margin="1186,595,0,0" VerticalAlignment="Top" Width="75" Height="75" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtoGitHub_Click">
+			<Image Source="/RecursosGráficos/github.png"/>
+		</Button>
+		<Button x:Name="ButtonJugar" HorizontalAlignment="Left" Margin="567,227,0,0" VerticalAlignment="Top" Width="200" Height="200" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonJugar_Click">
+			<Image Source="/RecursosGráficos/play.png"/>
+		</Button>
+	</Grid>
+</Window>

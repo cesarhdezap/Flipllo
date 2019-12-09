@@ -23,6 +23,9 @@ namespace LogicaDeNegocios.Servicios
 		/// </summary>
 		private static readonly Regex ExpresionRegularNombreDeUsuario = new Regex(@"^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$");
 
+		/// <summary>
+		/// Expresión regular que valida que el codigo de verificación sea de 5 caracteres.
+		/// </summary>
 		private static readonly Regex ExpresionRegularCodigoDeVerificacion = new Regex(@"^([\S]{5})$");
 
 		public const int TAMAÑO_MAXIMO_VARCHAR = 255;
@@ -65,6 +68,11 @@ namespace LogicaDeNegocios.Servicios
 			return resultadoDeValidacion;
 		}
 
+		/// <summary>
+		/// Valida la estructura de la cadena del nombre se usuario
+		/// </summary>
+		/// <param name="nombreDeUsuario">Nombre de usuario</param>
+		/// <returns>Si el nombre de usuario cumple con la validación o no</returns>
 		public static bool ValidarNombreDeUsuario(string nombreDeUsuario)
 		{
 			bool resultadoDeValidacion = false;
@@ -77,6 +85,11 @@ namespace LogicaDeNegocios.Servicios
 			return resultadoDeValidacion;
 		}
 
+		/// <summary>
+		/// Valida la estructura de la cadena del codigo de verificación
+		/// </summary>
+		/// <param name="codigoDeVerificacion">El codigo de verificacion</param>
+		/// <returns>Si el codigo de verificación cumple con la validación o no</returns>
 		public static bool ValidarCodigoDeVerificacion(string codigoDeVerificacion)
 		{
 			bool resultadoDeValidacion = false;
@@ -89,6 +102,11 @@ namespace LogicaDeNegocios.Servicios
 			return resultadoDeValidacion;
 		}
 
+		/// <summary>
+		/// Valida que una cadena solo contenga numeros enteros
+		/// </summary>
+		/// <param name="texto">La cadena</param>
+		/// <returns>Si el texto contiene unicamente numeros enteros</returns>
 		public static bool ValidarQueTextoSeaEnteros(string texto)
 		{
 			bool resultadoDeValidacion = false;

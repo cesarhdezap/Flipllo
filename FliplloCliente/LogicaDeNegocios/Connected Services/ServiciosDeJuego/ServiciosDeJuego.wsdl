@@ -10,12 +10,12 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" />
-      <xsd:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" />
-      <xsd:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
-      <xsd:import schemaLocation="http://192.168.50.96:8081/ServiciosDeJuego?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/" />
+      <xsd:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" />
+      <xsd:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" />
+      <xsd:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
+      <xsd:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiciosDeJuego_TirarFicha_InputMessage">
@@ -26,6 +26,9 @@
   </wsdl:message>
   <wsdl:message name="IServiciosDeJuego_PedirActualizacionDeTablero_InputMessage">
     <wsdl:part name="parameters" element="tns:PedirActualizacionDeTablero" />
+  </wsdl:message>
+  <wsdl:message name="IServiciosDeJuego_ActualizarCanalDeCallback_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCanalDeCallback" />
   </wsdl:message>
   <wsdl:message name="IServiciosDeJuego_RecibirTablero_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:RecibirTablero" />
@@ -43,6 +46,9 @@
     </wsdl:operation>
     <wsdl:operation name="PedirActualizacionDeTablero">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiciosDeJuego/PedirActualizacionDeTablero" message="tns:IServiciosDeJuego_PedirActualizacionDeTablero_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCanalDeCallback">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiciosDeJuego/ActualizarCanalDeCallback" message="tns:IServiciosDeJuego_ActualizarCanalDeCallback_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecibirTablero">
       <wsdl:output wsaw:Action="http://tempuri.org/IServiciosDeJuego/RecibirTablero" message="tns:IServiciosDeJuego_RecibirTablero_OutputCallbackMessage" />
@@ -72,6 +78,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="ActualizarCanalDeCallback">
+      <soap12:operation soapAction="http://tempuri.org/IServiciosDeJuego/ActualizarCanalDeCallback" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="RecibirTablero">
       <soap12:operation soapAction="http://tempuri.org/IServiciosDeJuego/RecibirTablero" style="document" />
       <wsdl:output>
@@ -93,9 +105,9 @@
   </wsdl:binding>
   <wsdl:service name="ServiciosDeJuego">
     <wsdl:port name="NetTcpBinding_IServiciosDeJuego" binding="tns:NetTcpBinding_IServiciosDeJuego">
-      <soap12:address location="net.tcp://192.168.50.96:8091/ServiciosDeJuego/ServiciosDeComunicacion.ServiciosDeJuego" />
+      <soap12:address location="net.tcp://192.168.100.10:8091/ServiciosDeJuego/ServiciosDeComunicacion.ServiciosDeJuego" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.50.96:8091/ServiciosDeJuego/ServiciosDeComunicacion.ServiciosDeJuego</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.100.10:8091/ServiciosDeJuego/ServiciosDeComunicacion.ServiciosDeJuego</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

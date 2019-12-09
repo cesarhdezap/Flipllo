@@ -31,54 +31,115 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClasesDeDominio\Chat.cs" />
+    <Compile Include="ClasesDeDominio\ColorDeFicha.cs" />
+    <Compile Include="ClasesDeDominio\Direccion.cs" />
+    <Compile Include="ClasesDeDominio\Ficha.cs" />
+    <Compile Include="ClasesDeDominio\Juego.cs" />
+    <Compile Include="ClasesDeDominio\ObjetoDeInicializacionDeJuego.cs" />
+    <Compile Include="ClasesDeDominio\Tablero.cs" />
+    <Compile Include="ClasesDeDominio\TipoDeJuego.cs" />
     <Compile Include="Connected Services\ServiciosDeFlipllo\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServiciosDeJuego\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Excepciones\RecursoNoEncontradoException.cs" />
+    <Compile Include="InteligenciaArtificial\InteligenciaArtificial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiciosDeRecursosDeIdioma.cs" />
+    <Compile Include="Servicios\ServiciosDeRecursos.cs" />
+    <Compile Include="Servicios\ServiciosDeEncriptacion.cs" />
+    <Compile Include="Servicios\ServiciosDeLogicaDeJuego.cs" />
+    <Compile Include="Servicios\ServiciosDeUsuario.cs" />
     <Compile Include="Servicios\ServiciosDeValidacion.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Connected Services\ServiciosDeFlipllo\item.xsd">
+    <None Include="Connected Services\ServiciosDeFlipllo\LogicaDeNegocios.ServiciosDeFlipllo.Sala.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeFlipllo\item1.xsd">
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo1.wsdl" />
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeFlipllo\item2.xsd">
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeFlipllo\item3.xsd">
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo.wsdl" />
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego.wsdl" />
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServiciosDeFlipllo\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiciosDeFlipllo\item.disco" />
+    <WCFMetadataStorage Include="Connected Services\ServiciosDeJuego\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiciosDeFlipllo\configuration91.svcinfo" />
@@ -91,6 +152,24 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeJuego\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeJuego\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeJuego\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeJuego\ServiciosDeJuego.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiciosDeFlipllo\ServiciosDeFlipllo.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

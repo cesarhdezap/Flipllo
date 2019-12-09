@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:simpleType name="ColorDeFicha">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Negro" />
-      <xs:enumeration value="Blanco" />
-      <xs:enumeration value="Ninguno" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ColorDeFicha" nillable="true" type="tns:ColorDeFicha" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" />
+  <xs:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
+  <xs:import schemaLocation="http://192.168.100.10:8081/ServiciosDeJuego?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" />
+  <xs:element name="TirarFicha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" minOccurs="0" name="sesion" nillable="true" type="q1:Sesion" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="point" type="q2:Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TirarFichaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TirarFichaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PedirActualizacionDeTablero">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" minOccurs="0" name="sesion" nillable="true" type="q3:Sesion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActualizarCanalDeCallback">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ServiciosDeComunicacion.Interfaces.InterfacesDeServiciosDeFlipllo" minOccurs="0" name="sesion" nillable="true" type="q4:Sesion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibirTablero">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/LogicaDeNegocios.ClasesDeDominio" minOccurs="0" name="tablero" nillable="true" type="q5:ArrayOfFicha" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TerminarJuego">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="experenciaPorPuntos" type="xs:int" />
+        <xs:element minOccurs="0" name="experenciaPorFichas" type="xs:int" />
+        <xs:element minOccurs="0" name="ganaste" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibirTirada">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="tirada" type="q6:Point" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

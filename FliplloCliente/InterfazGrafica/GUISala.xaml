@@ -1,0 +1,147 @@
+﻿<Window x:Class="InterfazGrafica.GUILobby"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfazGrafica"
+		xmlns:converters="clr-namespace:InterfazGrafica.ConvertidoresDeDatos"
+	mc:Ignorable="d"
+        Title="{DynamicResource ResourceKey=nombreDelJuego}" Height="670.5" Width="1021" ResizeMode="NoResize" Icon="RecursosGráficos/Icon.ico" WindowStartupLocation="CenterScreen" Background="{DynamicResource VerdeFlipllo}" Closed="Window_Closed">
+	<Window.Resources>
+		<converters:ConvertidorDeExperienciaANivel x:Key="ConvertidorDeExperienciaANivel" />
+	</Window.Resources>
+	<Grid RenderOptions.BitmapScalingMode="NearestNeighbor">
+		<local:GUIChat x:Name="VentanaDeChat" Margin="28,391,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="222" ></local:GUIChat>
+		<Button x:Name="ButtonRegresar" Content="d-*" HorizontalAlignment="Left" Margin="27,32,0,0" VerticalAlignment="Top" Width="23" FontSize="14"/>
+		<Rectangle HorizontalAlignment="Left" Height="160" Margin="30,205,0,0" VerticalAlignment="Top" Width="348" Panel.ZIndex="-1">
+			<Rectangle.Fill>
+				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>
+			</Rectangle.Fill>
+		</Rectangle>
+		<DataGrid x:Name="DataGridJugadores" HorizontalAlignment="Left" Height="118" Margin="30,65,0,0" VerticalAlignment="Top" Width="693" FontSize="14" BorderBrush="{x:Null}" AutoGenerateColumns="False">
+			<DataGrid.Background>
+				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>
+			</DataGrid.Background>
+			<DataGrid.Columns>
+				<DataGridTextColumn Width="50" IsReadOnly="True" Binding="{Binding NombreDeUsuario}"/>
+				<DataGridTextColumn Width="250" Header="{DynamicResource ResourceKey=nombre}" IsReadOnly="True" Binding="{Binding Sesion.Usuario.NombreDeUsuario}"/>
+				<DataGridTextColumn Width="100" Header="{DynamicResource ResourceKey=nivel}" IsReadOnly="True" Binding="{Binding Sesion.Usuario.Puntuacion.ExperienciaTotal, Converter={StaticResource ConvertidorDeExperienciaANivel}}"/>
+				<DataGridTextColumn Width="100" Header="{DynamicResource ResourceKey=victorias}" IsReadOnly="True" Binding="{Binding Sesion.Usuario.Puntuacion.Victorias}"/>
+				<DataGridTextColumn Width="100" Header="{DynamicResource ResourceKey=listo}" IsReadOnly="True" Binding="{Binding ListoParaJugar}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		<Rectangle HorizontalAlignment="Left" Height="258" Margin="735,104,0,0" Stroke="Black" VerticalAlignment="Top" Width="258"/>
+		<Label Content="{DynamicResource ResourceKey=aparienciaDeFichas}" HorizontalAlignment="Left" Margin="513,209,0,0" VerticalAlignment="Top" FontSize="18"/>
+		<Button x:Name="ButtonRightArrow"  HorizontalAlignment="Left" Margin="613,260,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonRightArrow_Click">
+			<Image Source="/RecursosGráficos/Arrow.png">
+			</Image>
+		</Button>
+		<Label Content="{DynamicResource ResourceKey=configuracionDePartida}" HorizontalAlignment="Left" Margin="43,222,0,0" VerticalAlignment="Top" FontSize="18" Width="144"/>
+		<Label Content="{DynamicResource ResourceKey=nombreDeLobby}" HorizontalAlignment="Left" Margin="49,256,0,0" VerticalAlignment="Top" FontSize="14" Width="98"/>
+		<Label Content="{DynamicResource ResourceKey=nivel}" HorizontalAlignment="Left" Margin="49,285,0,0" VerticalAlignment="Top" FontSize="14" Width="46"/>
+		<Label Content="{DynamicResource ResourceKey=maximo}" HorizontalAlignment="Left" Margin="178,285,0,0" VerticalAlignment="Top" FontSize="14" Width="40"/>
+		<Label Content="{DynamicResource ResourceKey=minimo}" HorizontalAlignment="Left" Margin="95,285,0,0" VerticalAlignment="Top" FontSize="14" Width="40"/>
+		<TextBox x:Name="TextBoxNivelMinimo" HorizontalAlignment="Left" Height="24" Margin="135,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"/>
+		<TextBox x:Name="TextBoxNivelMaximo" HorizontalAlignment="Left" Height="24" Margin="223,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"/>
+		<Label x:Name="LabelNombreDeLobby" Content="Label" HorizontalAlignment="Left" Margin="137,256,0,0" VerticalAlignment="Top" FontSize="14" Width="50"/>
+		<Rectangle HorizontalAlignment="Left" Height="160" Margin="398,205,0,0" VerticalAlignment="Top" Width="320" Panel.ZIndex="-1">
+			<Rectangle.Fill>
+				<SolidColorBrush Color="#FFBFBFBF" Opacity="0.5"/>
+			</Rectangle.Fill>
+		</Rectangle>
+		<Button x:Name="ButtonListo" Content="{DynamicResource listo}" HorizontalAlignment="Left" Margin="421,391,0,0" VerticalAlignment="Top" Width="75" Click="ButtonListo_Click"/>
+		<Button x:Name="ButtonLeftArrow"  HorizontalAlignment="Left" Margin="435,260,0,0" VerticalAlignment="Top" Width="74" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonLeftArrow_Click">
+			<Image Source="RecursosGráficos/Arrow.png" RenderTransformOrigin="0.5,0.5">
+				<Image.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="-180"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Image.RenderTransform>
+			</Image>
+		</Button>
+		<Image x:Name="ImageVistaPreviaNegra" HorizontalAlignment="Left" Height="100" Margin="513,248,0,0" VerticalAlignment="Top" Width="100">
+			<Image.Triggers>
+				<EventTrigger RoutedEvent="Loaded">
+					<BeginStoryboard Storyboard="{DynamicResource vistaPreviaNegroStoryboard}">
+					</BeginStoryboard>
+				</EventTrigger>
+			</Image.Triggers>
+		</Image>
+		<Image x:Name="ImageVistaPreviaBlanca" HorizontalAlignment="Left" Height="100" Margin="513,248,0,0" VerticalAlignment="Top" Width="100">
+			<Image.Triggers>
+				<EventTrigger RoutedEvent="Loaded">
+					<BeginStoryboard Storyboard="{DynamicResource vistaPreviaBlancoStoryboard}" >
+					</BeginStoryboard>
+				</EventTrigger>
+			</Image.Triggers>
+		</Image>
+
+		<Viewbox Margin="736,105,0,0" IsHitTestVisible="False" Height="256" Width="256" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<ItemsControl Name="TableroNegro" Height="8" Width="8" IsTabStop="False">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<Canvas Width="8" Height="8" Background="{DynamicResource ResourceKey=Tablero}"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Grid Width="1" Height="1">
+							<Image Width="1" Height="1" Style="{DynamicResource ResourceKey=FichasBlancas}" />
+						</Grid>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+				<ItemsControl.ItemContainerStyle>
+					<Style>
+						<Setter Property="Canvas.Left" Value="{Binding Posicion.X}" />
+						<Setter Property="Canvas.Top" Value="{Binding Posicion.Y}" />
+					</Style>
+				</ItemsControl.ItemContainerStyle>
+			</ItemsControl>
+		</Viewbox>
+		<Viewbox Margin="736,105,0,0" IsHitTestVisible="False" Height="256" Width="256" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<ItemsControl Name="TableroBlanco" Height="8" Width="8" IsTabStop="False">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<Canvas Width="8" Height="8" Background="{DynamicResource ResourceKey=TableroTransparente}"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Grid Width="1" Height="1">
+							<Image Width="1" Height="1" Style="{DynamicResource ResourceKey=FichasNegras}" />
+						</Grid>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+				<ItemsControl.ItemContainerStyle>
+					<Style>
+						<Setter Property="Canvas.Left" Value="{Binding Posicion.X}" />
+						<Setter Property="Canvas.Top" Value="{Binding Posicion.Y}" />
+					</Style>
+				</ItemsControl.ItemContainerStyle>
+			</ItemsControl>
+		</Viewbox>
+		<Viewbox x:Name="Tablero" Margin="736,105,0,0" IsHitTestVisible="False" Height="256" Width="256" Panel.ZIndex="2" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<Canvas Height="8" Width="8">
+				<Canvas.Background>
+					<DrawingBrush TileMode="Tile" Viewport="0,0,1,1" ViewportUnits="Absolute">
+						<DrawingBrush.Drawing>
+							<GeometryDrawing>
+								<GeometryDrawing.Geometry>
+									<RectangleGeometry Rect="0,0,1,1"/>
+								</GeometryDrawing.Geometry>
+								<GeometryDrawing.Pen>
+									<Pen Brush="#FF1B661B" Thickness="0.015"/>
+								</GeometryDrawing.Pen>
+							</GeometryDrawing>
+						</DrawingBrush.Drawing>
+					</DrawingBrush>
+				</Canvas.Background>
+			</Canvas>
+		</Viewbox>
+		<Button x:Name="ButtonIniciarJuego" Content="Button" HorizontalAlignment="Left" Margin="548,482,0,0" VerticalAlignment="Top" Width="74" Click="ButtonIniciarJuego_Click"/>
+
+	</Grid>
+</Window>

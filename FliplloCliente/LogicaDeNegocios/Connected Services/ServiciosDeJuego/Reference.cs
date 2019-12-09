@@ -467,6 +467,12 @@ namespace LogicaDeNegocios.ServiciosDeJuego {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeJuego/PedirActualizacionDeTablero")]
         System.Threading.Tasks.Task PedirActualizacionDeTableroAsync(LogicaDeNegocios.ServiciosDeJuego.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeJuego/ActualizarCanalDeCallback")]
+        void ActualizarCanalDeCallback(LogicaDeNegocios.ServiciosDeJuego.Sesion sesion);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiciosDeJuego/ActualizarCanalDeCallback")]
+        System.Threading.Tasks.Task ActualizarCanalDeCallbackAsync(LogicaDeNegocios.ServiciosDeJuego.Sesion sesion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -524,6 +530,14 @@ namespace LogicaDeNegocios.ServiciosDeJuego {
         
         public System.Threading.Tasks.Task PedirActualizacionDeTableroAsync(LogicaDeNegocios.ServiciosDeJuego.Sesion sesion) {
             return base.Channel.PedirActualizacionDeTableroAsync(sesion);
+        }
+        
+        public void ActualizarCanalDeCallback(LogicaDeNegocios.ServiciosDeJuego.Sesion sesion) {
+            base.Channel.ActualizarCanalDeCallback(sesion);
+        }
+        
+        public System.Threading.Tasks.Task ActualizarCanalDeCallbackAsync(LogicaDeNegocios.ServiciosDeJuego.Sesion sesion) {
+            return base.Channel.ActualizarCanalDeCallbackAsync(sesion);
         }
     }
 }
