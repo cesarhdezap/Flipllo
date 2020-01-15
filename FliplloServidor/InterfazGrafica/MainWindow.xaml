@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfazGrafica"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Servidor de Flipllo" Height="474.58" Width="738.402" Closed="Window_Closed" ResizeMode="CanMinimize"  Icon="Imagenes/server.ico">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="Imagenes/greyd.jpg" Opacity="0.305"/>
+        </Grid.Background>
+        <Button x:Name="ButtonIniciarServidor" Content="Iniciar Servidor" HorizontalAlignment="Left" Margin="32,308,0,0" VerticalAlignment="Top" Width="89" Click="ButtonIniciarServidor_Click"/>
+        <Label x:Name="LabelEstadoDeServidor" Content="Estado de los servidores" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="139" Height="26"/>
+        <Button x:Name="ButtonPausarServidor" Content="Pausar Servidor" HorizontalAlignment="Left" Margin="32,342,0,0" VerticalAlignment="Top" Width="91" Click="ButtonPausarServidor_Click"/>
+        <DataGrid x:Name="DataGridUsuariosConectados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="256" Margin="449,150,0,0" VerticalAlignment="Top" Width="273">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre de usuario" IsReadOnly="True" Binding="{Binding Usuario.NombreDeUsuario}"/>
+                <DataGridTextColumn Header="ID Sesion" IsReadOnly="True" Binding="{Binding ID}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Label x:Name="LabelUsuariosConectados" Content="Usuarios Conectados" HorizontalAlignment="Left" Margin="498,124,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DataGridSalasConectadas" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="256" Margin="160,150,0,0" VerticalAlignment="Top" Width="284">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="NombreCreador" IsReadOnly="True" Binding="{Binding NombreDeUsuarioCreador}"/>
+                <DataGridTextColumn Header="Nombre" IsReadOnly="True" Binding="{Binding Nombre}"/>
+                <DataGridTextColumn Header="#Jugadores" IsReadOnly="True" Binding="{Binding Jugadores.Count}"/>
+                <DataGridTextColumn Header="ID Sala" IsReadOnly="True" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Jugador1" IsReadOnly="True" Binding="{Binding Jugadores[0].Sesion.Nombre}"/>
+                <DataGridTextColumn Header="Jugador2" IsReadOnly="True" Binding="{Binding Jugadores[1].Sesion.Nombre}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="ButtonLimpiarSalas" Content="Limpiar Salas" HorizontalAlignment="Left" Margin="232,411,0,0" VerticalAlignment="Top" Width="75" Click="ButtonLimpiarSalas_Click"/>
+        <Button x:Name="ButtonLimpiarSesiones" Content="Limpiar Sesiones" HorizontalAlignment="Left" Margin="535,411,0,0" VerticalAlignment="Top" Width="92" Click="ButtonLimpiarSesiones_Click"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="83" Margin="10,36,0,0" VerticalAlignment="Top" Width="712" BorderThickness="100" BorderBrush="Black" Background="#3F000000">
+            <TextBlock x:Name="TextBlockEstadoDelServidor" TextWrapping="Wrap"/>
+        </ScrollViewer>
     </Grid>
 </Window>
